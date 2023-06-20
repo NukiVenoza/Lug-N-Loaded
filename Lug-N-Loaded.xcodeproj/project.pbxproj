@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DC0D77E2A4209D000DAF262 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D77A2A4209D000DAF262 /* SquareNode.swift */; };
-		2DC0D77F2A4209D000DAF262 /* LuggageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D77B2A4209D000DAF262 /* LuggageNode.swift */; };
-		2DC0D7802A4209D000DAF262 /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D77D2A4209D000DAF262 /* ItemNode.swift */; };
 		2DC0D7862A4209D500DAF262 /* ItemVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */; };
 		2DC0D7872A4209D500DAF262 /* LuggageVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */; };
 		2DC0D7882A4209D500DAF262 /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7852A4209D500DAF262 /* MovementComponent.swift */; };
@@ -18,6 +15,9 @@
 		2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78F2A4209E800DAF262 /* Constants.swift */; };
 		2DC0D7922A4209E800DAF262 /* NodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */; };
 		2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7932A420A2200DAF262 /* GameScene.swift */; };
+		2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7962A420F3400DAF262 /* SquareNode.swift */; };
+		2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7972A420F3400DAF262 /* LuggageNode.swift */; };
+		2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7992A420F3400DAF262 /* ItemNode.swift */; };
 		D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3F62A3D622C00665580 /* AppDelegate.swift */; };
 		D0AFC3F92A3D622C00665580 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3F82A3D622C00665580 /* GameScene.sks */; };
 		D0AFC3FB2A3D622C00665580 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3FA2A3D622C00665580 /* Actions.sks */; };
@@ -28,9 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2DC0D77A2A4209D000DAF262 /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
-		2DC0D77B2A4209D000DAF262 /* LuggageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageNode.swift; sourceTree = "<group>"; };
-		2DC0D77D2A4209D000DAF262 /* ItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
 		2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVisualComponent.swift; sourceTree = "<group>"; };
 		2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageVisualComponent.swift; sourceTree = "<group>"; };
 		2DC0D7852A4209D500DAF262 /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
@@ -39,6 +36,9 @@
 		2DC0D78F2A4209E800DAF262 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeBuilder.swift; sourceTree = "<group>"; };
 		2DC0D7932A420A2200DAF262 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		2DC0D7962A420F3400DAF262 /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
+		2DC0D7972A420F3400DAF262 /* LuggageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageNode.swift; sourceTree = "<group>"; };
+		2DC0D7992A420F3400DAF262 /* ItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
 		D0AFC3F32A3D622C00665580 /* Lug-N-Loaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lug-N-Loaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AFC3F62A3D622C00665580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AFC3F82A3D622C00665580 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -60,25 +60,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2DC0D7792A4209D000DAF262 /* CustomNodes */ = {
-			isa = PBXGroup;
-			children = (
-				2DC0D77A2A4209D000DAF262 /* SquareNode.swift */,
-				2DC0D77B2A4209D000DAF262 /* LuggageNode.swift */,
-				2DC0D77C2A4209D000DAF262 /* ItemNodes */,
-			);
-			name = CustomNodes;
-			path = "../lugnloaded-updated/Lug-N-Loaded/Lug-N-Loaded/CustomNodes";
-			sourceTree = "<group>";
-		};
-		2DC0D77C2A4209D000DAF262 /* ItemNodes */ = {
-			isa = PBXGroup;
-			children = (
-				2DC0D77D2A4209D000DAF262 /* ItemNode.swift */,
-			);
-			path = ItemNodes;
-			sourceTree = "<group>";
-		};
 		2DC0D7812A4209D500DAF262 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +96,24 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		2DC0D7952A420F3400DAF262 /* CustomNodes */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0D7962A420F3400DAF262 /* SquareNode.swift */,
+				2DC0D7972A420F3400DAF262 /* LuggageNode.swift */,
+				2DC0D7982A420F3400DAF262 /* ItemNodes */,
+			);
+			path = CustomNodes;
+			sourceTree = "<group>";
+		};
+		2DC0D7982A420F3400DAF262 /* ItemNodes */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0D7992A420F3400DAF262 /* ItemNode.swift */,
+			);
+			path = ItemNodes;
+			sourceTree = "<group>";
+		};
 		D08481432A40684800F4635B /* sks */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,10 +126,10 @@
 		D0AFC3EA2A3D622C00665580 = {
 			isa = PBXGroup;
 			children = (
+				2DC0D7952A420F3400DAF262 /* CustomNodes */,
 				2DC0D78E2A4209E800DAF262 /* Helpers */,
 				2DC0D7892A4209DA00DAF262 /* Entity */,
 				2DC0D7812A4209D500DAF262 /* Component */,
-				2DC0D7792A4209D000DAF262 /* CustomNodes */,
 				D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */,
 				D0AFC3F42A3D622C00665580 /* Products */,
 			);
@@ -231,18 +230,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DC0D77F2A4209D000DAF262 /* LuggageNode.swift in Sources */,
+				2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */,
 				2DC0D78C2A4209DA00DAF262 /* ItemEntity.swift in Sources */,
 				2DC0D7862A4209D500DAF262 /* ItemVisualComponent.swift in Sources */,
+				2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */,
 				2DC0D78D2A4209DA00DAF262 /* LuggageEntity.swift in Sources */,
 				2DC0D7922A4209E800DAF262 /* NodeBuilder.swift in Sources */,
-				2DC0D77E2A4209D000DAF262 /* SquareNode.swift in Sources */,
 				D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */,
 				2DC0D7872A4209D500DAF262 /* LuggageVisualComponent.swift in Sources */,
+				2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */,
 				2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
 				2DC0D7882A4209D500DAF262 /* MovementComponent.swift in Sources */,
-				2DC0D7802A4209D000DAF262 /* ItemNode.swift in Sources */,
 				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
