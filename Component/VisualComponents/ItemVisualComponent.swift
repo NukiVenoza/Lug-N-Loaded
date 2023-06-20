@@ -12,9 +12,10 @@ import SpriteKit
 class ItemVisualComponent: GKComponent {
   let itemNode: SKNode
 
-  init(position: CGPoint) {
-    itemNode = ItemNode()
+  init(name: String, position: CGPoint) {
+    itemNode = ItemNode(itemName: "\(name)")
     itemNode.position = position
+    itemNode.zPosition = 100
 
     super.init()
   }

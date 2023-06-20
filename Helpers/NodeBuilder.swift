@@ -1,36 +1,15 @@
 //
-//  ItemNode.swift
+//  NodeBuilder.swift
 //  Lug-N-Loaded
 //
-//  Created by Nuki Venoza on 19/06/23.
+//  Created by Kevin Bryan on 20/06/23.
 //
 
 import Foundation
 import SpriteKit
-import GameplayKit
-
-class ItemNode: SKNode {
-  override init() {
-    // ITEM CREATION
-    let parentNode = SquareNode(color: .green, image: "")
-    let childNode1 = SquareNode(color: .red, image: "")
-
-    super.init()
-
-    addChild(parentNode)
-
-    stickNodeToLeft(nodeToStick: childNode1, toNode: parentNode)
-  }
-
-  @available(*, unavailable)
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-}
 
 // STICKING FUNCTIONS:
-
-func stickNodeToLeft(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
+public func stickNodeToLeft(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
   guard let parentNode = toNode.parent else {
     return
   }
@@ -42,7 +21,7 @@ func stickNodeToLeft(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
   parentNode.addChild(nodeToStick)
 }
 
-func stickNodeToTop(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
+public func stickNodeToTop(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
   guard let parentNode = toNode.parent else {
     return
   }
@@ -54,7 +33,7 @@ func stickNodeToTop(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
   parentNode.addChild(nodeToStick)
 }
 
-func stickNodeToRight(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
+public func stickNodeToRight(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
   guard let parentNode = toNode.parent else {
     return
   }
@@ -66,7 +45,7 @@ func stickNodeToRight(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) 
   parentNode.addChild(nodeToStick)
 }
 
-func stickNodeToBottom(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
+public func stickNodeToBottom(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0) {
   guard let parentNode = toNode.parent else {
     return
   }
@@ -77,4 +56,3 @@ func stickNodeToBottom(nodeToStick: SKNode, toNode: SKNode, margin: CGFloat = 0)
   nodeToStick.position = CGPoint(x: xPosition, y: yPosition)
   parentNode.addChild(nodeToStick)
 }
-

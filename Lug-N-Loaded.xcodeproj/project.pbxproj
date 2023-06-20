@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D08481412A40361F00F4635B /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08481402A40361F00F4635B /* MovementComponent.swift */; };
-		D08481452A4068F200F4635B /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08481442A4068F200F4635B /* ItemEntity.swift */; };
-		D08481472A40695C00F4635B /* ItemVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08481462A40695C00F4635B /* ItemVisualComponent.swift */; };
-		D084814A2A4069B600F4635B /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08481492A4069B600F4635B /* ItemNode.swift */; };
-		D084814C2A4069E700F4635B /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084814B2A4069E700F4635B /* SquareNode.swift */; };
+		2DC0D77E2A4209D000DAF262 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D77A2A4209D000DAF262 /* SquareNode.swift */; };
+		2DC0D77F2A4209D000DAF262 /* LuggageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D77B2A4209D000DAF262 /* LuggageNode.swift */; };
+		2DC0D7802A4209D000DAF262 /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D77D2A4209D000DAF262 /* ItemNode.swift */; };
+		2DC0D7862A4209D500DAF262 /* ItemVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */; };
+		2DC0D7872A4209D500DAF262 /* LuggageVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */; };
+		2DC0D7882A4209D500DAF262 /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7852A4209D500DAF262 /* MovementComponent.swift */; };
+		2DC0D78C2A4209DA00DAF262 /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78A2A4209DA00DAF262 /* ItemEntity.swift */; };
+		2DC0D78D2A4209DA00DAF262 /* LuggageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78B2A4209DA00DAF262 /* LuggageEntity.swift */; };
+		2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78F2A4209E800DAF262 /* Constants.swift */; };
+		2DC0D7922A4209E800DAF262 /* NodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */; };
+		2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7932A420A2200DAF262 /* GameScene.swift */; };
 		D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3F62A3D622C00665580 /* AppDelegate.swift */; };
 		D0AFC3F92A3D622C00665580 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3F82A3D622C00665580 /* GameScene.sks */; };
 		D0AFC3FB2A3D622C00665580 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3FA2A3D622C00665580 /* Actions.sks */; };
-		D0AFC3FD2A3D622C00665580 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3FC2A3D622C00665580 /* GameScene.swift */; };
 		D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3FE2A3D622C00665580 /* GameViewController.swift */; };
 		D0AFC4022A3D622C00665580 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC4002A3D622C00665580 /* Main.storyboard */; };
 		D0AFC4042A3D622D00665580 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC4032A3D622D00665580 /* Assets.xcassets */; };
@@ -23,16 +28,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D08481402A40361F00F4635B /* MovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
-		D08481442A4068F200F4635B /* ItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
-		D08481462A40695C00F4635B /* ItemVisualComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVisualComponent.swift; sourceTree = "<group>"; };
-		D08481492A4069B600F4635B /* ItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
-		D084814B2A4069E700F4635B /* SquareNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
+		2DC0D77A2A4209D000DAF262 /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
+		2DC0D77B2A4209D000DAF262 /* LuggageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageNode.swift; sourceTree = "<group>"; };
+		2DC0D77D2A4209D000DAF262 /* ItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
+		2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVisualComponent.swift; sourceTree = "<group>"; };
+		2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageVisualComponent.swift; sourceTree = "<group>"; };
+		2DC0D7852A4209D500DAF262 /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
+		2DC0D78A2A4209DA00DAF262 /* ItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
+		2DC0D78B2A4209DA00DAF262 /* LuggageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageEntity.swift; sourceTree = "<group>"; };
+		2DC0D78F2A4209E800DAF262 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeBuilder.swift; sourceTree = "<group>"; };
+		2DC0D7932A420A2200DAF262 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D0AFC3F32A3D622C00665580 /* Lug-N-Loaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lug-N-Loaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AFC3F62A3D622C00665580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AFC3F82A3D622C00665580 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		D0AFC3FA2A3D622C00665580 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		D0AFC3FC2A3D622C00665580 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D0AFC3FE2A3D622C00665580 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D0AFC4012A3D622C00665580 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0AFC4032A3D622D00665580 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,21 +60,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D084813E2A40352300F4635B /* Component */ = {
+		2DC0D7792A4209D000DAF262 /* CustomNodes */ = {
 			isa = PBXGroup;
 			children = (
-				D08481402A40361F00F4635B /* MovementComponent.swift */,
-				D08481462A40695C00F4635B /* ItemVisualComponent.swift */,
+				2DC0D77A2A4209D000DAF262 /* SquareNode.swift */,
+				2DC0D77B2A4209D000DAF262 /* LuggageNode.swift */,
+				2DC0D77C2A4209D000DAF262 /* ItemNodes */,
+			);
+			name = CustomNodes;
+			path = "../lugnloaded-updated/Lug-N-Loaded/Lug-N-Loaded/CustomNodes";
+			sourceTree = "<group>";
+		};
+		2DC0D77C2A4209D000DAF262 /* ItemNodes */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0D77D2A4209D000DAF262 /* ItemNode.swift */,
+			);
+			path = ItemNodes;
+			sourceTree = "<group>";
+		};
+		2DC0D7812A4209D500DAF262 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0D7822A4209D500DAF262 /* VisualComponents */,
+				2DC0D7852A4209D500DAF262 /* MovementComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
 		};
-		D084813F2A40352C00F4635B /* Entitiy */ = {
+		2DC0D7822A4209D500DAF262 /* VisualComponents */ = {
 			isa = PBXGroup;
 			children = (
-				D08481442A4068F200F4635B /* ItemEntity.swift */,
+				2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */,
+				2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */,
 			);
-			path = Entitiy;
+			path = VisualComponents;
+			sourceTree = "<group>";
+		};
+		2DC0D7892A4209DA00DAF262 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0D78A2A4209DA00DAF262 /* ItemEntity.swift */,
+				2DC0D78B2A4209DA00DAF262 /* LuggageEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		2DC0D78E2A4209E800DAF262 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0D78F2A4209E800DAF262 /* Constants.swift */,
+				2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D08481432A40684800F4635B /* sks */ = {
@@ -76,20 +124,13 @@
 			path = sks;
 			sourceTree = "<group>";
 		};
-		D08481482A40699300F4635B /* CustomNodes */ = {
-			isa = PBXGroup;
-			children = (
-				D08481492A4069B600F4635B /* ItemNode.swift */,
-				D084814B2A4069E700F4635B /* SquareNode.swift */,
-			);
-			path = CustomNodes;
-			sourceTree = "<group>";
-		};
 		D0AFC3EA2A3D622C00665580 = {
 			isa = PBXGroup;
 			children = (
-				D08481432A40684800F4635B /* sks */,
-				D08481482A40699300F4635B /* CustomNodes */,
+				2DC0D78E2A4209E800DAF262 /* Helpers */,
+				2DC0D7892A4209DA00DAF262 /* Entity */,
+				2DC0D7812A4209D500DAF262 /* Component */,
+				2DC0D7792A4209D000DAF262 /* CustomNodes */,
 				D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */,
 				D0AFC3F42A3D622C00665580 /* Products */,
 			);
@@ -106,10 +147,9 @@
 		D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */ = {
 			isa = PBXGroup;
 			children = (
-				D084813F2A40352C00F4635B /* Entitiy */,
-				D084813E2A40352300F4635B /* Component */,
+				D08481432A40684800F4635B /* sks */,
 				D0AFC3F62A3D622C00665580 /* AppDelegate.swift */,
-				D0AFC3FC2A3D622C00665580 /* GameScene.swift */,
+				2DC0D7932A420A2200DAF262 /* GameScene.swift */,
 				D0AFC3FE2A3D622C00665580 /* GameViewController.swift */,
 				D0AFC4002A3D622C00665580 /* Main.storyboard */,
 				D0AFC4032A3D622D00665580 /* Assets.xcassets */,
@@ -191,14 +231,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D08481472A40695C00F4635B /* ItemVisualComponent.swift in Sources */,
-				D08481412A40361F00F4635B /* MovementComponent.swift in Sources */,
-				D084814C2A4069E700F4635B /* SquareNode.swift in Sources */,
-				D0AFC3FD2A3D622C00665580 /* GameScene.swift in Sources */,
-				D08481452A4068F200F4635B /* ItemEntity.swift in Sources */,
+				2DC0D77F2A4209D000DAF262 /* LuggageNode.swift in Sources */,
+				2DC0D78C2A4209DA00DAF262 /* ItemEntity.swift in Sources */,
+				2DC0D7862A4209D500DAF262 /* ItemVisualComponent.swift in Sources */,
+				2DC0D78D2A4209DA00DAF262 /* LuggageEntity.swift in Sources */,
+				2DC0D7922A4209E800DAF262 /* NodeBuilder.swift in Sources */,
+				2DC0D77E2A4209D000DAF262 /* SquareNode.swift in Sources */,
 				D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */,
+				2DC0D7872A4209D500DAF262 /* LuggageVisualComponent.swift in Sources */,
+				2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
-				D084814A2A4069B600F4635B /* ItemNode.swift in Sources */,
+				2DC0D7882A4209D500DAF262 /* MovementComponent.swift in Sources */,
+				2DC0D7802A4209D000DAF262 /* ItemNode.swift in Sources */,
+				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
