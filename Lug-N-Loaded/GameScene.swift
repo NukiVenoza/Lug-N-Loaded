@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene {
   private var currentNode: SKNode?
+  private var luggage: LuggageNode!
 
   override func didMove(to view: SKView) {
     // MARK: Enables gestures
@@ -23,8 +24,8 @@ class GameScene: SKScene {
 
     // MARK: Node Placement
 
-    let luggage = LuggageNode(row: 3, column: 8,
-                              position: CGPoint(x: frame.midX, y: frame.midY))
+    self.luggage = LuggageNode(row: 3, column: 8,
+                               position: CGPoint(x: frame.midX, y: frame.midY))
     let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
                          position: CGPoint(x: frame.midX, y: frame.midY))
     let item2 = ItemNode(imageName: "camera", itemShape: "t_reversed",
@@ -32,7 +33,7 @@ class GameScene: SKScene {
 
     item1.name = "draggable"
     item2.name = "draggable"
-    self.addChild(luggage)
+    self.addChild(self.luggage)
     self.addChild(item1)
     self.addChild(item2)
   }
@@ -73,6 +74,13 @@ class GameScene: SKScene {
         if node.name == "draggable" {
           self.currentNode = node
         }
+      }
+      let touchLocation = touch.location(in: self)
+
+      if self.luggage.contains(touchLocation) {
+        print("node is inside")
+      } else {
+        print("node is outside")
       }
     }
   }
