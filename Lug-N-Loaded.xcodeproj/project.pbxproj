@@ -50,13 +50,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2DC0D78E2A4209E800DAF262 /* Helpers */ = {
+		2DC0D78E2A4209E800DAF262 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				2DC0D78F2A4209E800DAF262 /* Constants.swift */,
 				2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */,
 			);
-			path = Helpers;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		2DC0D7952A420F3400DAF262 /* CustomNodes */ = {
@@ -89,8 +89,6 @@
 		D0AFC3EA2A3D622C00665580 = {
 			isa = PBXGroup;
 			children = (
-				2DC0D7952A420F3400DAF262 /* CustomNodes */,
-				2DC0D78E2A4209E800DAF262 /* Helpers */,
 				D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */,
 				D0AFC3F42A3D622C00665580 /* Products */,
 			);
@@ -107,6 +105,8 @@
 		D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */ = {
 			isa = PBXGroup;
 			children = (
+				2DC0D7952A420F3400DAF262 /* CustomNodes */,
+				2DC0D78E2A4209E800DAF262 /* Utilities */,
 				2DC0D7932A420A2200DAF262 /* GameScene.swift */,
 				D0AFC3FE2A3D622C00665580 /* GameViewController.swift */,
 				D0AFC3F62A3D622C00665580 /* AppDelegate.swift */,
