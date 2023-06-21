@@ -12,18 +12,21 @@ class GameScene: SKScene {
   private var currentNode: SKNode?
 
   override func didMove(to view: SKView) {
-    let luggage = LuggageEntity(row: 3, column: 8, position: CGPoint(x: frame.midX, y: frame.midY))
+    let luggage = LuggageNode(row: 3, column: 8,
+                              position: CGPoint(x: frame.midX, y: frame.midY))
+    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
+                         position: CGPoint(x: frame.midX, y: frame.midY))
+    let item2 = ItemNode(imageName: "camera", itemShape: "t_reversed",
+                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
 
-    let item = ItemEntity(name: "preset1", position: CGPoint(x: frame.midX-50, y: frame.midY-50))
-    let item2 = ItemEntity(name: "preset3", position: CGPoint(x: frame.midX, y: frame.midY))
-
-    item.itemVisualComponent.itemNode.name = "draggable"
-    item2.itemVisualComponent.itemNode.name = "draggable"
-
-    self.addChild(luggage.luggageVisualComponent.luggageNode)
-    self.addChild(item.itemVisualComponent.itemNode)
-    self.addChild(item2.itemVisualComponent.itemNode)
+    item1.name = "draggable"
+    item2.name = "draggable"
+    self.addChild(luggage)
+    self.addChild(item1)
+    self.addChild(item2)
   }
+
+  // MARK: For Drag n Drop Functionality
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     if let touch = touches.first {

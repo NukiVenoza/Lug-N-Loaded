@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DC0D7862A4209D500DAF262 /* ItemVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */; };
-		2DC0D7872A4209D500DAF262 /* LuggageVisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */; };
-		2DC0D7882A4209D500DAF262 /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7852A4209D500DAF262 /* MovementComponent.swift */; };
-		2DC0D78C2A4209DA00DAF262 /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78A2A4209DA00DAF262 /* ItemEntity.swift */; };
-		2DC0D78D2A4209DA00DAF262 /* LuggageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78B2A4209DA00DAF262 /* LuggageEntity.swift */; };
 		2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78F2A4209E800DAF262 /* Constants.swift */; };
 		2DC0D7922A4209E800DAF262 /* NodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */; };
 		2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7932A420A2200DAF262 /* GameScene.swift */; };
@@ -28,11 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVisualComponent.swift; sourceTree = "<group>"; };
-		2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageVisualComponent.swift; sourceTree = "<group>"; };
-		2DC0D7852A4209D500DAF262 /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
-		2DC0D78A2A4209DA00DAF262 /* ItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
-		2DC0D78B2A4209DA00DAF262 /* LuggageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageEntity.swift; sourceTree = "<group>"; };
 		2DC0D78F2A4209E800DAF262 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DC0D7902A4209E800DAF262 /* NodeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeBuilder.swift; sourceTree = "<group>"; };
 		2DC0D7932A420A2200DAF262 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -60,33 +50,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2DC0D7812A4209D500DAF262 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				2DC0D7822A4209D500DAF262 /* VisualComponents */,
-				2DC0D7852A4209D500DAF262 /* MovementComponent.swift */,
-			);
-			path = Component;
-			sourceTree = "<group>";
-		};
-		2DC0D7822A4209D500DAF262 /* VisualComponents */ = {
-			isa = PBXGroup;
-			children = (
-				2DC0D7832A4209D500DAF262 /* ItemVisualComponent.swift */,
-				2DC0D7842A4209D500DAF262 /* LuggageVisualComponent.swift */,
-			);
-			path = VisualComponents;
-			sourceTree = "<group>";
-		};
-		2DC0D7892A4209DA00DAF262 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				2DC0D78A2A4209DA00DAF262 /* ItemEntity.swift */,
-				2DC0D78B2A4209DA00DAF262 /* LuggageEntity.swift */,
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
 		2DC0D78E2A4209E800DAF262 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +62,9 @@
 		2DC0D7952A420F3400DAF262 /* CustomNodes */ = {
 			isa = PBXGroup;
 			children = (
+				2DC0D7982A420F3400DAF262 /* ItemNodes */,
 				2DC0D7962A420F3400DAF262 /* SquareNode.swift */,
 				2DC0D7972A420F3400DAF262 /* LuggageNode.swift */,
-				2DC0D7982A420F3400DAF262 /* ItemNodes */,
 			);
 			path = CustomNodes;
 			sourceTree = "<group>";
@@ -128,8 +91,6 @@
 			children = (
 				2DC0D7952A420F3400DAF262 /* CustomNodes */,
 				2DC0D78E2A4209E800DAF262 /* Helpers */,
-				2DC0D7892A4209DA00DAF262 /* Entity */,
-				2DC0D7812A4209D500DAF262 /* Component */,
 				D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */,
 				D0AFC3F42A3D622C00665580 /* Products */,
 			);
@@ -146,13 +107,13 @@
 		D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */ = {
 			isa = PBXGroup;
 			children = (
-				D08481432A40684800F4635B /* sks */,
-				D0AFC3F62A3D622C00665580 /* AppDelegate.swift */,
 				2DC0D7932A420A2200DAF262 /* GameScene.swift */,
 				D0AFC3FE2A3D622C00665580 /* GameViewController.swift */,
+				D0AFC3F62A3D622C00665580 /* AppDelegate.swift */,
 				D0AFC4002A3D622C00665580 /* Main.storyboard */,
 				D0AFC4032A3D622D00665580 /* Assets.xcassets */,
 				D0AFC4052A3D622D00665580 /* LaunchScreen.storyboard */,
+				D08481432A40684800F4635B /* sks */,
 			);
 			path = "Lug-N-Loaded";
 			sourceTree = "<group>";
@@ -231,17 +192,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */,
-				2DC0D78C2A4209DA00DAF262 /* ItemEntity.swift in Sources */,
-				2DC0D7862A4209D500DAF262 /* ItemVisualComponent.swift in Sources */,
 				2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */,
-				2DC0D78D2A4209DA00DAF262 /* LuggageEntity.swift in Sources */,
 				2DC0D7922A4209E800DAF262 /* NodeBuilder.swift in Sources */,
 				D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */,
-				2DC0D7872A4209D500DAF262 /* LuggageVisualComponent.swift in Sources */,
 				2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */,
 				2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
-				2DC0D7882A4209D500DAF262 /* MovementComponent.swift in Sources */,
 				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

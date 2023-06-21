@@ -13,8 +13,16 @@ import GameplayKit
 import SpriteKit
 
 class LuggageNode: SKNode {
-  init(row: Int, column: Int) {
+  init(row: Int, column: Int, position: CGPoint) {
     super.init()
+
+    let luggageWidth = Constants.SQUARESIZE * column - 1
+    let luggageHeight = Constants.SQUARESIZE * row - 1
+
+    var luggagePosition = position
+    luggagePosition.x = position.x - CGFloat(luggageWidth / 2) + CGFloat(Constants.SQUARESIZE / 2)
+    luggagePosition.y = position.y + CGFloat(luggageHeight / 2)
+    self.position = luggagePosition
 
     // To store the most left tile for each row
     var verticalTiles: [SquareNode] = []
