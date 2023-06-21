@@ -63,9 +63,9 @@ class GameScene: SKScene {
 //    }
   }
 
-  // MARK: For Drag n Drop Functionality
-
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    // MARK: For Drag n Drop Functionality
+
     if let touch = touches.first {
       let location = touch.location(in: self)
 
@@ -75,6 +75,9 @@ class GameScene: SKScene {
           self.currentNode = node
         }
       }
+
+      // MARK: check if item is inside of luggage or not
+
       let touchLocation = touch.location(in: self)
 
       if self.luggage.contains(touchLocation) {
@@ -93,7 +96,23 @@ class GameScene: SKScene {
   }
 
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.currentNode = nil
+    // MARK: check if item is inside of luggage or not
+
+    for touch in touches {
+      let touchLocation = touch.location(in: self)
+
+      // Check if the small node exists and is inside the big node
+      if let currentNode = currentNode, luggage.contains(currentNode.position) {
+        print("item was released INSIDE the luggage.")
+      } else {
+        print("item  was released OUTSIDE the luggage.")
+      }
+
+      // Remove the small node from the scene
+//      smallNode?.removeFromParent()
+//      self.smallNode = nil
+      self.currentNode = nil
+    }
   }
 
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
