@@ -10,6 +10,9 @@ import GameplayKit
 import SpriteKit
 
 class ItemNode: SKSpriteNode {
+  var inLuggage: Bool = false
+  var inInventory: Bool = false
+
   init(imageName: String, itemShape: String, position: CGPoint) {
     // Identify the image and shape of the node
     let textureShape = SKTexture(imageNamed: itemShape)

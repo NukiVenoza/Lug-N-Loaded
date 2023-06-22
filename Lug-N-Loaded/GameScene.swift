@@ -10,7 +10,11 @@ import SpriteKit
 
 class GameScene: SKScene {
   private var currentNode: SKNode?
+  private var currentItemNode: ItemNode?
+
   private var luggage: LuggageNode!
+  private var inventory: LuggageNode!
+  private var itemNodes: [ItemNode] = []
 
   override func didMove(to view: SKView) {
     // MARK: Enables gestures
@@ -52,15 +56,6 @@ class GameScene: SKScene {
       let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
       tappedNode.run(rotateAction)
     }
-
-    // MARK: For scaling up/down node
-
-//    // Check if a node was double-tapped
-//    if let tappedNode = atPoint(convertedLocation) as? SKSpriteNode {
-//      // Scale up the node by 1.5 times
-//      let scaleAction = SKAction.scale(by: 1.5, duration: 0.2)
-//      tappedNode.run(scaleAction)
-//    }
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,6 +68,7 @@ class GameScene: SKScene {
       for node in touchedNodes.reversed() {
         if node.name == "draggable" {
           self.currentNode = node
+          self.currentItemNode = SKNodeToItemNode(node: self.currentNode!)
         }
       }
 
@@ -92,6 +88,17 @@ class GameScene: SKScene {
     if let touch = touches.first, let node = self.currentNode {
       let touchLocation = touch.location(in: self)
       node.position = touchLocation
+
+      if self.luggage.contains(node.position) {
+        print("You are MOVING ITEM INSIDE THE LUGGAGE!")
+        if self.currentItemNode?.inInventory == true {
+          // scale up the item back to actual size
+          let scaleAction = SKAction.scale(by: 2, duration: 0.2)
+          self.currentItemNode?.run(scaleAction)
+          // set inInventory to false
+          self.currentItemNode?.inInventory = false
+        }
+      } else {}
     }
   }
 
@@ -101,11 +108,40 @@ class GameScene: SKScene {
     for touch in touches {
       let touchLocation = touch.location(in: self)
 
-      // Check if the small node exists and is inside the big node
+      // check if item node is in luggagenode
       if let currentNode = currentNode, luggage.contains(currentNode.position) {
         print("item was released INSIDE the luggage.")
+        // set inLuggage to true
+        self.currentItemNode?.inLuggage = true
+
+        // buat jaga" aja kalo pas moving g ke detect!
+        if self.currentItemNode?.inInventory == true {
+          let scaleAction = SKAction.scale(by: 2, duration: 0.2)
+          self.currentItemNode?.run(scaleAction)
+          self.currentItemNode?.inInventory = false
+        }
+
       } else {
         print("item  was released OUTSIDE the luggage.")
+
+        // MARK: Pseudo for putting item in inventory
+
+        // 0. Get the Current ItemNode ✅ --> done by using currentItemNode
+        // 1. Set item.inLuggage to false✅
+        self.currentItemNode?.inLuggage = false
+
+        // 2. Scale down item Size by 0.5✅
+        if self.currentItemNode?.inInventory == false {
+          let scaleAction = SKAction.scale(by: 0.5, duration: 0.2)
+          self.currentItemNode?.run(scaleAction)
+          // 3. Set item.inInventory to true✅
+          self.currentItemNode?.inInventory = true
+          // 4. Change Item position to one of the empty inventory slot 📝
+        }
+
+        // Set all current Node to nil
+        self.currentNode = nil
+        self.currentItemNode = nil
       }
 
       // Remove the small node from the scene
@@ -118,4 +154,10 @@ class GameScene: SKScene {
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.currentNode = nil
   }
+}
+
+private func SKNodeToItemNode(node: SKNode) -> ItemNode? {
+  let currSKSpriteNode = (node as? SKSpriteNode)
+  let currItemNode = (currSKSpriteNode as? ItemNode)
+  return currItemNode
 }
