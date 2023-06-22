@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import GameplayKit
 import SpriteKit
 
 class ItemNode: SKSpriteNode {

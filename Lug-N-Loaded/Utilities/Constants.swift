@@ -12,4 +12,5 @@ struct Constants {
   static let LUGGAGE_IMAGENAME = "glass_block"
   static let INVENTORY_WIDTH = 300
   static let INVENTORY_HEIGHT = 100
+  static let INVENTORY_SLOT = 40
 }

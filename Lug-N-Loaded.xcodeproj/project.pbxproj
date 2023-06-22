@@ -20,6 +20,8 @@
 		D0AFC4022A3D622C00665580 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC4002A3D622C00665580 /* Main.storyboard */; };
 		D0AFC4042A3D622D00665580 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC4032A3D622D00665580 /* Assets.xcassets */; };
 		D0AFC4072A3D622D00665580 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC4052A3D622D00665580 /* LaunchScreen.storyboard */; };
+		D0F302312A44204200F3DFC0 /* InventoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F302302A44204200F3DFC0 /* InventoryNode.swift */; };
+		D0F302332A44221C00F3DFC0 /* InventorySlotNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F302322A44221C00F3DFC0 /* InventorySlotNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		D0AFC4012A3D622C00665580 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0AFC4032A3D622D00665580 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0AFC4062A3D622D00665580 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D0F302302A44204200F3DFC0 /* InventoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNode.swift; sourceTree = "<group>"; };
+		D0F302322A44221C00F3DFC0 /* InventorySlotNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventorySlotNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 				2DC0D7982A420F3400DAF262 /* ItemNodes */,
 				2DC0D7962A420F3400DAF262 /* SquareNode.swift */,
 				2DC0D7972A420F3400DAF262 /* LuggageNode.swift */,
+				D0F302302A44204200F3DFC0 /* InventoryNode.swift */,
+				D0F302322A44221C00F3DFC0 /* InventorySlotNode.swift */,
 			);
 			path = CustomNodes;
 			sourceTree = "<group>";
@@ -192,6 +198,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */,
+				D0F302312A44204200F3DFC0 /* InventoryNode.swift in Sources */,
+				D0F302332A44221C00F3DFC0 /* InventorySlotNode.swift in Sources */,
 				2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */,
 				2DC0D7922A4209E800DAF262 /* HelperFunctions.swift in Sources */,
 				D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */,
