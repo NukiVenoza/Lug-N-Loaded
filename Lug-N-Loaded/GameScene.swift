@@ -31,16 +31,14 @@ class GameScene: SKScene {
 
     self.luggage = LuggageNode(row: 3, column: 8,
                                position: CGPoint(x: frame.midX, y: frame.midY))
-    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
-                         position: CGPoint(x: frame.midX, y: frame.midY))
-    let item2 = ItemNode(imageName: "camera", itemShape: "t_reversed",
-                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
-    self.itemNodes.append(item1)
-    self.itemNodes.append(item2)
 
     self.addChild(self.luggage)
-    self.addChild(item1)
-    self.addChild(item2)
+
+    self.initItemNodes()
+
+    for itemNode in self.itemNodes {
+      self.addChild(itemNode)
+    }
   }
 
   @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -154,5 +152,27 @@ class GameScene: SKScene {
 
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.currentNode = nil
+  }
+
+  private func initItemNodes() {
+    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
+                         position: CGPoint(x: frame.midX, y: frame.midY))
+    let item2 = ItemNode(imageName: "bottle", itemShape: "rect_horizontal_2",
+                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+    let item3 = ItemNode(imageName: "medal", itemShape: "l_right",
+                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+    let item4 = ItemNode(imageName: "clothes", itemShape: "square_2",
+                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+    let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
+                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+    let item6 = ItemNode(imageName: "gold", itemShape: "square",
+                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+
+    self.itemNodes.append(item1)
+    self.itemNodes.append(item2)
+    self.itemNodes.append(item3)
+    self.itemNodes.append(item4)
+    self.itemNodes.append(item5)
+    self.itemNodes.append(item6)
   }
 }
