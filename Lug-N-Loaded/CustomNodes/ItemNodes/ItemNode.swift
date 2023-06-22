@@ -22,6 +22,7 @@ class ItemNode: SKSpriteNode {
     super.init(texture: textureImage, color: .white, size: size)
     zPosition = 10
     self.position = position
+    self.name = "item"
 
     // Give node collision and physics
     physicsBody = SKPhysicsBody(texture: textureShape, alphaThreshold: 0.5, size: size)

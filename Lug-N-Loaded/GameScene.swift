@@ -35,9 +35,9 @@ class GameScene: SKScene {
                          position: CGPoint(x: frame.midX, y: frame.midY))
     let item2 = ItemNode(imageName: "camera", itemShape: "t_reversed",
                          position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+    self.itemNodes.append(item1)
+    self.itemNodes.append(item2)
 
-    item1.name = "draggable"
-    item2.name = "draggable"
     self.addChild(self.luggage)
     self.addChild(item1)
     self.addChild(item2)
@@ -67,7 +67,7 @@ class GameScene: SKScene {
 
       let touchedNodes = self.nodes(at: location)
       for node in touchedNodes.reversed() {
-        if node.name == "draggable" {
+        if node.name == "item" {
           self.currentNode = node
           self.currentItemNode = SKNodeToItemNode(node: self.currentNode!)
         }
