@@ -56,3 +56,9 @@ public func stickNodeToBottom(nodeToStick: SKNode, toNode: SKNode, margin: CGFlo
   nodeToStick.position = CGPoint(x: xPosition, y: yPosition)
   parentNode.addChild(nodeToStick)
 }
+
+public func SKNodeToItemNode(node: SKNode) -> ItemNode? {
+  let currSKSpriteNode = (node as? SKSpriteNode)
+  let currItemNode = (currSKSpriteNode as? ItemNode)
+  return currItemNode
+}

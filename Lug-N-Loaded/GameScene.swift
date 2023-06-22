@@ -14,6 +14,7 @@ class GameScene: SKScene {
 
   private var luggage: LuggageNode!
   private var inventory: LuggageNode!
+  // nanti append semua itemNodes kesini
   private var itemNodes: [ItemNode] = []
 
   override func didMove(to view: SKView) {
@@ -106,7 +107,7 @@ class GameScene: SKScene {
     // MARK: check if item is inside of luggage or not
 
     for touch in touches {
-      let touchLocation = touch.location(in: self)
+      _ = touch.location(in: self)
 
       // check if item node is in luggagenode
       if let currentNode = currentNode, luggage.contains(currentNode.position) {
@@ -154,10 +155,4 @@ class GameScene: SKScene {
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.currentNode = nil
   }
-}
-
-private func SKNodeToItemNode(node: SKNode) -> ItemNode? {
-  let currSKSpriteNode = (node as? SKSpriteNode)
-  let currItemNode = (currSKSpriteNode as? ItemNode)
-  return currItemNode
 }
