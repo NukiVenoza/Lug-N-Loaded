@@ -13,4 +13,7 @@ struct Constants {
   static let INVENTORY_WIDTH = 500
   static let INVENTORY_HEIGHT = 100
   static let INVENTORY_SLOT = 40
+
+  static let INVENTORY_SLOT_IMAGENAME = "diamond_block"
+  static let INVENTORY_SLOT_IMAGENAME_FILLED = "obsidian_block"
 }

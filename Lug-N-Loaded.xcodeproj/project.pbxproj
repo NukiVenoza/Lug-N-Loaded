@@ -54,9 +54,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D1C75322A45DD61009835DE /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				2DC0D7932A420A2200DAF262 /* GameScene.swift */,
+			);
+			path = GameScene;
+			sourceTree = "<group>";
+		};
 		2DC0D78E2A4209E800DAF262 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D08481432A40684800F4635B /* sks */,
 				2DC0D78F2A4209E800DAF262 /* Constants.swift */,
 				2DC0D7902A4209E800DAF262 /* HelperFunctions.swift */,
 			);
@@ -112,14 +121,13 @@
 			isa = PBXGroup;
 			children = (
 				2DC0D7952A420F3400DAF262 /* CustomNodes */,
-				2DC0D78E2A4209E800DAF262 /* Utilities */,
-				2DC0D7932A420A2200DAF262 /* GameScene.swift */,
+				2D1C75322A45DD61009835DE /* GameScene */,
 				D0AFC3FE2A3D622C00665580 /* GameViewController.swift */,
 				D0AFC3F62A3D622C00665580 /* AppDelegate.swift */,
 				D0AFC4002A3D622C00665580 /* Main.storyboard */,
 				D0AFC4032A3D622D00665580 /* Assets.xcassets */,
 				D0AFC4052A3D622D00665580 /* LaunchScreen.storyboard */,
-				D08481432A40684800F4635B /* sks */,
+				2DC0D78E2A4209E800DAF262 /* Utilities */,
 			);
 			path = "Lug-N-Loaded";
 			sourceTree = "<group>";

@@ -5,41 +5,40 @@
 //  Created by Nuki Venoza on 17/06/23.
 //
 
-import UIKit
-import SpriteKit
 import GameplayKit
+import SpriteKit
+import UIKit
 
 class GameViewController: UIViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
-    }
+    if let view = view as! SKView? {
+      // Load the SKScene from 'GameScene.sks'
+      if let scene = SKScene(fileNamed: "GameScene") {
+        // Set the scale mode to scale to fit the window
+        scene.scaleMode = .aspectFill
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
+        // Present the scene
+        view.presentScene(scene)
+      }
 
-    override var prefersStatusBarHidden: Bool {
-        return true
+      view.ignoresSiblingOrder = true
+
+      view.showsFPS = true
+      view.showsNodeCount = true
     }
+  }
+
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    if UIDevice.current.userInterfaceIdiom == .phone {
+      return .allButUpsideDown
+    } else {
+      return .all
+    }
+  }
+
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
 }

@@ -23,8 +23,7 @@ class ItemNode: SKSpriteNode {
     self.position = position
     self.name = "item"
 
-    let scaleAction = SKAction.scale(by: 0.5, duration: 0.2)
-    self.run(scaleAction)
+    updateItemScale()
 
     // Give node collision and physics
     physicsBody = SKPhysicsBody(texture: textureShape, alphaThreshold: 0.5, size: size)
@@ -33,6 +32,21 @@ class ItemNode: SKSpriteNode {
     physicsBody?.categoryBitMask = 0x1
     physicsBody?.collisionBitMask = 0xFFFFFFFF
     physicsBody?.contactTestBitMask = 0xFFFFFFFF
+  }
+
+  init() {
+    let size = CGSize(width: 50, height: 50)
+    super.init(texture: nil, color: .red, size: size)
+  }
+
+  public func updateItemScale() {
+    if inInventory {
+      let scaleAction = SKAction.scale(by: 0.5, duration: 0.2)
+      run(scaleAction)
+    } else {
+      let scaleAction = SKAction.scale(by: 2, duration: 0.2)
+      run(scaleAction)
+    }
   }
 
   @available(*, unavailable)
