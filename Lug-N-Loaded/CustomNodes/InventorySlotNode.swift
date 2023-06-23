@@ -9,10 +9,13 @@ import Foundation
 import SpriteKit
 
 class InventorySlotNode: SKSpriteNode {
-    init(imageName: String) {
+    var isFilled: Bool = false
+    var index: Int = 0
+    init(imageName: String, index: Int) {
         let slotSize = CGSize(width: Constants.INVENTORY_SLOT, height: Constants.INVENTORY_SLOT)
-        
         super.init(texture: SKTexture(imageNamed: imageName), color: .white, size: slotSize)
+        self.index = index
+
         
 //        self.texture = SKTexture(imageNamed: imageName)
         

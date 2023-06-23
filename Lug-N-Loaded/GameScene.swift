@@ -17,6 +17,9 @@ class GameScene: SKScene {
     // nanti append semua itemNodes kesini
     private var itemNodes: [ItemNode] = []
     
+    var emptySlotPositionLeft: CGPoint = CGPoint(x: 0, y: 0)
+
+    
     override func didMove(to view: SKView) {
         // MARK: Enables gestures
         
@@ -109,32 +112,32 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // MARK: check if item is inside of luggage or not
-        
+
         for touch in touches {
             _ = touch.location(in: self)
-            
+
             // check if item node is in luggagenode
             if let currentNode = currentNode, luggage.contains(currentNode.position) {
                 print("item was released INSIDE the luggage.")
                 // set inLuggage to true
                 self.currentItemNode?.inLuggage = true
-                
+
                 // buat jaga" aja kalo pas moving g ke detect!
                 if self.currentItemNode?.inInventory == true {
                     let scaleAction = SKAction.scale(by: 2, duration: 0.2)
                     self.currentItemNode?.run(scaleAction)
                     self.currentItemNode?.inInventory = false
                 }
-                
+
             } else {
                 print("item  was released OUTSIDE the luggage.")
-                
+
                 // MARK: Pseudo for putting item in inventory
-                
+
                 // 0. Get the Current ItemNode ✅ --> done by using currentItemNode
                 // 1. Set item.inLuggage to false✅
                 self.currentItemNode?.inLuggage = false
-                
+
                 // 2. Scale down item Size by 0.5✅
                 if self.currentItemNode?.inInventory == false {
                     let scaleAction = SKAction.scale(by: 0.5, duration: 0.2)
@@ -142,19 +145,54 @@ class GameScene: SKScene {
                     // 3. Set item.inInventory to true✅
                     self.currentItemNode?.inInventory = true
                     // 4. Change Item position to one of the empty inventory slot 📝
+                    
+                    if let emptySlot = findEmptyInventorySlot() {
+                        
+                        var emptySlotPositionInScene = emptySlot.convert(emptySlot.position, to: self)
+//                        currentItemNode?.position = CGPoint(x: frame.midX, y:frame.midY)
+                        if emptySlot == inventory.inventorySlots[0]{
+                            emptySlotPositionInScene.x = emptySlotPositionInScene.x + 200.0
+                            emptySlotPositionLeft  = emptySlotPositionInScene
+                        }else{
+                            let neededSpace = 40 * (emptySlot.index + 1)
+                            emptySlotPositionInScene.x = emptySlotPositionLeft.x + CGFloat(neededSpace)
+//                            let emptySlotIndex = emptySlot.index
+//                            print(emptySlotIndex)
+//                            let newSlotPosition = emptySlotIndex * e
+                            
+
+                        }
+                        
+                        currentItemNode?.position = emptySlotPositionInScene
+//
+                        print("Inventory Slot: \(emptySlot.position)")
+                        print("Inventory Slot in Scene: \(emptySlotPositionInScene)")
+
+//                         Move the item to the empty slot's position
+//                        let moveAction = SKAction.move(to: emptySlot.position, duration: 0.2)
+//                        currentNode?.run(moveAction)
+//
+                        // Update the item's status
+                        currentItemNode?.inLuggage = false
+                        currentItemNode?.inInventory = true
+                        emptySlot.isFilled = true
+                    }
+
                 }
-                
+
                 // Set all current Node to nil
                 self.currentNode = nil
                 self.currentItemNode = nil
             }
-            
+
             // Remove the small node from the scene
             //      smallNode?.removeFromParent()
             //      self.smallNode = nil
             self.currentNode = nil
         }
     }
+    
+    
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.currentNode = nil
@@ -180,5 +218,14 @@ class GameScene: SKScene {
         self.itemNodes.append(item4)
         self.itemNodes.append(item5)
         self.itemNodes.append(item6)
+    }
+    
+    private func findEmptyInventorySlot() -> InventorySlotNode? {
+        for inventorySlot in inventory.inventorySlots {
+            if !inventorySlot.isFilled {
+                return inventorySlot
+            }
+        }
+        return nil
     }
 }
