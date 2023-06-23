@@ -10,7 +10,7 @@ import SpriteKit
 
 class ItemNode: SKSpriteNode {
   var inLuggage: Bool = false
-  var inInventory: Bool = false
+  var inInventory: Bool = true
 
   init(imageName: String, itemShape: String, position: CGPoint) {
     // Identify the image and shape of the node
@@ -22,6 +22,9 @@ class ItemNode: SKSpriteNode {
     zPosition = 10
     self.position = position
     self.name = "item"
+
+    let scaleAction = SKAction.scale(by: 0.5, duration: 0.2)
+    self.run(scaleAction)
 
     // Give node collision and physics
     physicsBody = SKPhysicsBody(texture: textureShape, alphaThreshold: 0.5, size: size)

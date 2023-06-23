@@ -196,21 +196,40 @@ class GameScene: SKScene {
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.currentNode = nil
+        self.currentItemNode = nil
+      }
+            
+      self.currentNode = nil
     }
+  }
     
-    private func initItemNodes() {
-        let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
-                             position: CGPoint(x: frame.midX, y: frame.midY))
-        let item2 = ItemNode(imageName: "bottle", itemShape: "rect_horizontal_2",
-                             position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
-        let item3 = ItemNode(imageName: "medal", itemShape: "l_right",
-                             position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
-        let item4 = ItemNode(imageName: "clothes", itemShape: "square_2",
-                             position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
-        let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
-                             position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
-        let item6 = ItemNode(imageName: "gold", itemShape: "square",
-                             position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.currentNode = nil
+  }
+  
+  override func update(_ currentTime: TimeInterval) {
+    super.update(currentTime)
+
+    // check if game won
+    if !self.gameWon {
+      self.checkWin()
+    }
+    self.handleCollision()
+  }
+    
+  private func initItemNodes() {
+    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
+                         position: CGPoint(x: frame.midX, y: frame.midY))
+    let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
+                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
+    let item3 = ItemNode(imageName: "medal", itemShape: "l_right",
+                         position: CGPoint(x: frame.midX + 200, y: frame.midY + 100))
+    let item4 = ItemNode(imageName: "clothes", itemShape: "square_2",
+                         position: CGPoint(x: frame.midX + -100, y: frame.midY + 100))
+    let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
+                         position: CGPoint(x: frame.midX + -200, y: frame.midY + 100))
+    let item6 = ItemNode(imageName: "gold", itemShape: "square",
+                         position: CGPoint(x: frame.midX + 300, y: frame.midY + 100))
         
         self.itemNodes.append(item1)
         self.itemNodes.append(item2)
@@ -228,4 +247,44 @@ class GameScene: SKScene {
         }
         return nil
     }
+//  function to check win condition
+  private func checkWin() {
+    // loop over itemnode, check that all is not in inventory and is in luggage
+    for itemNode in self.itemNodes {
+      if itemNode.inInventory {
+        return
+      }
+      if itemNode.inLuggage == false {
+        return
+      }
+    }
+    // all ItemNodes are in LuggageNode therefore:
+    print("YOU WIN!")
+    self.gameWon = true
+  }
+  
+  private func handleCollision() {
+    // Perform necessary actions for the collision
+    for itemNode in self.itemNodes {
+      // Check if the item node is inside the luggage
+      if self.luggage.contains(itemNode.position) {
+        // Perform the necessary actions when the item is inside the luggage
+        if itemNode.inInventory {
+          // Scale up the item back to its actual size
+          let scaleAction = SKAction.scale(by: 2, duration: 0.2)
+          itemNode.run(scaleAction)
+          itemNode.inLuggage = true
+          // Set inInventory to false
+          itemNode.inInventory = false
+        }
+      } else {
+        if itemNode.inLuggage {
+          let scaleAction = SKAction.scale(by: 0.5, duration: 0.2)
+          itemNode.run(scaleAction)
+          itemNode.inLuggage = false
+          itemNode.inInventory = true
+        }
+      }
+    }
+  }
 }
