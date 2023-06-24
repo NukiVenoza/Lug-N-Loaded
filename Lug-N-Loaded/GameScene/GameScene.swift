@@ -235,7 +235,7 @@ class GameScene: SKScene {
       self.emptySlotPositionLeft = finalPoint
 
     } else {
-      let neededSpace = 40 * (inventorySlotNode.index + 1)
+      let neededSpace = 40 * (inventorySlotNode.index)
       finalPoint.x = self.emptySlotPositionLeft.x + CGFloat(neededSpace)
     }
     
@@ -260,7 +260,7 @@ class GameScene: SKScene {
         emptySlotPositionInScene.x = emptySlotPositionInScene.x + 200.0
         self.emptySlotPositionLeft = emptySlotPositionInScene
       } else {
-        let neededSpace = 40 * (emptySlot.index + 1)
+        let neededSpace = 40 * (emptySlot.index)
         emptySlotPositionInScene.x = self.emptySlotPositionLeft.x + CGFloat(neededSpace)
       }
 
