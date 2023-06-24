@@ -13,6 +13,14 @@
 		2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7962A420F3400DAF262 /* SquareNode.swift */; };
 		2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7972A420F3400DAF262 /* LuggageNode.swift */; };
 		2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7992A420F3400DAF262 /* ItemNode.swift */; };
+		30FF4F1A2A46E6E20092CE6B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FF4F192A46E6E20092CE6B /* GameKit.framework */; };
+		30FF4F1D2A46E83B0092CE6B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF4F1C2A46E83B0092CE6B /* ContentView.swift */; };
+		30FF4F1F2A46E8A40092CE6B /* RealTimeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF4F1E2A46E8A40092CE6B /* RealTimeGame.swift */; };
+		30FF4F222A46E8DB0092CE6B /* RealTimeGame+GKLocalPlayerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF4F212A46E8DB0092CE6B /* RealTimeGame+GKLocalPlayerListener.swift */; };
+		30FF4F242A46E8F50092CE6B /* RealTimeGame+GKGameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF4F232A46E8F50092CE6B /* RealTimeGame+GKGameCenterViewController.swift */; };
+		30FF4F262A46E9080092CE6B /* RealTimeGame+MatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF4F252A46E9080092CE6B /* RealTimeGame+MatchData.swift */; };
+		30FF4F282A46E9190092CE6B /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF4F272A46E9190092CE6B /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */; };
+		30FF4F2A2A46E92E0092CE6B /* RealTimeGame+GKMatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF4F292A46E92E0092CE6B /* RealTimeGame+GKMatchDelegate.swift */; };
 		D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3F62A3D622C00665580 /* AppDelegate.swift */; };
 		D0AFC3F92A3D622C00665580 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3F82A3D622C00665580 /* GameScene.sks */; };
 		D0AFC3FB2A3D622C00665580 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3FA2A3D622C00665580 /* Actions.sks */; };
@@ -31,6 +39,15 @@
 		2DC0D7962A420F3400DAF262 /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
 		2DC0D7972A420F3400DAF262 /* LuggageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageNode.swift; sourceTree = "<group>"; };
 		2DC0D7992A420F3400DAF262 /* ItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
+		30FF4F192A46E6E20092CE6B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		30FF4F1B2A46E7060092CE6B /* Lug-N-Loaded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lug-N-Loaded.entitlements"; sourceTree = "<group>"; };
+		30FF4F1C2A46E83B0092CE6B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		30FF4F1E2A46E8A40092CE6B /* RealTimeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeGame.swift; sourceTree = "<group>"; };
+		30FF4F212A46E8DB0092CE6B /* RealTimeGame+GKLocalPlayerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKLocalPlayerListener.swift"; sourceTree = "<group>"; };
+		30FF4F232A46E8F50092CE6B /* RealTimeGame+GKGameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKGameCenterViewController.swift"; sourceTree = "<group>"; };
+		30FF4F252A46E9080092CE6B /* RealTimeGame+MatchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+MatchData.swift"; sourceTree = "<group>"; };
+		30FF4F272A46E9190092CE6B /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchmakerViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		30FF4F292A46E92E0092CE6B /* RealTimeGame+GKMatchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealTimeGame+GKMatchDelegate.swift"; sourceTree = "<group>"; };
 		D0AFC3F32A3D622C00665580 /* Lug-N-Loaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lug-N-Loaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AFC3F62A3D622C00665580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AFC3F82A3D622C00665580 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -48,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FF4F1A2A46E6E20092CE6B /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +110,27 @@
 			path = ItemNodes;
 			sourceTree = "<group>";
 		};
+		30FF4F182A46E6E10092CE6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30FF4F192A46E6E20092CE6B /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30FF4F202A46E8AB0092CE6B /* Multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+				30FF4F1E2A46E8A40092CE6B /* RealTimeGame.swift */,
+				30FF4F232A46E8F50092CE6B /* RealTimeGame+GKGameCenterViewController.swift */,
+				30FF4F252A46E9080092CE6B /* RealTimeGame+MatchData.swift */,
+				30FF4F212A46E8DB0092CE6B /* RealTimeGame+GKLocalPlayerListener.swift */,
+				30FF4F272A46E9190092CE6B /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift */,
+				30FF4F292A46E92E0092CE6B /* RealTimeGame+GKMatchDelegate.swift */,
+			);
+			path = Multiplayer;
+			sourceTree = "<group>";
+		};
 		D08481432A40684800F4635B /* sks */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +145,7 @@
 			children = (
 				D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */,
 				D0AFC3F42A3D622C00665580 /* Products */,
+				30FF4F182A46E6E10092CE6B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,9 +160,12 @@
 		D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */ = {
 			isa = PBXGroup;
 			children = (
+				30FF4F1B2A46E7060092CE6B /* Lug-N-Loaded.entitlements */,
 				2DC0D7952A420F3400DAF262 /* CustomNodes */,
 				2D1C75322A45DD61009835DE /* GameScene */,
 				D0AFC3FE2A3D622C00665580 /* GameViewController.swift */,
+				30FF4F1C2A46E83B0092CE6B /* ContentView.swift */,
+				30FF4F202A46E8AB0092CE6B /* Multiplayer */,
 				D0AFC3F62A3D622C00665580 /* AppDelegate.swift */,
 				D0AFC4002A3D622C00665580 /* Main.storyboard */,
 				D0AFC4032A3D622D00665580 /* Assets.xcassets */,
@@ -205,15 +248,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FF4F222A46E8DB0092CE6B /* RealTimeGame+GKLocalPlayerListener.swift in Sources */,
+				30FF4F282A46E9190092CE6B /* RealTimeGame+GKMatchmakerViewControllerDelegate.swift in Sources */,
 				2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */,
+				30FF4F2A2A46E92E0092CE6B /* RealTimeGame+GKMatchDelegate.swift in Sources */,
+				30FF4F1D2A46E83B0092CE6B /* ContentView.swift in Sources */,
 				D0F302312A44204200F3DFC0 /* InventoryNode.swift in Sources */,
 				D0F302332A44221C00F3DFC0 /* InventorySlotNode.swift in Sources */,
 				2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */,
+				30FF4F242A46E8F50092CE6B /* RealTimeGame+GKGameCenterViewController.swift in Sources */,
 				2DC0D7922A4209E800DAF262 /* HelperFunctions.swift in Sources */,
 				D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */,
 				2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */,
 				2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */,
+				30FF4F262A46E9080092CE6B /* RealTimeGame+MatchData.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
+				30FF4F1F2A46E8A40092CE6B /* RealTimeGame.swift in Sources */,
 				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,9 +409,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lug-N-Loaded/Lug-N-Loaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = JZUG2CRW5M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -373,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nukivenoza.Lug-N-Loaded";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bingchillea.Lug-N-Loaded";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -386,9 +437,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lug-N-Loaded/Lug-N-Loaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = JZUG2CRW5M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -400,7 +452,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nukivenoza.Lug-N-Loaded";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bingchillea.Lug-N-Loaded";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
