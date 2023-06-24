@@ -8,29 +8,21 @@
 import GameplayKit
 import SpriteKit
 
-class GameScene: SKScene {
-  private var gameWon: Bool = false
+class TestingGameScene: SKScene {
   private var currentNode: SKNode?
   private var currentItemNode: ItemNode?
-  
   private var luggage: LuggageNode!
   private var inventory: InventoryNode!
-  // nanti append semua itemNodes kesini
   private var itemNodes: [ItemNode] = []
-  
   var emptySlotPositionLeft: CGPoint = .init(x: 0, y: 0)
-  
+
   override func didMove(to view: SKView) {
-    // MARK: Enables gestures
-    
     isUserInteractionEnabled = true
     
     // Add double tap gesture recognizer
     let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleDoubleTap(_:)))
     doubleTapGesture.numberOfTapsRequired = 2
     view.addGestureRecognizer(doubleTapGesture)
-    
-    // MARK: Node Placement
     
     self.luggage = LuggageNode(row: 4, column: 8,
                                position: CGPoint(x: frame.midX, y: frame.midY + 20))
@@ -39,33 +31,15 @@ class GameScene: SKScene {
     
     self.addChild(self.luggage)
     self.addChild(self.inventory)
+    self.initEmptyPositionLeft()
     
     self.initItemNodes()
-    
     for itemNode in self.itemNodes {
       self.addChild(itemNode)
     }
   }
   
-  @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
-    // Get the location of the double tap gesture
-    let touchLocation = gestureRecognizer.location(in: gestureRecognizer.view)
-    
-    // Convert the touch location to the scene's coordinate system
-    let convertedLocation = convertPoint(fromView: touchLocation)
-    
-    // MARK: Rotate Node
-    
-    if let tappedNode = atPoint(convertedLocation) as? SKSpriteNode {
-      // Rotate the node by 90 degrees
-      if tappedNode.name == "item" {
-        // Rotate the node by 90 degrees
-        let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
-        tappedNode.run(rotateAction)
-      }
-    }
-  }
-  
+  // TODO: TODOS
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     // MARK: For Drag n Drop Functionality
     
@@ -76,10 +50,8 @@ class GameScene: SKScene {
       for node in touchedNodes.reversed() {
         if node.name == "item" {
           self.currentNode = node
-          
           self.currentItemNode = SKNodeToItemNode(node: self.currentNode!)
-          self.currentItemNode?.isPlaced = false
-
+          
           if let currentNode = currentNode, luggage.contains(currentNode.position) {
             self.currentItemNode?.updateItemPhysics()
             
@@ -118,7 +90,7 @@ class GameScene: SKScene {
       }
     }
   }
-  
+
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     // MARK: check if item is inside of luggage or not
     
@@ -127,124 +99,36 @@ class GameScene: SKScene {
       
       // check if item node is in luggagenode
       if let currentNode = currentNode, luggage.contains(currentNode.position) {
-        self.updateInventorySlotStatus()
-
-        self.currentItemNode?.isPlaced = true
         self.currentItemNode?.inLuggage = true
         self.currentItemNode?.inInventory = false
         self.currentItemNode?.updateItemScale()
         self.currentItemNode?.updateItemPhysics()
-      } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
-        self.updateInventorySlotStatus()
-
-        self.currentItemNode?.isPlaced = true
+      }
+      if let currentNode = currentNode, inventory.contains(currentNode.position) {
         self.currentItemNode?.inLuggage = false
         self.currentItemNode?.inInventory = true
         self.currentItemNode?.updateItemScale()
         self.currentItemNode?.updateItemPhysics()
-        self.moveItemToInventorySlot(item: self.currentItemNode ?? ItemNode())
-        
-      } else if let currentNode = currentNode {
-        self.updateInventorySlotStatus()
-
-        self.currentItemNode?.isPlaced = true
+      }
+      if let currentNode = currentNode {
         self.currentItemNode?.inLuggage = false
         self.currentItemNode?.inInventory = false
+//        self.currentItemNode?.updateItemScale()
+//        self.currentItemNode?.updateItemPhysics()
+        
+        // Move item to inventory
+        self.moveItemToInventorySlot(item: self.currentItemNode ?? ItemNode())
         self.currentItemNode?.inInventory = true
         self.currentItemNode?.updateItemScale()
         self.currentItemNode?.updateItemPhysics()
-        self.moveItemToInventorySlot(item: self.currentItemNode ?? ItemNode())
       }
 
       self.currentNode = nil
       self.currentItemNode = nil
     }
   }
-
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.currentNode = nil
-    self.currentItemNode = nil
-  }
   
-  override func update(_ currentTime: TimeInterval) {
-    super.update(currentTime)
-    
-    // check if game won
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-      if !self.gameWon {
-        self.checkWin()
-      }
-    }
-    self.handleCollision()
-  }
-  
-  //  function to check win condition
-  private func checkWin() {
-    // loop over itemnode, check that all is not in inventory and is in luggage
-    for itemNode in self.itemNodes {
-      if itemNode.isPlaced == false {
-        return
-      }
-      if itemNode.inInventory {
-        return
-      }
-      if itemNode.inLuggage == false {
-        return
-      }
-      for itemNode in self.itemNodes {
-        if itemNode.isPlaced == false {
-          return
-        }
-        if itemNode.inInventory {
-          return
-        }
-        if itemNode.inLuggage == false {
-          return
-        }
-      }
-    }
-    
-    // all ItemNodes are in LuggageNode therefore:
-    print("YOU WIN!")
-    self.gameWon = true
-  }
-  
-  private func handleCollision() {
-    for itemNode in self.itemNodes {
-      if self.luggage.contains(itemNode.position) {
-        if itemNode.inInventory {
-          itemNode.inLuggage = true
-          itemNode.inInventory = false
-          itemNode.updateItemScale()
-        }
-      } else {
-        if itemNode.inLuggage {
-          itemNode.inLuggage = false
-          self.moveItemToInventorySlot(item: itemNode)
-          itemNode.updateItemScale()
-        }
-      }
-    }
-  }
-
-  private func updateInventorySlotStatus() {
-    for inventorySlot in self.inventory.inventorySlots {
-      var isSlotFilled = false
-          
-      for itemNode in self.itemNodes {
-        if inventorySlot.intersects(itemNode) {
-          isSlotFilled = true
-          break
-        }
-      }
-          
-      inventorySlot.isFilled = isSlotFilled
-      inventorySlot.updateTexture()
-    }
-  }
-  
-  private func findEmptySlot() -> InventorySlotNode? {
+  private func findEmptyInventorySlot() -> InventorySlotNode? {
     for inventorySlot in self.inventory.inventorySlots {
       if !inventorySlot.isFilled {
         return inventorySlot
@@ -253,20 +137,22 @@ class GameScene: SKScene {
     return nil
   }
   
-  private func moveItemToInventorySlot(item: ItemNode) {
-    self.updateInventorySlotStatus()
-    
-    if let slot = self.findEmptySlot() {
-      print("BEFORE SELF: \(self.inventory.inventorySlots[slot.index].isFilled)")
-      print("BEFORE SLOT: \(slot.isFilled)")
+  private func initEmptyPositionLeft() {
+    if let slot = self.findEmptyInventorySlot() {
       var finalSlotPosition = slot.convert(slot.position, to: self)
-      print("empty slot ke-\(slot.index)")
+      self.emptySlotPositionLeft = finalSlotPosition
+      self.emptySlotPositionLeft.x = finalSlotPosition.x + 200.0
+    }
+  }
+  
+  private func moveItemToInventorySlot(item: ItemNode) {
+    if let slot = self.findEmptyInventorySlot() {
+      var finalSlotPosition = slot.convert(slot.position, to: self)
       
-      if slot == self.inventory.inventorySlots[0] {
-        finalSlotPosition.x = finalSlotPosition.x + 200.0
-        self.emptySlotPositionLeft = finalSlotPosition
+      if slot.index == 0 {
+        finalSlotPosition = self.emptySlotPositionLeft
       } else {
-        let neededSpace = 45 * (slot.index + 1)
+        let neededSpace = 40 * (slot.index + 1)
         finalSlotPosition.x = self.emptySlotPositionLeft.x + CGFloat(neededSpace)
       }
       
@@ -274,30 +160,10 @@ class GameScene: SKScene {
       item.position = finalSlotPosition
       item.inInventory = true
       item.inLuggage = false
-      slot.isFilled = true
-      
-      print("SELF: \(self.inventory.inventorySlots[slot.index].isFilled)")
-      print("SLOT: \(slot.isFilled)")
-      
-      slot.updateTexture()
     }
   }
   
-  private func convertInventorySlotNodePositionToScene(inventorySlotNode: InventorySlotNode) -> CGPoint {
-    var finalPoint = inventorySlotNode.convert(inventorySlotNode.position, to: self)
-      
-    if inventorySlotNode.index == 0 {
-      finalPoint.x = finalPoint.x + 200.0
-      self.emptySlotPositionLeft = finalPoint
-
-    } else {
-      let neededSpace = 32 * (inventorySlotNode.index + 1)
-      finalPoint.x = self.emptySlotPositionLeft.x + CGFloat(neededSpace)
-    }
-      
-    print("returned slot of index \(inventorySlotNode.index)")
-    return finalPoint
-  }
+  // MARK: CODE THATS DONE
   
   private func initItemNodes() {
     let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
@@ -320,5 +186,24 @@ class GameScene: SKScene {
     self.itemNodes.append(item4)
     self.itemNodes.append(item5)
     self.itemNodes.append(item6)
+  }
+  
+  @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+    // Get the location of the double tap gesture
+    let touchLocation = gestureRecognizer.location(in: gestureRecognizer.view)
+    
+    // Convert the touch location to the scene's coordinate system
+    let convertedLocation = convertPoint(fromView: touchLocation)
+    
+    // MARK: Rotate Node
+    
+    if let tappedNode = atPoint(convertedLocation) as? SKSpriteNode {
+      // Rotate the node by 90 degrees
+      if tappedNode.name == "item" {
+        // Rotate the node by 90 degrees
+        let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
+        tappedNode.run(rotateAction)
+      }
+    }
   }
 }

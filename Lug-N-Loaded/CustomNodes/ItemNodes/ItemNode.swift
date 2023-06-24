@@ -11,6 +11,8 @@ import SpriteKit
 class ItemNode: SKSpriteNode {
   var inLuggage: Bool = false
   var inInventory: Bool = true
+  var isPlaced: Bool = true
+  var currentScale: Double = Constants.ITEM_SCALE_BIG
 
   init(imageName: String, itemShape: String, position: CGPoint) {
     // Identify the image and shape of the node
@@ -27,11 +29,12 @@ class ItemNode: SKSpriteNode {
 
     // Give node collision and physics
     physicsBody = SKPhysicsBody(texture: textureShape, alphaThreshold: 0.5, size: size)
-    physicsBody?.isDynamic = true
+    updateItemPhysics()
+//    physicsBody?.isDynamic = true
     physicsBody?.allowsRotation = false
-    physicsBody?.categoryBitMask = 0x1
-    physicsBody?.collisionBitMask = 0xFFFFFFFF
-    physicsBody?.contactTestBitMask = 0xFFFFFFFF
+//    physicsBody?.categoryBitMask = 0x1
+//    physicsBody?.collisionBitMask = 0xFFFFFFFF
+//    physicsBody?.contactTestBitMask = 0xFFFFFFFF
   }
 
   init() {
@@ -40,12 +43,35 @@ class ItemNode: SKSpriteNode {
   }
 
   public func updateItemScale() {
-    if inInventory {
-      let scaleAction = SKAction.scale(by: 0.5, duration: 0.2)
+    if inInventory && currentScale == Constants.ITEM_SCALE_BIG {
+      let scaleAction = SKAction.scale(by: Constants.ITEM_SCALE_SMALL, duration: 0.2)
       run(scaleAction)
-    } else {
-      let scaleAction = SKAction.scale(by: 2, duration: 0.2)
+      currentScale = Constants.ITEM_SCALE_SMALL
+    }
+    else if inLuggage && currentScale == Constants.ITEM_SCALE_SMALL {
+      let scaleAction = SKAction.scale(by: Constants.ITEM_SCALE_BIG, duration: 0.2)
       run(scaleAction)
+      currentScale = Constants.ITEM_SCALE_BIG
+    }
+    else if !inLuggage && !inInventory && currentScale == Constants.ITEM_SCALE_SMALL {
+      let scaleAction = SKAction.scale(by: Constants.ITEM_SCALE_BIG, duration: 0.2)
+      run(scaleAction)
+      currentScale = Constants.ITEM_SCALE_BIG
+    }
+  }
+
+  public func updateItemPhysics() {
+    if inInventory || isPlaced == false {
+      physicsBody?.isDynamic = false
+      physicsBody?.categoryBitMask = 0
+      physicsBody?.collisionBitMask = 0
+      physicsBody?.contactTestBitMask = 0
+    }
+    else {
+      physicsBody?.isDynamic = true
+      physicsBody?.categoryBitMask = 0x1
+      physicsBody?.collisionBitMask = 0xFFFFFFFF
+      physicsBody?.contactTestBitMask = 0xFFFFFFFF
     }
   }
 

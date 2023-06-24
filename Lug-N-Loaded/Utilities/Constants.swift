@@ -16,4 +16,7 @@ struct Constants {
 
   static let INVENTORY_SLOT_IMAGENAME = "diamond_block"
   static let INVENTORY_SLOT_IMAGENAME_FILLED = "obsidian_block"
+
+  static let ITEM_SCALE_BIG = 2.0
+  static let ITEM_SCALE_SMALL = 0.5
 }
