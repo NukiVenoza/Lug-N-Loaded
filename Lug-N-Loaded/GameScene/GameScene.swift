@@ -186,22 +186,17 @@ class GameScene: SKScene {
       if itemNode.isPlaced == false {
         return
       }
+    }
+    
+    for itemNode in self.itemNodes {
       if itemNode.inInventory {
         return
       }
+    }
+    
+    for itemNode in self.itemNodes {
       if itemNode.inLuggage == false {
         return
-      }
-      for itemNode in self.itemNodes {
-        if itemNode.isPlaced == false {
-          return
-        }
-        if itemNode.inInventory {
-          return
-        }
-        if itemNode.inLuggage == false {
-          return
-        }
       }
     }
     
