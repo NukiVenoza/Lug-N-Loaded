@@ -95,6 +95,7 @@ class GameScene: SKScene {
       
       if self.luggage.contains(node.position) {
 //        print("You are MOVING ITEM INSIDE THE LUGGAGE!")
+        self.currentItemNode?.inLuggage = true
         if self.currentItemNode?.inInventory == true {
           self.currentItemNode?.inInventory = false
           self.currentItemNode?.updateItemScale()
