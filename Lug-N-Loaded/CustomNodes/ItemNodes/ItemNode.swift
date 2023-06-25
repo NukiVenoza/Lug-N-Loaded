@@ -66,12 +66,14 @@ class ItemNode: SKSpriteNode {
       physicsBody?.categoryBitMask = 0
       physicsBody?.collisionBitMask = 0
       physicsBody?.contactTestBitMask = 0
+      zPosition = zPosition + 1
     }
     else {
       physicsBody?.isDynamic = true
       physicsBody?.categoryBitMask = 0x1
       physicsBody?.collisionBitMask = 0xFFFFFFFF
       physicsBody?.contactTestBitMask = 0xFFFFFFFF
+      zPosition = zPosition - 1
     }
   }
 

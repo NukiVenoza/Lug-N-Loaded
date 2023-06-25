@@ -9,14 +9,13 @@ import GameplayKit
 import SpriteKit
 
 class GameScene: SKScene {
-  private var gameWon: Bool = false
-  private var currentNode: SKNode?
-  private var currentItemNode: ItemNode?
+  public var gameWon: Bool = false
+  public var currentNode: SKNode?
+  public var currentItemNode: ItemNode?
   
-  private var luggage: LuggageNode!
-  private var inventory: InventoryNode!
-  // nanti append semua itemNodes kesini
-  private var itemNodes: [ItemNode] = []
+  public var luggage: LuggageNode!
+  public var inventory: InventoryNode!
+  public var itemNodes: [ItemNode] = []
   
   var emptySlotPositionLeft: CGPoint = .init(x: 0, y: 0)
   
@@ -40,7 +39,7 @@ class GameScene: SKScene {
     self.addChild(self.luggage)
     self.addChild(self.inventory)
     
-    self.initItemNodes()
+    GameSceneFunctions.initItemNodes(gameScene: self)
     
     for itemNode in self.itemNodes {
       self.addChild(itemNode)
@@ -127,7 +126,7 @@ class GameScene: SKScene {
       
       // check if item node is in luggagenode
       if let currentNode = currentNode, luggage.contains(currentNode.position) {
-        self.updateInventorySlotStatus()
+        GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
 
         self.currentItemNode?.isPlaced = true
         self.currentItemNode?.inLuggage = true
@@ -135,17 +134,18 @@ class GameScene: SKScene {
         self.currentItemNode?.updateItemScale()
         self.currentItemNode?.updateItemPhysics()
       } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
-        self.updateInventorySlotStatus()
+        GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
 
         self.currentItemNode?.isPlaced = true
         self.currentItemNode?.inLuggage = false
         self.currentItemNode?.inInventory = true
         self.currentItemNode?.updateItemScale()
         self.currentItemNode?.updateItemPhysics()
-        self.moveItemToInventorySlot(item: self.currentItemNode ?? ItemNode())
+        GameSceneFunctions.moveItemToInventorySlot(
+          gameScene: self, item: self.currentItemNode ?? ItemNode())
         
       } else if let currentNode = currentNode {
-        self.updateInventorySlotStatus()
+        GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
 
         self.currentItemNode?.isPlaced = true
         self.currentItemNode?.inLuggage = false
@@ -153,7 +153,8 @@ class GameScene: SKScene {
         self.currentItemNode?.inInventory = true
         self.currentItemNode?.updateItemScale()
         self.currentItemNode?.updateItemPhysics()
-        self.moveItemToInventorySlot(item: self.currentItemNode ?? ItemNode())
+        GameSceneFunctions.moveItemToInventorySlot(
+          gameScene: self, item: self.currentItemNode ?? ItemNode())
       }
 
       self.currentNode = nil
@@ -173,147 +174,9 @@ class GameScene: SKScene {
     
     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
       if !self.gameWon {
-        self.checkWin()
+        GameSceneFunctions.checkWin(gameScene: self)
       }
     }
-    self.handleCollision()
-  }
-  
-  //  function to check win condition
-  private func checkWin() {
-    // loop over itemnode, check that all is not in inventory and is in luggage
-    for itemNode in self.itemNodes {
-      if itemNode.isPlaced == false {
-        return
-      }
-    }
-    
-    for itemNode in self.itemNodes {
-      if itemNode.inInventory {
-        return
-      }
-    }
-    
-    for itemNode in self.itemNodes {
-      if itemNode.inLuggage == false {
-        return
-      }
-    }
-    
-    // all ItemNodes are in LuggageNode therefore:
-    print("YOU WIN!")
-    self.gameWon = true
-  }
-  
-  private func handleCollision() {
-    for itemNode in self.itemNodes {
-      if self.luggage.contains(itemNode.position) {
-        if itemNode.inInventory {
-          itemNode.inLuggage = true
-          itemNode.inInventory = false
-          itemNode.updateItemScale()
-        }
-      } else {
-        if itemNode.inLuggage {
-          itemNode.inLuggage = false
-          self.moveItemToInventorySlot(item: itemNode)
-          itemNode.updateItemScale()
-        }
-      }
-    }
-  }
-
-  private func updateInventorySlotStatus() {
-    for inventorySlot in self.inventory.inventorySlots {
-      var isSlotFilled = false
-          
-      for itemNode in self.itemNodes {
-        if inventorySlot.intersects(itemNode) {
-          isSlotFilled = true
-          break
-        }
-      }
-          
-      inventorySlot.isFilled = isSlotFilled
-      inventorySlot.updateTexture()
-    }
-  }
-  
-  private func findEmptySlot() -> InventorySlotNode? {
-    for inventorySlot in self.inventory.inventorySlots {
-      if !inventorySlot.isFilled {
-        return inventorySlot
-      }
-    }
-    return nil
-  }
-  
-  private func moveItemToInventorySlot(item: ItemNode) {
-    self.updateInventorySlotStatus()
-    
-    if let slot = self.findEmptySlot() {
-      print("BEFORE SELF: \(self.inventory.inventorySlots[slot.index].isFilled)")
-      print("BEFORE SLOT: \(slot.isFilled)")
-      var finalSlotPosition = slot.convert(slot.position, to: self)
-      print("empty slot ke-\(slot.index)")
-      
-      if slot == self.inventory.inventorySlots[0] {
-        finalSlotPosition.x = finalSlotPosition.x + 200.0
-        self.emptySlotPositionLeft = finalSlotPosition
-      } else {
-        let neededSpace = 45 * (slot.index + 1)
-        finalSlotPosition.x = self.emptySlotPositionLeft.x + CGFloat(neededSpace)
-      }
-      
-      // move item to finalSlotPosition
-      item.position = finalSlotPosition
-      item.inInventory = true
-      item.inLuggage = false
-      slot.isFilled = true
-      
-      print("SELF: \(self.inventory.inventorySlots[slot.index].isFilled)")
-      print("SLOT: \(slot.isFilled)")
-      
-      slot.updateTexture()
-    }
-  }
-  
-  private func convertInventorySlotNodePositionToScene(inventorySlotNode: InventorySlotNode) -> CGPoint {
-    var finalPoint = inventorySlotNode.convert(inventorySlotNode.position, to: self)
-      
-    if inventorySlotNode.index == 0 {
-      finalPoint.x = finalPoint.x + 200.0
-      self.emptySlotPositionLeft = finalPoint
-
-    } else {
-      let neededSpace = 32 * (inventorySlotNode.index + 1)
-      finalPoint.x = self.emptySlotPositionLeft.x + CGFloat(neededSpace)
-    }
-      
-    print("returned slot of index \(inventorySlotNode.index)")
-    return finalPoint
-  }
-  
-  private func initItemNodes() {
-    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
-                         position: CGPoint(x: frame.midX, y: frame.midY))
-
-    let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
-                         position: CGPoint(x: frame.midX + 100, y: frame.midY + 100))
-    let item3 = ItemNode(imageName: "medal", itemShape: "l_right",
-                         position: CGPoint(x: frame.midX + 200, y: frame.midY + 100))
-    let item4 = ItemNode(imageName: "clothes", itemShape: "square_2",
-                         position: CGPoint(x: frame.midX + -100, y: frame.midY + 100))
-    let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
-                         position: CGPoint(x: frame.midX + -200, y: frame.midY + 100))
-    let item6 = ItemNode(imageName: "gold", itemShape: "square",
-                         position: CGPoint(x: frame.midX + 300, y: frame.midY + 100))
-    
-    self.itemNodes.append(item1)
-    self.itemNodes.append(item2)
-    self.itemNodes.append(item3)
-    self.itemNodes.append(item4)
-    self.itemNodes.append(item5)
-    self.itemNodes.append(item6)
+    GameSceneFunctions.handleCollision(gameScene: self)
   }
 }
