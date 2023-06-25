@@ -22,7 +22,7 @@ class LuggageNode: SKNode {
     var luggagePosition = position
     luggagePosition.x = position.x - CGFloat(luggageWidth / 2) + CGFloat(Constants.SQUARESIZE / 2)
     luggagePosition.y = position.y + CGFloat(luggageHeight / 2)
-    zPosition = 1
+    zPosition = 2
     self.position = luggagePosition
 
     // To store the most left tile for each row

@@ -14,7 +14,10 @@ class InventoryNode: SKSpriteNode {
 
   init(position: CGPoint) {
     let size = CGSize(width: Constants.INVENTORY_WIDTH, height: Constants.INVENTORY_HEIGHT)
-    super.init(texture: nil, color: .blue, size: size)
+    super.init(
+      texture: SKTexture(imageNamed: Constants.INVENTORY_BACKGROUND_IMAGENAME),
+      color: .blue,
+      size: size)
     self.position = position
     
     self.initInventorySlots()

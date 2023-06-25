@@ -30,9 +30,16 @@ class GameScene: SKScene {
     doubleTapGesture.numberOfTapsRequired = 2
     view.addGestureRecognizer(doubleTapGesture)
     
+    // MARK: Background
+
+    let backgroundNode = SKSpriteNode(imageNamed: Constants.BACKGROUND_IMAGE)
+    backgroundNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
+    backgroundNode.zPosition = -1
+    addChild(backgroundNode)
+    
     // MARK: Node Placement
     
-    self.luggage = LuggageNode(row: 4, column: 8,
+    self.luggage = LuggageNode(row: 3, column: 5,
                                position: CGPoint(x: frame.midX, y: frame.midY + 20))
 
     self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 120))

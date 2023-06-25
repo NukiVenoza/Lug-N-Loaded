@@ -17,8 +17,8 @@ class InventorySlotNode: SKSpriteNode {
   init(index: Int) {
     let slotSize = CGSize(width: Constants.INVENTORY_SLOT, height: Constants.INVENTORY_SLOT)
     super.init(texture: nil, color: .white, size: slotSize)
+    self.zPosition = 2
     self.index = index
-
     self.updateTexture()
   }
 

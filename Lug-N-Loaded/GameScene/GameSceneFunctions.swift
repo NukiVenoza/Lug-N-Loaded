@@ -128,13 +128,17 @@ class GameSceneFunctions {
   }
   
   public static func createLuggageHitBox(gameScene: GameScene, luggage: LuggageNode) -> SKSpriteNode {
-    var luggageHitBox = SKSpriteNode(color: .gray, size: luggage.calculateAccumulatedFrame().size)
+    let luggageHitBox = SKSpriteNode(color: .gray, size: luggage.calculateAccumulatedFrame().size)
     luggageHitBox.position = CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 40)
     luggageHitBox.zPosition = 1
+    luggageHitBox.texture = SKTexture(imageNamed: Constants.LUGGAGE_BACKGROUND_IMAGENAME)
     
-    let scaleAction = SKAction.scale(by: 1.08, duration: 0.1)
-    luggageHitBox.run(scaleAction)
+    luggageHitBox.size.height = luggageHitBox.size.height + 32
+    luggageHitBox.size.width = luggageHitBox.size.width + 30
     
+    luggageHitBox.position.x = luggageHitBox.position.x + 1.0
+    luggageHitBox.position.y = luggageHitBox.position.y - 0.5
+
     return luggageHitBox
   }
   
@@ -150,14 +154,14 @@ class GameSceneFunctions {
                          position: CGPoint(x: gameScene.frame.midX + -100, y: gameScene.frame.midY + 100))
     let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
                          position: CGPoint(x: gameScene.frame.midX + -200, y: gameScene.frame.midY + 100))
-    let item6 = ItemNode(imageName: "gold", itemShape: "square",
-                         position: CGPoint(x: gameScene.frame.midX + 300, y: gameScene.frame.midY + 100))
+//    let item6 = ItemNode(imageName: "gold", itemShape: "square",
+//                         position: CGPoint(x: gameScene.frame.midX + 300, y: gameScene.frame.midY + 100))
     
     gameScene.itemNodes.append(item1)
     gameScene.itemNodes.append(item2)
     gameScene.itemNodes.append(item3)
     gameScene.itemNodes.append(item4)
     gameScene.itemNodes.append(item5)
-    gameScene.itemNodes.append(item6)
+//    gameScene.itemNodes.append(item6)
   }
 }
