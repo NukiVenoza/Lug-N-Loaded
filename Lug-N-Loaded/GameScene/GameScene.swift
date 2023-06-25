@@ -184,13 +184,12 @@ class GameScene: SKScene {
   override func update(_ currentTime: TimeInterval) {
     super.update(currentTime)
     
+    GameSceneFunctions.handleCollision(gameScene: self)
     // check if game won
-    
     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
       if !self.gameWon {
         GameSceneFunctions.checkWin(gameScene: self)
       }
     }
-    GameSceneFunctions.handleCollision(gameScene: self)
   }
 }
