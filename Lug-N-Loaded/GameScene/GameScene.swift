@@ -139,8 +139,6 @@ class GameScene: SKScene {
         self.currentItemNode?.updateItemPhysics()
         
         if self.currentItemNode?.isInsideLuggage(luggage: self.luggageHitBox) == false {
-          print("more than 90% of the item is not inside the luggage")
-          
           self.currentItemNode?.inLuggage = false
           self.currentItemNode?.inInventory = true
           self.currentItemNode?.updateItemScale()
