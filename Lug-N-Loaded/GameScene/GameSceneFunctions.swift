@@ -42,6 +42,13 @@ class GameSceneFunctions {
           itemNode.inInventory = false
           itemNode.updateItemScale()
         }
+        if itemNode.isInsideLuggage(luggage: gameScene.luggageHitBox) == false, itemNode.isPlaced {
+          itemNode.inLuggage = false
+          itemNode.inInventory = true
+          itemNode.updateItemScale()
+          self.moveItemToInventorySlot(
+            gameScene: gameScene, item: itemNode)
+        }
       } else {
         if itemNode.inLuggage {
           itemNode.inLuggage = false
