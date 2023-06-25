@@ -77,6 +77,19 @@ class ItemNode: SKSpriteNode {
     }
   }
 
+  func isInsideLuggage(luggage: SKSpriteNode) -> Bool {
+    let smallerNodeFrame = calculateAccumulatedFrame()
+    let largerNodeFrame = luggage.calculateAccumulatedFrame()
+
+    let isFullyContained = smallerNodeFrame.minX >= largerNodeFrame.minX &&
+      smallerNodeFrame.maxX <= largerNodeFrame.maxX &&
+      smallerNodeFrame.minY >= largerNodeFrame.minY &&
+      smallerNodeFrame.maxY <= largerNodeFrame.maxY
+
+    print("FULLY CONTAINED: \(isFullyContained)")
+    return isFullyContained
+  }
+
   @available(*, unavailable)
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")

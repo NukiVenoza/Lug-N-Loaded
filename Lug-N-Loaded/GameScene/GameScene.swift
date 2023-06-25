@@ -14,6 +14,7 @@ class GameScene: SKScene {
   public var currentItemNode: ItemNode?
   
   public var luggage: LuggageNode!
+  public var luggageHitBox: SKSpriteNode!
   public var inventory: InventoryNode!
   public var itemNodes: [ItemNode] = []
   
@@ -33,12 +34,15 @@ class GameScene: SKScene {
     
     self.luggage = LuggageNode(row: 4, column: 8,
                                position: CGPoint(x: frame.midX, y: frame.midY + 20))
-    
+
     self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 120))
     
     self.addChild(self.luggage)
-    self.addChild(self.inventory)
     
+    self.luggageHitBox = GameSceneFunctions.createLuggageHitBox(gameScene: self, luggage: self.luggage)
+  
+    self.addChild(self.luggageHitBox)
+    self.addChild(self.inventory)
     GameSceneFunctions.initItemNodes(gameScene: self)
     
     for itemNode in self.itemNodes {
@@ -133,6 +137,18 @@ class GameScene: SKScene {
         self.currentItemNode?.inInventory = false
         self.currentItemNode?.updateItemScale()
         self.currentItemNode?.updateItemPhysics()
+        
+        if self.currentItemNode?.isInsideLuggage(luggage: self.luggageHitBox) == false {
+          print("more than 90% of the item is not inside the luggage")
+          
+          self.currentItemNode?.inLuggage = false
+          self.currentItemNode?.inInventory = true
+          self.currentItemNode?.updateItemScale()
+          self.currentItemNode?.updateItemPhysics()
+          GameSceneFunctions.moveItemToInventorySlot(
+            gameScene: self, item: self.currentItemNode ?? ItemNode())
+        }
+        
       } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
         GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
 

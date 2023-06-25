@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class GameSceneFunctions {
   public static func checkWin(gameScene: GameScene) {
@@ -80,10 +81,7 @@ class GameSceneFunctions {
     self.updateInventorySlotStatus(gameScene: gameScene)
     
     if let slot = self.findEmptySlot(gameScene: gameScene) {
-      print("BEFORE SELF: \(gameScene.inventory.inventorySlots[slot.index].isFilled)")
-      print("BEFORE SLOT: \(slot.isFilled)")
       var finalSlotPosition = slot.convert(slot.position, to: gameScene)
-      print("empty slot ke-\(slot.index)")
       
       if slot == gameScene.inventory.inventorySlots[0] {
         finalSlotPosition.x = finalSlotPosition.x + 200.0
@@ -119,8 +117,18 @@ class GameSceneFunctions {
       finalPoint.x = gameScene.emptySlotPositionLeft.x + CGFloat(neededSpace)
     }
       
-    print("returned slot of index \(inventorySlotNode.index)")
     return finalPoint
+  }
+  
+  public static func createLuggageHitBox(gameScene: GameScene, luggage: LuggageNode) -> SKSpriteNode {
+    var luggageHitBox = SKSpriteNode(color: .gray, size: luggage.calculateAccumulatedFrame().size)
+    luggageHitBox.position = CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 40)
+    luggageHitBox.zPosition = 1
+    
+    let scaleAction = SKAction.scale(by: 1.08, duration: 0.1)
+    luggageHitBox.run(scaleAction)
+    
+    return luggageHitBox
   }
   
   public static func initItemNodes(gameScene: GameScene) {
