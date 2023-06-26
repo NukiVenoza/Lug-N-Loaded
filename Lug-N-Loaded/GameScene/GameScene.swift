@@ -20,22 +20,21 @@ class GameScene: SKScene {
   
   var emptySlotPositionLeft: CGPoint = .init(x: 0, y: 0)
     
-    //TIMER & AUDIO VARIABLES
-    let timer = CountdownLabel()
-    let obsTimer = CountdownLabel()
-    var timerProgressBar: SKShapeNode!
-    var progressBarBackground: SKShapeNode!
+  // TIMER & AUDIO VARIABLES
+  let timer = CountdownLabel()
+  let obsTimer = CountdownLabel()
+  var timerProgressBar: SKShapeNode!
+  var progressBarBackground: SKShapeNode!
     
-    var obstructionNode: ObstructionNode!
-    let duration: TimeInterval = 36
+  var obstructionNode: ObstructionNode!
+  let duration: TimeInterval = 36
     
-    var isShowingObstruction = false
-    var hasShownObstruction = false
+  var isShowingObstruction = false
+  var hasShownObstruction = false
   
   override func didMove(to view: SKView) {
-      
-      //TIMER & AUDIO SECTION
-      setupTimerAudio()
+    // TIMER & AUDIO SECTION
+    self.setupTimerAudio()
       
     // MARK: Enables gestures
     
@@ -71,7 +70,6 @@ class GameScene: SKScene {
     for itemNode in self.itemNodes {
       self.addChild(itemNode)
     }
-      
   }
   
   @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -107,9 +105,9 @@ class GameScene: SKScene {
           
           self.currentItemNode = SKNodeToItemNode(node: self.currentNode!)
           self.currentItemNode?.isPlaced = false
-
+          
           if let currentNode = currentNode, luggage.contains(currentNode.position) {
-              self.currentItemNode?.isPlaced = true
+            self.currentItemNode?.isPlaced = true
             self.currentItemNode?.updateItemPhysics()
             
           } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
@@ -125,9 +123,9 @@ class GameScene: SKScene {
       let touchLocation = touch.location(in: self)
       node.position = touchLocation
       
-        self.currentItemNode?.isPlaced = false
+      self.currentItemNode?.isPlaced = false
+      self.currentItemNode?.updateItemPhysics()
 
-        
       if self.luggage.contains(node.position) {
         // Di Dalem LUGGAGE
         self.currentItemNode?.inLuggage = true
@@ -221,119 +219,119 @@ class GameScene: SKScene {
       }
     }
       
-      //TIMER & AUDIO SECTION
-      timer.update()
+    // TIMER & AUDIO SECTION
+    self.timer.update()
       
-      decreaseTimeBar()
+    self.decreaseTimeBar()
       
-      if timer.text == "30" && !isShowingObstruction && !hasShownObstruction {
-          print("SHOW")
-          showObstruction()
-          AudioManager.shared.playObstructionMusic(filename: "OBSTRUCTION.mp3")
-          AudioManager.shared.pauseBackgroundMusic()
-      }
+    if self.timer.text == "30" && !self.isShowingObstruction && !self.hasShownObstruction {
+      print("SHOW")
+      self.showObstruction()
+      AudioManager.shared.playObstructionMusic(filename: "OBSTRUCTION.mp3")
+      AudioManager.shared.pauseBackgroundMusic()
+    }
       
-      if timer.text == "10" {
-          AudioManager.shared.stopBackgroundMusic()
-          AudioManager.shared.playRushMusic(filename: "COUNTDOWN.mp3")
-      }
+    if self.timer.text == "10" {
+      AudioManager.shared.stopBackgroundMusic()
+      AudioManager.shared.playRushMusic(filename: "COUNTDOWN.mp3")
+    }
       
-      if isShowingObstruction {
-          obsTimer.update()
-      }
+    if self.isShowingObstruction {
+      self.obsTimer.update()
+    }
       
-      if obsTimer.hasFinished() && isShowingObstruction {
-          hideObstruction()
-          hasShownObstruction = true
-          AudioManager.shared.stopObstructionMusic()
-          AudioManager.shared.resumeBackgroundMusic()
-      }
+    if self.obsTimer.hasFinished() && self.isShowingObstruction {
+      self.hideObstruction()
+      self.hasShownObstruction = true
+      AudioManager.shared.stopObstructionMusic()
+      AudioManager.shared.resumeBackgroundMusic()
+    }
       
-      if timer.hasFinished() {
-          AudioManager.shared.stopRushMusic()
-      }
+    if self.timer.hasFinished() {
+      AudioManager.shared.stopRushMusic()
+    }
   }
     
-    func showObstruction() {
-        timer.pause()
-        obsTimer.resume()
+  func showObstruction() {
+    self.timer.pause()
+    self.obsTimer.resume()
         
-        obstructionNode = ObstructionNode(size: size, parentView: view!)
-        obstructionNode.position = CGPoint(x: frame.midX, y: frame.midY)
-        obstructionNode.zPosition = 1000
-        obstructionNode.isUserInteractionEnabled = true
-        addChild(obstructionNode)
+    self.obstructionNode = ObstructionNode(size: size, parentView: view!)
+    self.obstructionNode.position = CGPoint(x: frame.midX, y: frame.midY)
+    self.obstructionNode.zPosition = 1000
+    self.obstructionNode.isUserInteractionEnabled = true
+    addChild(self.obstructionNode)
         
-        isShowingObstruction = true
-        obsTimer.alpha = 1
-    }
+    self.isShowingObstruction = true
+    self.obsTimer.alpha = 1
+  }
     
-    func hideObstruction() {
-        isShowingObstruction = false
-        let isCorrect = obstructionNode.removeTextField()
-        print(isCorrect)
-        if isCorrect {
-            timer.addTime(amount: 6)
-            timer.update()
-        } else {
-            timer.addTime(amount: -5)
-            timer.update()
-        }
-        obsTimer.alpha = 0
-        obstructionNode.removeFromParent()
-        timer.resume()
+  func hideObstruction() {
+    self.isShowingObstruction = false
+    let isCorrect = self.obstructionNode.removeTextField()
+    print(isCorrect)
+    if isCorrect {
+      self.timer.addTime(amount: 6)
+      self.timer.update()
+    } else {
+      self.timer.addTime(amount: -5)
+      self.timer.update()
     }
+    self.obsTimer.alpha = 0
+    self.obstructionNode.removeFromParent()
+    self.timer.resume()
+  }
     
-    // Helper method to create a progress bar shape node
-    func createProgressBar(size: CGSize, color : UIColor) -> SKShapeNode {
-        let progressBar = SKShapeNode(rectOf: size)
-        progressBar.fillColor = color
-        progressBar.lineWidth = 0
-        return progressBar
-    }
+  // Helper method to create a progress bar shape node
+  func createProgressBar(size: CGSize, color: UIColor) -> SKShapeNode {
+    let progressBar = SKShapeNode(rectOf: size)
+    progressBar.fillColor = color
+    progressBar.lineWidth = 0
+    return progressBar
+  }
     
-    func decreaseTimeBar(){
-        // Update the timer progress bar
-        let progress = CGFloat(timer.timeLeft() / duration)
-        let progressBarWidth = 400.0 // Width of the progress bar
-        let progressBarHeight = 30.0 // Height of the progress bar
+  func decreaseTimeBar() {
+    // Update the timer progress bar
+    let progress = CGFloat(timer.timeLeft() / self.duration)
+    let progressBarWidth = 400.0 // Width of the progress bar
+    let progressBarHeight = 30.0 // Height of the progress bar
         
-        let scaledWidth = progressBarWidth * progress
-        let offsetX = (progressBarWidth - scaledWidth) / 2
+    let scaledWidth = progressBarWidth * progress
+    let offsetX = (progressBarWidth - scaledWidth) / 2
         
-        timerProgressBar.xScale = scaledWidth / progressBarWidth
-        timerProgressBar.position.x = frame.midX - CGFloat(offsetX)
-    }
+    self.timerProgressBar.xScale = scaledWidth / progressBarWidth
+    self.timerProgressBar.position.x = frame.midX - CGFloat(offsetX)
+  }
     
-    func setupTimerAudio() {
-        let center = CGPoint(x: frame.midX, y: frame.midY)
-        timer.position = CGPoint(x: frame.midX, y: frame.midY + 140)
-        timer.zPosition = 500
-        timer.fontName = "YourName-Bold"
-        timer.fontSize = 30
-        addChild(timer)
-        timer.startWithDuration(duration: duration)
+  func setupTimerAudio() {
+    let center = CGPoint(x: frame.midX, y: frame.midY)
+    self.timer.position = CGPoint(x: frame.midX, y: frame.midY + 140)
+    self.timer.zPosition = 500
+    self.timer.fontName = "YourName-Bold"
+    self.timer.fontSize = 30
+    addChild(self.timer)
+    self.timer.startWithDuration(duration: self.duration)
         
-        // Create and add the timer progress bar
-        let progressBarSize = CGSize(width: 400, height: 30)
-        let progressBarPosition = CGPoint(x: center.x, y: center.y + 150)
-        timerProgressBar = createProgressBar(size: progressBarSize, color: .green)
-        timerProgressBar.position = progressBarPosition
-        timerProgressBar.zPosition = 124
-        progressBarBackground = createProgressBar(size: progressBarSize, color: .white)
-        progressBarBackground.position = progressBarPosition
-        progressBarBackground.zPosition = 123
-        addChild(timerProgressBar)
-        addChild(progressBarBackground)
+    // Create and add the timer progress bar
+    let progressBarSize = CGSize(width: 400, height: 30)
+    let progressBarPosition = CGPoint(x: center.x, y: center.y + 150)
+    self.timerProgressBar = self.createProgressBar(size: progressBarSize, color: .green)
+    self.timerProgressBar.position = progressBarPosition
+    self.timerProgressBar.zPosition = 124
+    self.progressBarBackground = self.createProgressBar(size: progressBarSize, color: .white)
+    self.progressBarBackground.position = progressBarPosition
+    self.progressBarBackground.zPosition = 123
+    addChild(self.timerProgressBar)
+    addChild(self.progressBarBackground)
         
-        obsTimer.position = CGPoint(x: frame.midX, y: frame.midY + 70)
-        obsTimer.zPosition = 1001
-        obsTimer.fontSize = 25
-        obsTimer.alpha = 0
-        addChild(obsTimer)
-        obsTimer.startWithDuration(duration: 7)
-        obsTimer.pause()
+    self.obsTimer.position = CGPoint(x: frame.midX, y: frame.midY + 70)
+    self.obsTimer.zPosition = 1001
+    self.obsTimer.fontSize = 25
+    self.obsTimer.alpha = 0
+    addChild(self.obsTimer)
+    self.obsTimer.startWithDuration(duration: 7)
+    self.obsTimer.pause()
         
-        AudioManager.shared.playBackgroundMusic(filename: "BGM.mp3")
-    }
+    AudioManager.shared.playBackgroundMusic(filename: "BGM.mp3")
+  }
 }
