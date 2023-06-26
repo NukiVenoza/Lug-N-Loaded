@@ -87,6 +87,7 @@ class GameScene: SKScene {
       // Rotate the node by 90 degrees
       if tappedNode.name == "item" {
         // Rotate the node by 90 degrees
+          
         let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
         tappedNode.run(rotateAction)
       }
@@ -108,6 +109,7 @@ class GameScene: SKScene {
           self.currentItemNode?.isPlaced = false
 
           if let currentNode = currentNode, luggage.contains(currentNode.position) {
+              self.currentItemNode?.isPlaced = true
             self.currentItemNode?.updateItemPhysics()
             
           } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
@@ -123,6 +125,9 @@ class GameScene: SKScene {
       let touchLocation = touch.location(in: self)
       node.position = touchLocation
       
+        self.currentItemNode?.isPlaced = false
+
+        
       if self.luggage.contains(node.position) {
         // Di Dalem LUGGAGE
         self.currentItemNode?.inLuggage = true
@@ -322,7 +327,7 @@ class GameScene: SKScene {
         addChild(progressBarBackground)
         
         obsTimer.position = CGPoint(x: frame.midX, y: frame.midY + 70)
-        obsTimer.zPosition = 200
+        obsTimer.zPosition = 1001
         obsTimer.fontSize = 25
         obsTimer.alpha = 0
         addChild(obsTimer)
