@@ -91,11 +91,29 @@ class GameSceneFunctions {
       var finalSlotPosition = slot.convert(slot.position, to: gameScene)
       
       if slot == gameScene.inventory.inventorySlots[0] {
-        finalSlotPosition.x = finalSlotPosition.x + 200.0
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_1
         gameScene.emptySlotPositionLeft = finalSlotPosition
+        
+      }else if slot == gameScene.inventory.inventorySlots[1]{
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_2
+          
+      } else if slot == gameScene.inventory.inventorySlots[2]{
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_3
+          
+      } else if slot == gameScene.inventory.inventorySlots[3]{
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_4
+          
+      } else if slot == gameScene.inventory.inventorySlots[4]{
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_5
+          
+      } else if slot == gameScene.inventory.inventorySlots[5]{
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_6
+          
+      } else if slot == gameScene.inventory.inventorySlots[6]{
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_7
+          
       } else {
-        let neededSpace = 45 * (slot.index + 1)
-        finalSlotPosition.x = gameScene.emptySlotPositionLeft.x + CGFloat(neededSpace)
+          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_8
       }
       
       // move item to finalSlotPosition
@@ -116,12 +134,30 @@ class GameSceneFunctions {
       inventorySlotNode.position, to: gameScene)
       
     if inventorySlotNode.index == 0 {
-      finalPoint.x = finalPoint.x + 200.0
+      finalPoint.x = finalPoint.x + Constants.INVENTORY_SLOP_GAP_FIRST
       gameScene.emptySlotPositionLeft = finalPoint
 
+    }else if inventorySlotNode.index == 1{
+        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_2
+        
+    } else if inventorySlotNode.index == 2{
+        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_3
+        
+    } else if inventorySlotNode.index == 3{
+        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_4
+
+    } else if inventorySlotNode.index == 4{
+        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_5
+
+    } else if inventorySlotNode.index == 5{
+        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_6
+
+    } else if inventorySlotNode.index == 6{
+        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_7
+
     } else {
-      let neededSpace = 32 * (inventorySlotNode.index + 1)
-      finalPoint.x = gameScene.emptySlotPositionLeft.x + CGFloat(neededSpace)
+        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_8
+
     }
       
     return finalPoint

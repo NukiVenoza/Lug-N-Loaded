@@ -39,15 +39,15 @@ class InventoryNode: SKSpriteNode {
     let inventorySlot7 = InventorySlotNode(index: 6)
     let inventorySlot8 = InventorySlotNode(index: 7)
         
-    inventorySlot1.position = CGPoint(x: -(inventorySlot4.size.width * 3) - 90, y: startCoordinate)
-    inventorySlot2.position = CGPoint(x: -(inventorySlot4.size.width * 2) - 70, y: startCoordinate)
-    inventorySlot3.position = CGPoint(x: -(inventorySlot4.size.width * 1) - 50, y: startCoordinate)
-    inventorySlot4.position = CGPoint(x: -30, y: startCoordinate)
+    inventorySlot1.position = CGPoint(x: -(inventorySlot4.size.width * 3) - 130, y: startCoordinate)
+    inventorySlot2.position = CGPoint(x: -(inventorySlot4.size.width * 2) - 100, y: startCoordinate)
+    inventorySlot3.position = CGPoint(x: -(inventorySlot4.size.width * 1) - 70, y: startCoordinate)
+    inventorySlot4.position = CGPoint(x: -40, y: startCoordinate)
         
-    inventorySlot5.position = CGPoint(x: startCoordinate + 30, y: startCoordinate)
-    inventorySlot6.position = CGPoint(x: startCoordinate + (inventorySlot5.size.width * 1) + 50, y: startCoordinate)
-    inventorySlot7.position = CGPoint(x: startCoordinate + (inventorySlot5.size.width * 2) + 70, y: startCoordinate)
-    inventorySlot8.position = CGPoint(x: startCoordinate + (inventorySlot5.size.width * 3) + 90, y: startCoordinate)
+    inventorySlot5.position = CGPoint(x: startCoordinate + 40, y: startCoordinate)
+    inventorySlot6.position = CGPoint(x: startCoordinate + (inventorySlot5.size.width * 1) + 70, y: startCoordinate)
+    inventorySlot7.position = CGPoint(x: startCoordinate + (inventorySlot5.size.width * 2) + 100, y: startCoordinate)
+    inventorySlot8.position = CGPoint(x: startCoordinate + (inventorySlot5.size.width * 3) + 130, y: startCoordinate)
         
     self.inventorySlots.append(inventorySlot1)
     self.inventorySlots.append(inventorySlot2)
