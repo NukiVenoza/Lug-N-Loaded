@@ -11,6 +11,8 @@ import SpriteKit
 class GameSceneFunctions {
   public static func checkWin(gameScene: GameScene) {
     // loop over itemnode, check that all is not in inventory and is in luggage
+    GameSceneFunctions.handleCollision(gameScene: gameScene)
+
     for itemNode in gameScene.itemNodes {
       if itemNode.isPlaced == false {
         return
@@ -32,6 +34,36 @@ class GameSceneFunctions {
     // all ItemNodes are in LuggageNode therefore:
     print("YOU WIN!")
     gameScene.gameWon = true
+  }
+  
+  public static func showWinScreen(gameScene: GameScene) {
+    print("KAMU MENANG HEBAT MANTEP!")
+    
+    // Scaling animation
+    let scaleAction = SKAction.sequence([
+      SKAction.scale(to: 0.1, duration: 0.2),
+      SKAction.scale(to: 1.0, duration: 0.5)
+    ])
+    
+    // Opacity animation
+    let opacityAction = SKAction.sequence([
+      SKAction.fadeAlpha(to: 0.0, duration: 0.2),
+      SKAction.fadeAlpha(to: 0.8, duration: 0.5)
+    ])
+    
+    // Combined animation
+    let combinedAction = SKAction.group([
+      scaleAction,
+      opacityAction
+    ])
+    
+    let fullScreenNode = SKSpriteNode(color: .black, size: gameScene.size)
+    fullScreenNode.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+    fullScreenNode.alpha = 0.0 // Start with 0 opacity
+    fullScreenNode.zPosition = 1000
+    
+    gameScene.addChild(fullScreenNode)
+    fullScreenNode.run(combinedAction)
   }
   
   public static func handleCollision(gameScene: GameScene) {

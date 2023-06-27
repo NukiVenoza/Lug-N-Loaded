@@ -191,9 +191,14 @@ class GameScene: SKScene {
     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
       if !self.gameWon {
         GameSceneFunctions.checkWin(gameScene: self)
+        if self.gameWon {
+          GameSceneFunctions.showWinScreen(gameScene: self)
+        }
       }
     }
-      
+    
+    // show game win screen
+
     // TIMER & AUDIO SECTION
     self.timer.update()
 

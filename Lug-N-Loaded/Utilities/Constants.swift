@@ -8,18 +8,18 @@
 import Foundation
 
 struct Constants {
-  static let BACKGROUND_IMAGE = "background_image"
+  static let BACKGROUND_IMAGE = "background_level1"
     
   static let SQUARESIZE = 40
   static let LUGGAGE_IMAGENAME = "luggage_tile"
-  static let LUGGAGE_BACKGROUND_IMAGENAME = "robber_bag"
+  static let LUGGAGE_BACKGROUND_IMAGENAME = "luggage"
     
   static let INVENTORY_WIDTH = 1000
-  static let INVENTORY_HEIGHT = 80
+  static let INVENTORY_HEIGHT = 100
   static let INVENTORY_SLOT = 50
     
-  static let INVENTORY_SLOT_IMAGENAME = "slot_empty"
-  static let INVENTORY_SLOT_IMAGENAME_FILLED = "slot_empty"
+  static let INVENTORY_SLOT_IMAGENAME = "slot"
+  static let INVENTORY_SLOT_IMAGENAME_FILLED = "slot"
   static let INVENTORY_BACKGROUND_IMAGENAME = "inventory_background"
     
   static let INVENTORY_SLOP_GAP_FIRST = 280.0
