@@ -176,17 +176,6 @@ class GameSceneFunctions {
     return luggageHitBox
   }
   
-//  public static func initItemNodes(gameScene: GameScene) {
-//    let slotPosition1 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[0])
-//    let slotPosition2 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[1])
-//    let slotPosition3 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[2])
-//    let slotPosition4 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[3])
-//    let slotPosition5 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[4])
-//    let slotPosition6 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[5])
-//    let slotPosition7 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[6])
-//    let slotPosition8 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[7])
-//  }
-  
   public static func initLevel1(gameScene: GameScene) {
     // Init Background:
     let backgroundNode = SKSpriteNode(imageNamed: Constants.BACKGROUND_IMAGE)
@@ -195,7 +184,7 @@ class GameSceneFunctions {
     gameScene.addChild(backgroundNode)
     
     // Init Luggage:
-    gameScene.luggage = LuggageNode(row: 4, column: 8, position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 20))
+    gameScene.luggage = LuggageNode(row: 3, column: 5, position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 20))
     gameScene.addChild(gameScene.luggage)
     gameScene.luggageHitBox = self.createLuggageHitBox(gameScene: gameScene, luggage: gameScene.luggage)
     gameScene.addChild(gameScene.luggageHitBox)

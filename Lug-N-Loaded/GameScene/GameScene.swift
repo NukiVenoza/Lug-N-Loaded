@@ -27,7 +27,7 @@ class GameScene: SKScene {
   var progressBarBackground: SKShapeNode!
     
   var obstructionNode: ObstructionNode!
-  let duration: TimeInterval = 36
+  let duration: TimeInterval = 1000
     
   var isShowingObstruction = false
   var hasShownObstruction = false
@@ -108,20 +108,17 @@ class GameScene: SKScene {
         // Di Dalem LUGGAGE
         self.currentItemNode?.inLuggage = true
         self.currentItemNode?.inInventory = false
-//        self.currentItemNode?.updateItemPhysics()
         self.currentItemNode?.updateItemScale()
         
       } else if self.inventory.contains(node.position) {
         // Di Dalem INVENTORY
         self.currentItemNode?.inLuggage = false
         self.currentItemNode?.inInventory = true
-//        self.currentItemNode?.updateItemPhysics()
         self.currentItemNode?.updateItemScale()
       } else {
         // Di Luar
         self.currentItemNode?.inLuggage = false
         self.currentItemNode?.inInventory = false
-//        self.currentItemNode?.updateItemPhysics()
         self.currentItemNode?.updateItemScale()
       }
     }
@@ -199,7 +196,7 @@ class GameScene: SKScene {
       
     // TIMER & AUDIO SECTION
     self.timer.update()
-      
+
     self.decreaseTimeBar()
       
     if self.timer.text == "30" && !self.isShowingObstruction && !self.hasShownObstruction {
