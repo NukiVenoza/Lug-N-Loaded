@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78F2A4209E800DAF262 /* Constants.swift */; };
 		2DC0D7922A4209E800DAF262 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7902A4209E800DAF262 /* HelperFunctions.swift */; };
-		2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7932A420A2200DAF262 /* GameScene.swift */; };
 		2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7962A420F3400DAF262 /* SquareNode.swift */; };
 		2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7972A420F3400DAF262 /* LuggageNode.swift */; };
 		2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7992A420F3400DAF262 /* ItemNode.swift */; };
-		2DDE544B2A482256005DFB0F /* GameSceneFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDE544A2A482256005DFB0F /* GameSceneFunctions.swift */; };
+		353C6C8F2A4AC5FD0015CDEB /* GameSceneFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C6C8D2A4AC5FD0015CDEB /* GameSceneFunctions.swift */; };
+		353C6C902A4AC5FD0015CDEB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C6C8E2A4AC5FD0015CDEB /* GameScene.swift */; };
 		356E22772A497B1B00002C1A /* COUNTDOWN.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 356E22742A497B1B00002C1A /* COUNTDOWN.mp3 */; };
 		356E22782A497B1B00002C1A /* OBSTRUCTION.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 356E22752A497B1B00002C1A /* OBSTRUCTION.mp3 */; };
 		356E22792A497B1B00002C1A /* BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 356E22762A497B1B00002C1A /* BGM.mp3 */; };
@@ -34,11 +34,11 @@
 /* Begin PBXFileReference section */
 		2DC0D78F2A4209E800DAF262 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DC0D7902A4209E800DAF262 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
-		2DC0D7932A420A2200DAF262 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		2DC0D7962A420F3400DAF262 /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
 		2DC0D7972A420F3400DAF262 /* LuggageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageNode.swift; sourceTree = "<group>"; };
 		2DC0D7992A420F3400DAF262 /* ItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
-		2DDE544A2A482256005DFB0F /* GameSceneFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneFunctions.swift; sourceTree = "<group>"; };
+		353C6C8D2A4AC5FD0015CDEB /* GameSceneFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneFunctions.swift; sourceTree = "<group>"; };
+		353C6C8E2A4AC5FD0015CDEB /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		356E22742A497B1B00002C1A /* COUNTDOWN.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = COUNTDOWN.mp3; sourceTree = "<group>"; };
 		356E22752A497B1B00002C1A /* OBSTRUCTION.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = OBSTRUCTION.mp3; sourceTree = "<group>"; };
 		356E22762A497B1B00002C1A /* BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BGM.mp3; sourceTree = "<group>"; };
@@ -71,8 +71,8 @@
 		2D1C75322A45DD61009835DE /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
-				2DC0D7932A420A2200DAF262 /* GameScene.swift */,
-				2DDE544A2A482256005DFB0F /* GameSceneFunctions.swift */,
+				353C6C8E2A4AC5FD0015CDEB /* GameScene.swift */,
+				353C6C8D2A4AC5FD0015CDEB /* GameSceneFunctions.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -231,6 +231,7 @@
 			files = (
 				2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */,
 				D0F302312A44204200F3DFC0 /* InventoryNode.swift in Sources */,
+				353C6C902A4AC5FD0015CDEB /* GameScene.swift in Sources */,
 				D0F302332A44221C00F3DFC0 /* InventorySlotNode.swift in Sources */,
 				2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */,
 				2DC0D7922A4209E800DAF262 /* HelperFunctions.swift in Sources */,
@@ -238,11 +239,10 @@
 				356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */,
 				356E227B2A497B3400002C1A /* AudioManager.swift in Sources */,
 				2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */,
-				2DC0D7942A420A2200DAF262 /* GameScene.swift in Sources */,
-				2DDE544B2A482256005DFB0F /* GameSceneFunctions.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
 				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 				356E227D2A497B4C00002C1A /* ObstructionNode.swift in Sources */,
+				353C6C8F2A4AC5FD0015CDEB /* GameSceneFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
