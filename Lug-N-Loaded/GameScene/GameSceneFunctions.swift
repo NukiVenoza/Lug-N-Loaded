@@ -11,6 +11,8 @@ import SpriteKit
 class GameSceneFunctions {
   public static func checkWin(gameScene: GameScene) {
     // loop over itemnode, check that all is not in inventory and is in luggage
+    GameSceneFunctions.handleCollision(gameScene: gameScene)
+
     for itemNode in gameScene.itemNodes {
       if itemNode.isPlaced == false {
         return
@@ -32,6 +34,36 @@ class GameSceneFunctions {
     // all ItemNodes are in LuggageNode therefore:
     print("YOU WIN!")
     gameScene.gameWon = true
+  }
+  
+  public static func showWinScreen(gameScene: GameScene) {
+    print("KAMU MENANG HEBAT MANTEP!")
+    
+    // Scaling animation
+    let scaleAction = SKAction.sequence([
+      SKAction.scale(to: 0.1, duration: 0.2),
+      SKAction.scale(to: 1.0, duration: 0.5)
+    ])
+    
+    // Opacity animation
+    let opacityAction = SKAction.sequence([
+      SKAction.fadeAlpha(to: 0.0, duration: 0.2),
+      SKAction.fadeAlpha(to: 0.8, duration: 0.5)
+    ])
+    
+    // Combined animation
+    let combinedAction = SKAction.group([
+      scaleAction,
+      opacityAction
+    ])
+    
+    let fullScreenNode = SKSpriteNode(color: .black, size: gameScene.size)
+    fullScreenNode.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+    fullScreenNode.alpha = 0.0 // Start with 0 opacity
+    fullScreenNode.zPosition = 1000
+    
+    gameScene.addChild(fullScreenNode)
+    fullScreenNode.run(combinedAction)
   }
   
   public static func handleCollision(gameScene: GameScene) {
@@ -91,29 +123,29 @@ class GameSceneFunctions {
       var finalSlotPosition = slot.convert(slot.position, to: gameScene)
       
       if slot == gameScene.inventory.inventorySlots[0] {
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_1
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_1
         gameScene.emptySlotPositionLeft = finalSlotPosition
         
-      }else if slot == gameScene.inventory.inventorySlots[1]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_2
+      } else if slot == gameScene.inventory.inventorySlots[1] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_2
           
-      } else if slot == gameScene.inventory.inventorySlots[2]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_3
+      } else if slot == gameScene.inventory.inventorySlots[2] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_3
           
-      } else if slot == gameScene.inventory.inventorySlots[3]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_4
+      } else if slot == gameScene.inventory.inventorySlots[3] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_4
           
-      } else if slot == gameScene.inventory.inventorySlots[4]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_5
+      } else if slot == gameScene.inventory.inventorySlots[4] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_5
           
-      } else if slot == gameScene.inventory.inventorySlots[5]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_6
+      } else if slot == gameScene.inventory.inventorySlots[5] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_6
           
-      } else if slot == gameScene.inventory.inventorySlots[6]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_7
+      } else if slot == gameScene.inventory.inventorySlots[6] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_7
           
       } else {
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_8
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_8
       }
       
       // move item to finalSlotPosition
@@ -126,38 +158,36 @@ class GameSceneFunctions {
     }
   }
   
-  public static func convertInventorySlotNodePositionToScene(
+  public static func getSlotPosition(
     gameScene: GameScene,
-    inventorySlotNode: InventorySlotNode) -> CGPoint
+    slotIndex: Int) -> CGPoint
   {
-    var finalPoint = inventorySlotNode.convert(
-      inventorySlotNode.position, to: gameScene)
-      
-    if inventorySlotNode.index == 0 {
+    var finalPoint = gameScene.inventory.inventorySlots[0].convert(gameScene.inventory.inventorySlots[0].position, to: gameScene)
+    
+    if slotIndex == 0 {
       finalPoint.x = finalPoint.x + Constants.INVENTORY_SLOP_GAP_FIRST
       gameScene.emptySlotPositionLeft = finalPoint
 
-    }else if inventorySlotNode.index == 1{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_2
+    } else if slotIndex == 1 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_2
         
-    } else if inventorySlotNode.index == 2{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_3
+    } else if slotIndex == 2 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_3
         
-    } else if inventorySlotNode.index == 3{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_4
+    } else if slotIndex == 3 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_4
 
-    } else if inventorySlotNode.index == 4{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_5
+    } else if slotIndex == 4 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_5
 
-    } else if inventorySlotNode.index == 5{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_6
+    } else if slotIndex == 5 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_6
 
-    } else if inventorySlotNode.index == 6{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_7
+    } else if slotIndex == 6 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_7
 
     } else {
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_8
-
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_8
     }
       
     return finalPoint
@@ -178,26 +208,47 @@ class GameSceneFunctions {
     return luggageHitBox
   }
   
-  public static func initItemNodes(gameScene: GameScene) {
-    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
-                         position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY))
+  public static func initLevel1(gameScene: GameScene) {
+    // Init Background:
 
-    let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
-                         position: CGPoint(x: gameScene.frame.midX + 100, y: gameScene.frame.midY + 100))
-    let item3 = ItemNode(imageName: "medal", itemShape: "l_right",
-                         position: CGPoint(x: gameScene.frame.midX + 200, y: gameScene.frame.midY + 100))
-    let item4 = ItemNode(imageName: "clothes", itemShape: "square_2",
-                         position: CGPoint(x: gameScene.frame.midX + -100, y: gameScene.frame.midY + 100))
-    let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
-                         position: CGPoint(x: gameScene.frame.midX + -200, y: gameScene.frame.midY + 100))
-//    let item6 = ItemNode(imageName: "gold", itemShape: "square",
-//                         position: CGPoint(x: gameScene.frame.midX + 300, y: gameScene.frame.midY + 100))
+    let backgroundImage = SKSpriteNode(imageNamed: "background_level1") // MARK: Change Background Image Here
+
+    backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+    let scaleX = gameScene.size.width / backgroundImage.size.width
+    let scaleY = gameScene.size.height / backgroundImage.size.height
+    let scale = max(scaleX, scaleY)
+    backgroundImage.zPosition = -100
+    backgroundImage.setScale(scale * 0.3)
+    gameScene.addChild(backgroundImage)
+
+    // Init Luggage:
+
+    gameScene.luggage = LuggageNode(row: 3, column: 5,
+                                    position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 20)) // MARK: Change Background Image Here
+
+    gameScene.addChild(gameScene.luggage)
+    gameScene.luggageHitBox = self.createLuggageHitBox(gameScene: gameScene, luggage: gameScene.luggage)
+    gameScene.addChild(gameScene.luggageHitBox)
     
+    // Init Items:
+    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
+                         position: getSlotPosition(gameScene: gameScene, slotIndex: 0))
+    let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
+                         position: getSlotPosition(gameScene: gameScene, slotIndex: 1))
+    let item3 = ItemNode(imageName: "medal", itemShape: "l_right",
+                         position: getSlotPosition(gameScene: gameScene, slotIndex: 2))
+    let item4 = ItemNode(imageName: "clothes", itemShape: "square_2",
+                         position: getSlotPosition(gameScene: gameScene, slotIndex: 3))
+    let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
+                         position: getSlotPosition(gameScene: gameScene, slotIndex: 4))
     gameScene.itemNodes.append(item1)
     gameScene.itemNodes.append(item2)
     gameScene.itemNodes.append(item3)
     gameScene.itemNodes.append(item4)
     gameScene.itemNodes.append(item5)
-//    gameScene.itemNodes.append(item6)
+    
+    for itemNode in gameScene.itemNodes {
+      gameScene.addChild(itemNode)
+    }
   }
 }
