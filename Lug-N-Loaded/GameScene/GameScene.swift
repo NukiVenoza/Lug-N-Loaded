@@ -33,43 +33,21 @@ class GameScene: SKScene {
   var hasShownObstruction = false
   
   override func didMove(to view: SKView) {
+    isUserInteractionEnabled = true
+
     // TIMER & AUDIO SECTION
     self.setupTimerAudio()
       
-    // MARK: Enables gestures
-    
-    isUserInteractionEnabled = true
-    
     // Add double tap gesture recognizer
     let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleDoubleTap(_:)))
     doubleTapGesture.numberOfTapsRequired = 2
     view.addGestureRecognizer(doubleTapGesture)
     
-    // MARK: Background
-
-    let backgroundNode = SKSpriteNode(imageNamed: Constants.BACKGROUND_IMAGE)
-    backgroundNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
-    backgroundNode.zPosition = -1
-    addChild(backgroundNode)
-    
-    // MARK: Node Placement
-    
-    self.luggage = LuggageNode(row: 3, column: 5,
-                               position: CGPoint(x: frame.midX, y: frame.midY + 20))
-
     self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 120))
-    
-    self.addChild(self.luggage)
-    
-    self.luggageHitBox = GameSceneFunctions.createLuggageHitBox(gameScene: self, luggage: self.luggage)
-  
-    self.addChild(self.luggageHitBox)
     self.addChild(self.inventory)
-    GameSceneFunctions.initItemNodes(gameScene: self)
     
-    for itemNode in self.itemNodes {
-      self.addChild(itemNode)
-    }
+    // Init Game Background, Luggage, Items:
+    GameSceneFunctions.initLevel1(gameScene: self)
   }
   
   @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
