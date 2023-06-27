@@ -210,13 +210,22 @@ class GameSceneFunctions {
   
   public static func initLevel1(gameScene: GameScene) {
     // Init Background:
-    let backgroundNode = SKSpriteNode(imageNamed: Constants.BACKGROUND_IMAGE)
-    backgroundNode.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
-    backgroundNode.zPosition = -1
-    gameScene.addChild(backgroundNode)
-    
+
+    let backgroundImage = SKSpriteNode(imageNamed: "background_level1") // MARK: Change Background Image Here
+
+    backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+    let scaleX = gameScene.size.width / backgroundImage.size.width
+    let scaleY = gameScene.size.height / backgroundImage.size.height
+    let scale = max(scaleX, scaleY)
+    backgroundImage.zPosition = -100
+    backgroundImage.setScale(scale * 0.3)
+    gameScene.addChild(backgroundImage)
+
     // Init Luggage:
-    gameScene.luggage = LuggageNode(row: 3, column: 5, position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 20))
+
+    gameScene.luggage = LuggageNode(row: 3, column: 5,
+                                    position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 20)) // MARK: Change Background Image Here
+
     gameScene.addChild(gameScene.luggage)
     gameScene.luggageHitBox = self.createLuggageHitBox(gameScene: gameScene, luggage: gameScene.luggage)
     gameScene.addChild(gameScene.luggageHitBox)
