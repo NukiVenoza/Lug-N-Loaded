@@ -91,29 +91,29 @@ class GameSceneFunctions {
       var finalSlotPosition = slot.convert(slot.position, to: gameScene)
       
       if slot == gameScene.inventory.inventorySlots[0] {
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_1
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_1
         gameScene.emptySlotPositionLeft = finalSlotPosition
         
-      }else if slot == gameScene.inventory.inventorySlots[1]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_2
+      } else if slot == gameScene.inventory.inventorySlots[1] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_2
           
-      } else if slot == gameScene.inventory.inventorySlots[2]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_3
+      } else if slot == gameScene.inventory.inventorySlots[2] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_3
           
-      } else if slot == gameScene.inventory.inventorySlots[3]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_4
+      } else if slot == gameScene.inventory.inventorySlots[3] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_4
           
-      } else if slot == gameScene.inventory.inventorySlots[4]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_5
+      } else if slot == gameScene.inventory.inventorySlots[4] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_5
           
-      } else if slot == gameScene.inventory.inventorySlots[5]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_6
+      } else if slot == gameScene.inventory.inventorySlots[5] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_6
           
-      } else if slot == gameScene.inventory.inventorySlots[6]{
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_7
+      } else if slot == gameScene.inventory.inventorySlots[6] {
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_7
           
       } else {
-          finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_8
+        finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_8
       }
       
       // move item to finalSlotPosition
@@ -137,27 +137,26 @@ class GameSceneFunctions {
       finalPoint.x = finalPoint.x + Constants.INVENTORY_SLOP_GAP_FIRST
       gameScene.emptySlotPositionLeft = finalPoint
 
-    }else if inventorySlotNode.index == 1{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_2
+    } else if inventorySlotNode.index == 1 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_2
         
-    } else if inventorySlotNode.index == 2{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_3
+    } else if inventorySlotNode.index == 2 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_3
         
-    } else if inventorySlotNode.index == 3{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_4
+    } else if inventorySlotNode.index == 3 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_4
 
-    } else if inventorySlotNode.index == 4{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_5
+    } else if inventorySlotNode.index == 4 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_5
 
-    } else if inventorySlotNode.index == 5{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_6
+    } else if inventorySlotNode.index == 5 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_6
 
-    } else if inventorySlotNode.index == 6{
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_7
+    } else if inventorySlotNode.index == 6 {
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_7
 
     } else {
-        finalPoint.x = Constants.INVENTORY_SLOT_POSITION_8
-
+      finalPoint.x = Constants.INVENTORY_SLOT_POSITION_8
     }
       
     return finalPoint
@@ -179,25 +178,31 @@ class GameSceneFunctions {
   }
   
   public static func initItemNodes(gameScene: GameScene) {
+    let slotPosition1 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[0])
+    let slotPosition2 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[1])
+    let slotPosition3 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[2])
+    let slotPosition4 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[3])
+    let slotPosition5 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[4])
+    let slotPosition6 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[5])
+    let slotPosition7 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[6])
+    let slotPosition8 = self.convertInventorySlotNodePositionToScene(gameScene: gameScene, inventorySlotNode: gameScene.inventory.inventorySlots[7])
+
     let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
-                         position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY))
+                         position: slotPosition1)
 
     let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
-                         position: CGPoint(x: gameScene.frame.midX + 100, y: gameScene.frame.midY + 100))
+                         position: slotPosition2)
     let item3 = ItemNode(imageName: "medal", itemShape: "l_right",
-                         position: CGPoint(x: gameScene.frame.midX + 200, y: gameScene.frame.midY + 100))
+                         position: slotPosition3)
     let item4 = ItemNode(imageName: "clothes", itemShape: "square_2",
-                         position: CGPoint(x: gameScene.frame.midX + -100, y: gameScene.frame.midY + 100))
+                         position: slotPosition4)
     let item5 = ItemNode(imageName: "wallet", itemShape: "rect_horizontal_2",
-                         position: CGPoint(x: gameScene.frame.midX + -200, y: gameScene.frame.midY + 100))
-//    let item6 = ItemNode(imageName: "gold", itemShape: "square",
-//                         position: CGPoint(x: gameScene.frame.midX + 300, y: gameScene.frame.midY + 100))
-    
+                         position: slotPosition5)
+
     gameScene.itemNodes.append(item1)
     gameScene.itemNodes.append(item2)
     gameScene.itemNodes.append(item3)
     gameScene.itemNodes.append(item4)
     gameScene.itemNodes.append(item5)
-//    gameScene.itemNodes.append(item6)
   }
 }
