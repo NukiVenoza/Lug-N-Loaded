@@ -221,8 +221,8 @@ class GameSceneFunctions {
 
         }
         
-        luggageHitBox.size.height = luggageHitBox.size.height + 32
-        luggageHitBox.size.width = luggageHitBox.size.width + 30
+        luggageHitBox.size.height = luggageHitBox.size.height + 34
+        luggageHitBox.size.width = luggageHitBox.size.width + 32
         
         luggageHitBox.position.x = luggageHitBox.position.x + 1.0
         luggageHitBox.position.y = luggageHitBox.position.y - 0.5
@@ -275,7 +275,7 @@ class GameSceneFunctions {
         
         let backgroundImage = SKSpriteNode(imageNamed: "background_level1") // MARK: Change Background Image Here
         
-        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2 - 20)
+        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
         let scaleX = gameScene.size.width / backgroundImage.size.width
         let scaleY = gameScene.size.height / backgroundImage.size.height
         let scale = max(scaleX, scaleY)
@@ -339,7 +339,7 @@ class GameSceneFunctions {
         gameScene.addChild(gameScene.luggageHitBox)
         
         // Init Items:
-        let item1 = ItemNode(imageName: "camera", itemShape: "shape_t",
+        let item1 = ItemNode(imageName: "camera", itemShape: "shape_t_upsidedown",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 0))
         let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 1))

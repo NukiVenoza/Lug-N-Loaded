@@ -34,6 +34,6 @@ struct Constants {
   static let INVENTORY_SLOT_POSITION_7 = 575.0
   static let INVENTORY_SLOT_POSITION_8 = 655.0
 
-    static let ITEM_SCALE_BIG = 2.0
+    static let ITEM_SCALE_BIG = 1.9
   static let ITEM_SCALE_SMALL = 0.5
 }
