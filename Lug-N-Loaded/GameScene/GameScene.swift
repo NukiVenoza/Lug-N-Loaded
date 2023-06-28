@@ -33,6 +33,7 @@ class GameScene: SKScene {
   var isShowingObstruction = false
   var hasShownObstruction = false
     var plusMinus: SKLabelNode!
+    var isGameFinished: Bool = false
   
   override func didMove(to view: SKView) {
     isUserInteractionEnabled = true
@@ -198,6 +199,7 @@ class GameScene: SKScene {
       if !self.gameWon {
         GameSceneFunctions.checkWin(gameScene: self)
         if self.gameWon {
+            self.isGameFinished = true
           GameSceneFunctions.showWinScreen(gameScene: self)
         }
       }
@@ -206,9 +208,12 @@ class GameScene: SKScene {
     // show game win screen
 
     // TIMER & AUDIO SECTION
-    self.timer.update()
-
-    self.decreaseTimeBar()
+      
+      if !self.isGameFinished {
+          self.timer.update()
+          self.decreaseTimeBar()
+      }
+   
       
     if self.timer.text == "30" && !self.isShowingObstruction && !self.hasShownObstruction {
       print("SHOW")
@@ -239,7 +244,9 @@ class GameScene: SKScene {
       AudioManager.shared.resumeBackgroundMusic()
     }
       
-    if self.timer.hasFinished() {
+      if self.timer.hasFinished() && !self.isGameFinished{
+        self.isGameFinished = true
+        GameSceneFunctions.showTimesUpScreen(gameScene: self)
       AudioManager.shared.stopRushMusic()
     }
   }
