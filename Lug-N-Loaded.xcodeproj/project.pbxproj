@@ -20,6 +20,7 @@
 		356E227B2A497B3400002C1A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227A2A497B3400002C1A /* AudioManager.swift */; };
 		356E227D2A497B4C00002C1A /* ObstructionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227C2A497B4C00002C1A /* ObstructionNode.swift */; };
 		356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227E2A497B5900002C1A /* CountdownLabel.swift */; };
+		35C260952A4C450B00C363AD /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C260942A4C450B00C363AD /* GameOverView.swift */; };
 		D001AB4E2A4C363800CEB099 /* Fredoka.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D001AB4D2A4C363800CEB099 /* Fredoka.ttf */; };
 		D01170F82A4C28C500582D2C /* MissionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01170F72A4C28C500582D2C /* MissionCompleteView.swift */; };
 		D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3F62A3D622C00665580 /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		356E227A2A497B3400002C1A /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		356E227C2A497B4C00002C1A /* ObstructionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstructionNode.swift; sourceTree = "<group>"; };
 		356E227E2A497B5900002C1A /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
+		35C260942A4C450B00C363AD /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		D001AB4D2A4C363800CEB099 /* Fredoka.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fredoka.ttf; sourceTree = "<group>"; };
 		D001AB4F2A4C36A100CEB099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D01170F72A4C28C500582D2C /* MissionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCompleteView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				D01170F72A4C28C500582D2C /* MissionCompleteView.swift */,
+				35C260942A4C450B00C363AD /* GameOverView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 				356E227D2A497B4C00002C1A /* ObstructionNode.swift in Sources */,
 				353C6C8F2A4AC5FD0015CDEB /* GameSceneFunctions.swift in Sources */,
+				35C260952A4C450B00C363AD /* GameOverView.swift in Sources */,
 				D01170F82A4C28C500582D2C /* MissionCompleteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,7 +411,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = 9PUN53DGHU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lug-N-Loaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -435,7 +439,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = 9PUN53DGHU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lug-N-Loaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
