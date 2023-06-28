@@ -45,11 +45,15 @@ class GameScene: SKScene {
     doubleTapGesture.numberOfTapsRequired = 2
     view.addGestureRecognizer(doubleTapGesture)
     
-    self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 120))
+    self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 130))
     self.addChild(self.inventory)
     
     // Init Game Background, Luggage, Items:
+//    GameSceneFunctions.initTutorial(gameScene: self)
+
     GameSceneFunctions.initLevel1(gameScene: self)
+//    GameSceneFunctions.initLevel2(gameScene: self)
+
   }
   
   @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
