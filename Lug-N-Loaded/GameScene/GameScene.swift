@@ -201,6 +201,8 @@ class GameScene: SKScene {
         if self.gameWon {
             self.isGameFinished = true
           GameSceneFunctions.showWinScreen(gameScene: self)
+            AudioManager.shared.stopBackgroundMusic()
+            AudioManager.shared.playWinMusic(filename: "GameWin.mp3")
         }
       }
     }
@@ -226,15 +228,17 @@ class GameScene: SKScene {
       AudioManager.shared.pauseBackgroundMusic()
     }
       
-    if self.timer.text == "10" {
-      AudioManager.shared.stopBackgroundMusic()
-      AudioManager.shared.playRushMusic(filename: "COUNTDOWN.mp3")
-    }
+//    if self.timer.text == "10" {
+//      AudioManager.shared.stopBackgroundMusic()
+//      AudioManager.shared.playRushMusic(filename: "COUNTDOWN")
+//    }
       
     if self.isShowingObstruction {
       self.obsTimer.update()
         if obstructionNode.inputText.count == 4 && obstructionNode.isCorrect {
             hideObstruction()
+            AudioManager.shared.stopObstructionMusic()
+            AudioManager.shared.resumeBackgroundMusic()
         }
     }
       
@@ -247,7 +251,8 @@ class GameScene: SKScene {
       if self.timer.hasFinished() && !self.isGameFinished{
         self.isGameFinished = true
         GameSceneFunctions.showTimesUpScreen(gameScene: self)
-      AudioManager.shared.stopRushMusic()
+      AudioManager.shared.stopBackgroundMusic()
+          AudioManager.shared.playLoseMusic(filename: "GameLose.mp3")
     }
   }
     
@@ -365,6 +370,6 @@ class GameScene: SKScene {
       self.plusMinus.alpha = 0
       addChild(self.plusMinus)
         
-    AudioManager.shared.playBackgroundMusic(filename: "BGM.mp3")
+    AudioManager.shared.playBackgroundMusic(filename: "Level1.mp3")
   }
 }
