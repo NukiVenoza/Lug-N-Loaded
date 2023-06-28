@@ -6,6 +6,8 @@ class AudioManager {
     private var backgroundMusicPlayer: AVAudioPlayer?
     private var obstructionMusicPlayer : AVAudioPlayer?
     private var rushMusicPlayer : AVAudioPlayer?
+    private var winMusicPlayer : AVAudioPlayer?
+    private var loseMusicPlayer : AVAudioPlayer?
     
     private var isBackgroundMusicPaused = false
     private var backgroundMusicPausedTime: TimeInterval = 0.0
@@ -65,6 +67,36 @@ class AudioManager {
         }
     }
     
+    func playWinMusic(filename: String) {
+        if let url = Bundle.main.url(forResource: filename, withExtension: nil) {
+            do {
+                winMusicPlayer = try AVAudioPlayer(contentsOf: url)
+                winMusicPlayer?.numberOfLoops = -1 // Loop indefinitely
+                winMusicPlayer?.prepareToPlay()
+                winMusicPlayer?.play()
+            } catch {
+                print("Failed to play win music: \(error)")
+            }
+        } else {
+            print("Win music file not found.")
+        }
+    }
+    
+    func playLoseMusic(filename: String) {
+        if let url = Bundle.main.url(forResource: filename, withExtension: nil) {
+            do {
+                loseMusicPlayer = try AVAudioPlayer(contentsOf: url)
+                loseMusicPlayer?.numberOfLoops = -1 // Loop indefinitely
+                loseMusicPlayer?.prepareToPlay()
+                loseMusicPlayer?.play()
+            } catch {
+                print("Failed to play lose music: \(error)")
+            }
+        } else {
+            print("Lose music file not found.")
+        }
+    }
+    
     func pauseBackgroundMusic() {
         if let player = backgroundMusicPlayer, player.isPlaying {
             player.pause()
@@ -96,5 +128,15 @@ class AudioManager {
     func stopRushMusic() {
         rushMusicPlayer?.stop()
         rushMusicPlayer = nil
+    }
+    
+    func stopWinMusic() {
+        winMusicPlayer?.stop()
+        winMusicPlayer = nil
+    }
+    
+    func stopLoseMusic() {
+        loseMusicPlayer?.stop()
+        loseMusicPlayer = nil
     }
 }
