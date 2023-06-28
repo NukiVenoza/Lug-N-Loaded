@@ -70,7 +70,7 @@ class GameSceneFunctions {
         
         let originalSize = timesUpNode.size
         let aspectRatio = originalSize.width / originalSize.height
-        let desiredWidth: CGFloat = 200.0 // Specify your desired width
+        let desiredWidth: CGFloat = 120.0 // Specify your desired width
         let desiredHeight = desiredWidth / aspectRatio
         
         timesUpNode.size = CGSize(width: desiredWidth, height: desiredHeight)
