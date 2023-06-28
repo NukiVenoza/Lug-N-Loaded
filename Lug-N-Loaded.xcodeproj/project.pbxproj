@@ -20,6 +20,7 @@
 		356E227B2A497B3400002C1A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227A2A497B3400002C1A /* AudioManager.swift */; };
 		356E227D2A497B4C00002C1A /* ObstructionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227C2A497B4C00002C1A /* ObstructionNode.swift */; };
 		356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227E2A497B5900002C1A /* CountdownLabel.swift */; };
+		359586CA2A4C2A4800F8D787 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359586C92A4C2A4800F8D787 /* GameOverView.swift */; };
 		D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3F62A3D622C00665580 /* AppDelegate.swift */; };
 		D0AFC3F92A3D622C00665580 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3F82A3D622C00665580 /* GameScene.sks */; };
 		D0AFC3FB2A3D622C00665580 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3FA2A3D622C00665580 /* Actions.sks */; };
@@ -45,6 +46,7 @@
 		356E227A2A497B3400002C1A /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		356E227C2A497B4C00002C1A /* ObstructionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstructionNode.swift; sourceTree = "<group>"; };
 		356E227E2A497B5900002C1A /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
+		359586C92A4C2A4800F8D787 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		D0AFC3F32A3D622C00665580 /* Lug-N-Loaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lug-N-Loaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AFC3F62A3D622C00665580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AFC3F82A3D622C00665580 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				356E227A2A497B3400002C1A /* AudioManager.swift */,
 				356E227C2A497B4C00002C1A /* ObstructionNode.swift */,
 				356E227E2A497B5900002C1A /* CountdownLabel.swift */,
+				359586C92A4C2A4800F8D787 /* GameOverView.swift */,
 			);
 			path = "Lug-N-Loaded";
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */,
 				356E227B2A497B3400002C1A /* AudioManager.swift in Sources */,
 				2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */,
+				359586CA2A4C2A4800F8D787 /* GameOverView.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
 				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 				356E227D2A497B4C00002C1A /* ObstructionNode.swift in Sources */,
@@ -389,7 +393,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = 9PUN53DGHU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -416,7 +420,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = 9PUN53DGHU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
