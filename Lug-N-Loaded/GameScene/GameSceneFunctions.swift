@@ -36,6 +36,51 @@ class GameSceneFunctions {
         gameScene.gameWon = true
     }
     
+    public static func showTimesUpScreen(gameScene: GameScene) {
+        print("KAMU KALAH WAKTU HABIS!")
+        
+        // Scaling animation
+        let scaleAction = SKAction.sequence([
+            SKAction.scale(to: 0.1, duration: 0.2),
+            SKAction.scale(to: 1.0, duration: 0.2)
+        ])
+        
+        // Opacity animation
+        let opacityAction = SKAction.sequence([
+            SKAction.fadeAlpha(to: 0.0, duration: 0.2),
+            SKAction.fadeAlpha(to: 0.8, duration: 0.5)
+        ])
+        
+        // Combined animation
+        let combinedAction = SKAction.group([
+            scaleAction,
+            opacityAction
+        ])
+        
+        let fullScreenNode = SKSpriteNode(color: .black, size: gameScene.size)
+        fullScreenNode.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+        fullScreenNode.alpha = 0.0 // Start with 0 opacity
+        fullScreenNode.zPosition = 1000
+        
+        gameScene.addChild(fullScreenNode)
+        fullScreenNode.run(combinedAction)
+        
+        
+        let timesUpNode = SKSpriteNode(imageNamed: "times_up_text.png")
+        
+        let originalSize = timesUpNode.size
+        let aspectRatio = originalSize.width / originalSize.height
+        let desiredWidth: CGFloat = 200.0 // Specify your desired width
+        let desiredHeight = desiredWidth / aspectRatio
+        
+        timesUpNode.size = CGSize(width: desiredWidth, height: desiredHeight)
+        timesUpNode.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+        timesUpNode.alpha = 0.0
+        timesUpNode.zPosition = 1000
+        gameScene.addChild(timesUpNode)
+        timesUpNode.run(opacityAction)
+    }
+    
     public static func showWinScreen(gameScene: GameScene) {
         print("KAMU MENANG HEBAT MANTEP!")
         
@@ -74,7 +119,7 @@ class GameSceneFunctions {
         let desiredHeight = desiredWidth / aspectRatio
         
         missionSuccessNode.size = CGSize(width: desiredWidth, height: desiredHeight)
-        missionSuccessNode.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2 + 40)
+        missionSuccessNode.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
         missionSuccessNode.alpha = 0.0
         missionSuccessNode.zPosition = 1000
         gameScene.addChild(missionSuccessNode)
