@@ -13,9 +13,10 @@ struct Constants {
   static let SQUARESIZE = 40
   static let LUGGAGE_IMAGENAME = "luggage_tile"
   static let LUGGAGE_BACKGROUND_IMAGENAME = "luggage"
+  static let LUGGAGE_BACKGROUND_TUTORIAL = "luggage_tutorial"
     
   static let INVENTORY_WIDTH = 1000
-  static let INVENTORY_HEIGHT = 100
+  static let INVENTORY_HEIGHT = 80
   static let INVENTORY_SLOT = 50
     
   static let INVENTORY_SLOT_IMAGENAME = "slot"
@@ -33,6 +34,6 @@ struct Constants {
   static let INVENTORY_SLOT_POSITION_7 = 575.0
   static let INVENTORY_SLOT_POSITION_8 = 655.0
 
-  static let ITEM_SCALE_BIG = 1.56
-  static let ITEM_SCALE_SMALL = 0.64
+    static let ITEM_SCALE_BIG = 2.0
+  static let ITEM_SCALE_SMALL = 0.5
 }
