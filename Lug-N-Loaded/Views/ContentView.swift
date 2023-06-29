@@ -21,7 +21,7 @@ struct ContentView: View {
 
   var body: some View {
     SpriteView(scene: scene)
-      .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+      .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 22)
       .ignoresSafeArea()
   }
 }
