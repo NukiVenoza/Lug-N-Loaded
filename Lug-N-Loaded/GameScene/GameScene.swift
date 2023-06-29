@@ -54,6 +54,9 @@ class GameScene: SKScene {
     var obstructionAlarm: String = "OBSTRUCTION.mp3"
     var winMusic: String = "GameWin.mp3"
     var loseMusic: String = "GameLose.mp3"
+    
+    //OBSTRUCTION CODE
+    var correctCode : String!
   
     override func didMove(to view: SKView) {
         isUserInteractionEnabled = true
@@ -71,18 +74,22 @@ class GameScene: SKScene {
         // Init Game Background, Luggage, Items:
         switch self.level {
         case 0:
+            correctCode = "1111"
             backgroundMusic = "Tutorial.mp3"
             GameSceneFunctions.initTutorial(gameScene: self)
 
         case 1:
+            correctCode = "3214"
             backgroundMusic = "Level1.mp3"
             GameSceneFunctions.initLevel1(gameScene: self)
 
         case 2:
+            correctCode = "3214"
             backgroundMusic = "Level2.mp3"
             GameSceneFunctions.initLevel2(gameScene: self)
 
         default:
+            correctCode = "3214"
             backgroundMusic = "Level1.mp3"
             GameSceneFunctions.initTutorial(gameScene: self)
         }
@@ -292,7 +299,7 @@ class GameScene: SKScene {
     self.timer.pause()
     self.obsTimer.resume()
         
-      self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!)
+      self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!, correctCode: correctCode)
     self.obstructionNode.position = CGPoint(x: frame.midX, y: frame.midY)
     self.obstructionNode.zPosition = 1999
     self.obstructionNode.isUserInteractionEnabled = true
