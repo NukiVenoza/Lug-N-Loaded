@@ -318,7 +318,7 @@ class GameSceneFunctions {
     
     public static func initLevel1(gameScene: GameScene) {
         // Init Background:
-        gameScene.duration = 61
+        gameScene.duration = 32
         let backgroundImage = SKSpriteNode(imageNamed: "background_level1") // MARK: Change Background Image Here
         
         backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2 - 25)

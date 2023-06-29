@@ -134,19 +134,19 @@ class ObstructionNode: SKNode {
     private func setupTextField() {
 //        if player == "Player1" {
             textFieldBackground.size = CGSize(width: 20, height: 50)
-            textFieldBackground.position = CGPoint(x: parentView.frame.midX - 80, y: parentView.frame.midY - 15)
+            textFieldBackground.position = CGPoint(x: parentView.frame.midX - 72, y: parentView.frame.midY - 15)
             textFieldBackground.zPosition = 1000
             
             textFieldBackground2.size = CGSize(width: 20, height: 50)
-            textFieldBackground2.position = CGPoint(x: parentView.frame.midX - 25, y: parentView.frame.midY - 15)
+            textFieldBackground2.position = CGPoint(x: parentView.frame.midX - 23, y: parentView.frame.midY - 15)
             textFieldBackground2.zPosition = 1000
 
             textFieldBackground3.size = CGSize(width: 20, height: 50)
-            textFieldBackground3.position = CGPoint(x: parentView.frame.midX + 30, y: parentView.frame.midY - 15)
+            textFieldBackground3.position = CGPoint(x: parentView.frame.midX + 25, y: parentView.frame.midY - 15)
             textFieldBackground3.zPosition = 1000
 
             textFieldBackground4.size = CGSize(width: 20, height: 50)
-            textFieldBackground4.position = CGPoint(x: parentView.frame.midX + 85, y: parentView.frame.midY - 15)
+            textFieldBackground4.position = CGPoint(x: parentView.frame.midX + 78, y: parentView.frame.midY - 15)
             textFieldBackground4.zPosition = 1000
 
             addChild(textFieldBackground)

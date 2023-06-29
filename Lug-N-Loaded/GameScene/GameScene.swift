@@ -41,8 +41,8 @@ class GameScene: SKScene {
     var progressBarBackground: SKShapeNode!
     
     var obstructionNode: ObstructionNode!
-    var duration: TimeInterval = 61 // reality -1
-    let obsDuration: TimeInterval = 13 // reality -3
+    var duration: TimeInterval = 32 // reality -1
+    let obsDuration: TimeInterval = 23 // reality -3
     
     var isShowingObstruction = false
     var hasShownObstruction = false
