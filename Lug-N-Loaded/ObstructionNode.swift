@@ -19,7 +19,7 @@ class ObstructionNode: SKNode {
     var textField3: UITextField!
     var textField4: UITextField!
     
-    var correctCode = "3214"
+    var correctCode : String!
     var isCorrect = false
     
     var button1 = SKSpriteNode(imageNamed: "1.png")
@@ -31,8 +31,10 @@ class ObstructionNode: SKNode {
     
     var inputText = ""
     
-    init(player: String, size: CGSize, parentView: SKView) {
+    init(player: String, size: CGSize, parentView: SKView, correctCode: String) {
         super.init()
+        
+        self.correctCode = correctCode
         
         self.player = player
         self.parentView = parentView
