@@ -154,8 +154,7 @@ class ObstructionNode: SKNode {
             addChild(textFieldBackground3)
             addChild(textFieldBackground4)
             
-            let newFontSize: CGFloat = 40.0
-            let newFont = UIFont.systemFont(ofSize: newFontSize)
+            let newFont = UIFont(name: "Fredoka", size: 40)
             
             textField.text = ""
             textField.keyboardType = .numberPad

@@ -41,13 +41,19 @@ class GameScene: SKScene {
     var progressBarBackground: SKShapeNode!
     
     var obstructionNode: ObstructionNode!
-    var duration: TimeInterval = 32 // reality -1
-    let obsDuration: TimeInterval = 23 // reality -3
+    var duration: TimeInterval = 61 // reality -1
+    let obsDuration: TimeInterval = 13 // reality -3
     
     var isShowingObstruction = false
     var hasShownObstruction = false
     var plusMinus: SKLabelNode!
     var isGameFinished: Bool = false
+    
+    //SOUND MP3
+    var backgroundMusic: String!
+    var obstructionAlarm: String = "OBSTRUCTION.mp3"
+    var winMusic: String = "GameWin.mp3"
+    var loseMusic: String = "GameLose.mp3"
   
     override func didMove(to view: SKView) {
         isUserInteractionEnabled = true
@@ -65,15 +71,19 @@ class GameScene: SKScene {
         // Init Game Background, Luggage, Items:
         switch self.level {
         case 0:
+            backgroundMusic = "Tutorial.mp3"
             GameSceneFunctions.initTutorial(gameScene: self)
 
         case 1:
+            backgroundMusic = "Level1.mp3"
             GameSceneFunctions.initLevel1(gameScene: self)
 
         case 2:
+            backgroundMusic = "Level2.mp3"
             GameSceneFunctions.initLevel2(gameScene: self)
 
         default:
+            backgroundMusic = "Level1.mp3"
             GameSceneFunctions.initTutorial(gameScene: self)
         }
         // TIMER & AUDIO SECTION
@@ -224,6 +234,7 @@ class GameScene: SKScene {
                 if self.gameWon {
                     self.isGameFinished = true
                     GameSceneFunctions.showWinScreen(gameScene: self)
+                    AudioManager.shared.playWinMusic(filename: self.winMusic)
                 }
             }
         }
@@ -245,7 +256,7 @@ class GameScene: SKScene {
             self.obsTimer.alpha = 1
             self.obsTimer.zPosition = 5000
         }
-      AudioManager.shared.playObstructionMusic(filename: "OBSTRUCTION.mp3")
+      AudioManager.shared.playObstructionMusic(filename: obstructionAlarm)
       AudioManager.shared.pauseBackgroundMusic()
     }
       
@@ -273,7 +284,7 @@ class GameScene: SKScene {
         self.isGameFinished = true
         GameSceneFunctions.showTimesUpScreen(gameScene: self)
       AudioManager.shared.stopBackgroundMusic()
-          AudioManager.shared.playLoseMusic(filename: "GameLose.mp3")
+          AudioManager.shared.playLoseMusic(filename: loseMusic)
     }
   }
     
@@ -391,6 +402,6 @@ class GameScene: SKScene {
       self.plusMinus.alpha = 0
       addChild(self.plusMinus)
         
-    AudioManager.shared.playBackgroundMusic(filename: "Level1.mp3")
+      AudioManager.shared.playBackgroundMusic(filename: backgroundMusic)
   }
 }
