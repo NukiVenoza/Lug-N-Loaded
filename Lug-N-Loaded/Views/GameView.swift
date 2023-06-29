@@ -9,7 +9,7 @@ import SpriteKit
 import SwiftUI
 
 struct GameView: View {
-  @State var level = 1
+    @Binding var level : Int
   // 0 = tutorial, 1 = level 1, and so on...
 
   var scene: SKScene {
