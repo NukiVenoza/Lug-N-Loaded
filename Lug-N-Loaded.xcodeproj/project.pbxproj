@@ -26,6 +26,7 @@
 		D001AB4E2A4C363800CEB099 /* Fredoka.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D001AB4D2A4C363800CEB099 /* Fredoka.ttf */; };
 		D001AB532A4D6BB900CEB099 /* ChooseLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001AB522A4D6BB900CEB099 /* ChooseLevelView.swift */; };
 		D001AB552A4D6E4400CEB099 /* LevelCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001AB542A4D6E4400CEB099 /* LevelCarousel.swift */; };
+		D001AB5A2A4D7FEC00CEB099 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001AB592A4D7FEC00CEB099 /* Level.swift */; };
 		D01170F82A4C28C500582D2C /* MissionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01170F72A4C28C500582D2C /* MissionCompleteView.swift */; };
 		D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFC3F62A3D622C00665580 /* AppDelegate.swift */; };
 		D0AFC3F92A3D622C00665580 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D0AFC3F82A3D622C00665580 /* GameScene.sks */; };
@@ -59,6 +60,7 @@
 		D001AB4F2A4C36A100CEB099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D001AB522A4D6BB900CEB099 /* ChooseLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLevelView.swift; sourceTree = "<group>"; };
 		D001AB542A4D6E4400CEB099 /* LevelCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCarousel.swift; sourceTree = "<group>"; };
+		D001AB592A4D7FEC00CEB099 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		D01170F72A4C28C500582D2C /* MissionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCompleteView.swift; sourceTree = "<group>"; };
 		D0AFC3F32A3D622C00665580 /* Lug-N-Loaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lug-N-Loaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AFC3F62A3D622C00665580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,15 +125,23 @@
 			path = ItemNodes;
 			sourceTree = "<group>";
 		};
+		D001AB562A4D7F4C00CEB099 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D001AB592A4D7FEC00CEB099 /* Level.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D01170F62A4C273800582D2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				D001AB522A4D6BB900CEB099 /* ChooseLevelView.swift */,
+				D001AB542A4D6E4400CEB099 /* LevelCarousel.swift */,
 				2D2400742A4D3725006AE16F /* ContentView.swift */,
 				2D2400762A4D43CB006AE16F /* GameView.swift */,
 				D01170F72A4C28C500582D2C /* MissionCompleteView.swift */,
 				35C260942A4C450B00C363AD /* GameOverView.swift */,
-				D001AB542A4D6E4400CEB099 /* LevelCarousel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				D001AB4F2A4C36A100CEB099 /* Info.plist */,
+				D001AB562A4D7F4C00CEB099 /* Model */,
 				D01170F62A4C273800582D2C /* Views */,
 				2DC0D7952A420F3400DAF262 /* CustomNodes */,
 				2D1C75322A45DD61009835DE /* GameScene */,
@@ -273,6 +284,7 @@
 				2D2400752A4D3725006AE16F /* ContentView.swift in Sources */,
 				356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */,
 				356E227B2A497B3400002C1A /* AudioManager.swift in Sources */,
+				D001AB5A2A4D7FEC00CEB099 /* Level.swift in Sources */,
 				D001AB552A4D6E4400CEB099 /* LevelCarousel.swift in Sources */,
 				2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
