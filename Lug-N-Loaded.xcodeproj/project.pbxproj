@@ -19,6 +19,7 @@
 		356E227B2A497B3400002C1A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227A2A497B3400002C1A /* AudioManager.swift */; };
 		356E227D2A497B4C00002C1A /* ObstructionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227C2A497B4C00002C1A /* ObstructionNode.swift */; };
 		356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227E2A497B5900002C1A /* CountdownLabel.swift */; };
+		358649BD2A4D915600B81CBD /* StoryLevel1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358649BC2A4D915600B81CBD /* StoryLevel1View.swift */; };
 		358A36A12A4C4A9000B53B37 /* GameLose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 358A369C2A4C4A9000B53B37 /* GameLose.mp3 */; };
 		358A36A22A4C4A9000B53B37 /* Click Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 358A369D2A4C4A9000B53B37 /* Click Button.mp3 */; };
 		358A36A32A4C4A9000B53B37 /* GameWin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 358A369E2A4C4A9000B53B37 /* GameWin.mp3 */; };
@@ -54,6 +55,7 @@
 		356E227A2A497B3400002C1A /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		356E227C2A497B4C00002C1A /* ObstructionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstructionNode.swift; sourceTree = "<group>"; };
 		356E227E2A497B5900002C1A /* CountdownLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownLabel.swift; sourceTree = "<group>"; };
+		358649BC2A4D915600B81CBD /* StoryLevel1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryLevel1View.swift; sourceTree = "<group>"; };
 		358A369C2A4C4A9000B53B37 /* GameLose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameLose.mp3; sourceTree = "<group>"; };
 		358A369D2A4C4A9000B53B37 /* Click Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Click Button.mp3"; sourceTree = "<group>"; };
 		358A369E2A4C4A9000B53B37 /* GameWin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameWin.mp3; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				D01170F72A4C28C500582D2C /* MissionCompleteView.swift */,
 				35C260942A4C450B00C363AD /* GameOverView.swift */,
 				D001AB542A4D6E4400CEB099 /* LevelCarousel.swift */,
+				358649BC2A4D915600B81CBD /* StoryLevel1View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				2DC0D7922A4209E800DAF262 /* HelperFunctions.swift in Sources */,
 				D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */,
 				2D2400752A4D3725006AE16F /* ContentView.swift in Sources */,
+				358649BD2A4D915600B81CBD /* StoryLevel1View.swift in Sources */,
 				356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */,
 				356E227B2A497B3400002C1A /* AudioManager.swift in Sources */,
 				D001AB552A4D6E4400CEB099 /* LevelCarousel.swift in Sources */,

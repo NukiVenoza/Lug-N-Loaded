@@ -1,5 +1,6 @@
 import Foundation
 import SpriteKit
+import AVFoundation
 
 class ObstructionNode: SKNode {
     var background : SKSpriteNode!
@@ -18,12 +19,15 @@ class ObstructionNode: SKNode {
     var textField3: UITextField!
     var textField4: UITextField!
     
+    var correctCode = "3214"
     var isCorrect = false
     
     var button1 = SKSpriteNode(imageNamed: "1.png")
     var button2 = SKSpriteNode(imageNamed: "2.png")
     var button3 = SKSpriteNode(imageNamed: "3.png")
     var button4 = SKSpriteNode(imageNamed: "4.png")
+    
+    private var buttonClicked: AVAudioPlayer?
     
     var inputText = ""
     
@@ -44,6 +48,14 @@ class ObstructionNode: SKNode {
         if player == "Player1"{
             setupButtons()
             setupTextField()
+        }
+        
+        let clickedSound = Bundle.main.url(forResource: "Click Button", withExtension: "mp3")
+        do {
+            buttonClicked = try AVAudioPlayer(contentsOf: clickedSound!)
+            buttonClicked?.prepareToPlay()
+        } catch {
+            print("Failed to load sound effect: \(error)")
         }
         
     }
@@ -203,6 +215,7 @@ class ObstructionNode: SKNode {
         let touchedNode = self.atPoint(location)
         
         if let nodeName = touchedNode.name {
+            buttonClicked?.play()
             if textField.text == "" {
                 textField.text = nodeName
                 inputText = inputText + (textField.text ?? nodeName)
@@ -227,7 +240,7 @@ class ObstructionNode: SKNode {
     }
     
     func checkEligibility(){
-        if inputText == "3214" {
+        if inputText == correctCode {
             isCorrect = true
         } else {
             textField.text = ""
