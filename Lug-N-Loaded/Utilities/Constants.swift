@@ -16,7 +16,7 @@ struct Constants {
   static let LUGGAGE_BACKGROUND_TUTORIAL = "luggage_tutorial"
     
   static let INVENTORY_WIDTH = 1000
-  static let INVENTORY_HEIGHT = 80
+  static let INVENTORY_HEIGHT = 90
   static let INVENTORY_SLOT = 50
     
   static let INVENTORY_SLOT_IMAGENAME = "slot"
