@@ -146,7 +146,7 @@ class ObstructionNode: SKNode {
             textFieldBackground3.zPosition = 1000
 
             textFieldBackground4.size = CGSize(width: 20, height: 50)
-            textFieldBackground4.position = CGPoint(x: parentView.frame.midX + 78, y: parentView.frame.midY - 15)
+            textFieldBackground4.position = CGPoint(x: parentView.frame.midX + 75, y: parentView.frame.midY - 15)
             textFieldBackground4.zPosition = 1000
 
             addChild(textFieldBackground)
@@ -239,14 +239,16 @@ class ObstructionNode: SKNode {
     }
     
     func checkEligibility(){
-        if inputText == correctCode {
-            isCorrect = true
-        } else {
-            textField.text = ""
-            textField2.text = ""
-            textField3.text = ""
-            textField4.text = ""
-            inputText = ""
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+           if self.inputText == self.correctCode {
+               self.isCorrect = true
+           } else {
+               self.textField.text = ""
+               self.textField2.text = ""
+               self.textField3.text = ""
+               self.textField4.text = ""
+               self.inputText = ""
+           }
         }
     }
 }
