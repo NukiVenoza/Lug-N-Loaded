@@ -41,7 +41,7 @@ class GameScene: SKScene {
     var progressBarBackground: SKShapeNode!
     
     var obstructionNode: ObstructionNode!
-    let duration: TimeInterval = 61 // reality -1
+    var duration: TimeInterval = 61 // reality -1
     let obsDuration: TimeInterval = 13 // reality -3
     
     var isShowingObstruction = false
@@ -52,15 +52,14 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         isUserInteractionEnabled = true
 
-        // TIMER & AUDIO SECTION
-        self.setupTimerAudio()
+        
       
         // Add double tap gesture recognizer
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleDoubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
         view.addGestureRecognizer(doubleTapGesture)
     
-        self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 130))
+        self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 150))
         self.addChild(self.inventory)
     
         // Init Game Background, Luggage, Items:
@@ -77,6 +76,8 @@ class GameScene: SKScene {
         default:
             GameSceneFunctions.initTutorial(gameScene: self)
         }
+        // TIMER & AUDIO SECTION
+        self.setupTimerAudio()
     }
   
     @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
