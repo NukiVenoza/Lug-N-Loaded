@@ -224,7 +224,6 @@ class GameSceneFunctions {
     var finalPoint = gameScene.inventory.inventorySlots[0].convert(gameScene.inventory.inventorySlots[0].position, to: gameScene)
     finalPoint.y = finalPoint.y - 5
 
-        
     if slotIndex == 0 {
       finalPoint.x = finalPoint.x + Constants.INVENTORY_SLOP_GAP_FIRST
       gameScene.emptySlotPositionLeft = finalPoint
@@ -298,7 +297,7 @@ class GameSceneFunctions {
     gameScene.addChild(gameScene.luggageHitBox)
         
     // Init Items:
-    let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
+    let item1 = ItemNode(imageName: "camera", itemShape: "shape_t_upsidedown",
                          position: getSlotPosition(gameScene: gameScene, slotIndex: 0))
     let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
                          position: getSlotPosition(gameScene: gameScene, slotIndex: 1))

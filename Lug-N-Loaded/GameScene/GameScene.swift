@@ -9,6 +9,20 @@ import GameplayKit
 import SpriteKit
 
 class GameScene: SKScene {
+  var level: Int
+
+  init(level: Int) {
+    self.level = level
+    super.init(size: UIScreen.main.bounds.size)
+      
+    // Additional initialization code
+  }
+  
+  @available(*, unavailable)
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   public var gameWon: Bool = false
   public var currentNode: SKNode?
   public var currentItemNode: ItemNode?
@@ -28,12 +42,12 @@ class GameScene: SKScene {
     
   var obstructionNode: ObstructionNode!
   let duration: TimeInterval = 61 // reality -1
-    let obsDuration : TimeInterval = 13 // reality -3
+  let obsDuration: TimeInterval = 13 // reality -3
     
   var isShowingObstruction = false
   var hasShownObstruction = false
-    var plusMinus: SKLabelNode!
-    var isGameFinished: Bool = false
+  var plusMinus: SKLabelNode!
+  var isGameFinished: Bool = false
   
   override func didMove(to view: SKView) {
     isUserInteractionEnabled = true
@@ -50,11 +64,19 @@ class GameScene: SKScene {
     self.addChild(self.inventory)
     
     // Init Game Background, Luggage, Items:
-//    GameSceneFunctions.initTutorial(gameScene: self)
+    switch self.level {
+    case 0:
+      GameSceneFunctions.initTutorial(gameScene: self)
 
-    GameSceneFunctions.initLevel1(gameScene: self)
-//    GameSceneFunctions.initLevel2(gameScene: self)
+    case 1:
+      GameSceneFunctions.initLevel1(gameScene: self)
 
+    case 2:
+      GameSceneFunctions.initLevel2(gameScene: self)
+
+    default:
+      GameSceneFunctions.initTutorial(gameScene: self)
+    }
   }
   
   @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -199,7 +221,7 @@ class GameScene: SKScene {
       if !self.gameWon {
         GameSceneFunctions.checkWin(gameScene: self)
         if self.gameWon {
-            self.isGameFinished = true
+          self.isGameFinished = true
           GameSceneFunctions.showWinScreen(gameScene: self)
         }
       }
@@ -209,19 +231,18 @@ class GameScene: SKScene {
 
     // TIMER & AUDIO SECTION
       
-      if !self.isGameFinished {
-          self.timer.update()
-          self.decreaseTimeBar()
-      }
+    if !self.isGameFinished {
+      self.timer.update()
+      self.decreaseTimeBar()
+    }
    
-      
     if self.timer.text == "30" && !self.isShowingObstruction && !self.hasShownObstruction {
       print("SHOW")
       self.showObstruction()
-        if obstructionNode.player == "Player2"{
-            self.obsTimer.alpha = 1
-            self.obsTimer.zPosition = 5000
-        }
+      if self.obstructionNode.player == "Player2" {
+        self.obsTimer.alpha = 1
+        self.obsTimer.zPosition = 5000
+      }
       AudioManager.shared.playObstructionMusic(filename: "OBSTRUCTION.mp3")
       AudioManager.shared.pauseBackgroundMusic()
     }
@@ -233,9 +254,9 @@ class GameScene: SKScene {
       
     if self.isShowingObstruction {
       self.obsTimer.update()
-        if obstructionNode.inputText.count == 4 && obstructionNode.isCorrect {
-            hideObstruction()
-        }
+      if self.obstructionNode.inputText.count == 4 && self.obstructionNode.isCorrect {
+        self.hideObstruction()
+      }
     }
       
     if self.obsTimer.hasFinished() && self.isShowingObstruction {
@@ -244,9 +265,9 @@ class GameScene: SKScene {
       AudioManager.shared.resumeBackgroundMusic()
     }
       
-      if self.timer.hasFinished() && !self.isGameFinished{
-        self.isGameFinished = true
-        GameSceneFunctions.showTimesUpScreen(gameScene: self)
+    if self.timer.hasFinished() && !self.isGameFinished {
+      self.isGameFinished = true
+      GameSceneFunctions.showTimesUpScreen(gameScene: self)
       AudioManager.shared.stopRushMusic()
     }
   }
@@ -255,7 +276,7 @@ class GameScene: SKScene {
     self.timer.pause()
     self.obsTimer.resume()
         
-      self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!)
+    self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!)
     self.obstructionNode.position = CGPoint(x: frame.midX, y: frame.midY)
     self.obstructionNode.zPosition = 1999
     self.obstructionNode.isUserInteractionEnabled = true
@@ -271,30 +292,30 @@ class GameScene: SKScene {
     if isCorrect {
       self.timer.addTime(amount: 6)
       self.timer.update()
-        self.plusMinus.fontColor = UIColor(named: "Blue")
-        self.plusMinus.alpha = 1
+      self.plusMinus.fontColor = UIColor(named: "Blue")
+      self.plusMinus.alpha = 1
     } else {
       self.timer.addTime(amount: -5)
       self.timer.update()
-        self.plusMinus.fontColor = .red
-        self.plusMinus.text = "-5"
-        self.plusMinus.alpha = 1
+      self.plusMinus.fontColor = .red
+      self.plusMinus.text = "-5"
+      self.plusMinus.alpha = 1
     }
-      let fadeOutAction = SKAction.fadeOut(withDuration: 0.7)
-      let waitAction = SKAction.wait(forDuration: 1)
-      let hideAction = SKAction.run { [weak self] in
-          self?.plusMinus.alpha = 0
-      }
-      let sequenceAction = SKAction.sequence([fadeOutAction, waitAction, hideAction])
-      self.plusMinus.run(sequenceAction)
+    let fadeOutAction = SKAction.fadeOut(withDuration: 0.7)
+    let waitAction = SKAction.wait(forDuration: 1)
+    let hideAction = SKAction.run { [weak self] in
+      self?.plusMinus.alpha = 0
+    }
+    let sequenceAction = SKAction.sequence([fadeOutAction, waitAction, hideAction])
+    self.plusMinus.run(sequenceAction)
     self.obsTimer.alpha = 0
     self.obstructionNode.removeFromParent()
-      self.hasShownObstruction = true
+    self.hasShownObstruction = true
     self.timer.resume()
   }
     
   // Helper method to create a progress bar shape node
-    func createProgressBar(size: CGSize, color: UIColor, progressBarCornerRadius: CGFloat) -> SKShapeNode {
+  func createProgressBar(size: CGSize, color: UIColor, progressBarCornerRadius: CGFloat) -> SKShapeNode {
     let progressBar = SKShapeNode(rectOf: size, cornerRadius: progressBarCornerRadius)
     progressBar.fillColor = color
     progressBar.lineWidth = 0
@@ -326,44 +347,44 @@ class GameScene: SKScene {
         
     // Create and add the timer progress bar
     let progressBarSize = CGSize(width: 400, height: 30)
-      let progressBarCornerRadius: CGFloat = 10.0
+    let progressBarCornerRadius: CGFloat = 10.0
     let progressBarPosition = CGPoint(x: center.x, y: center.y + 150)
-      self.timerProgressBar = self.createProgressBar(size: progressBarSize, color: UIColor(named: "Blue") ?? .blue, progressBarCornerRadius : progressBarCornerRadius)
+    self.timerProgressBar = self.createProgressBar(size: progressBarSize, color: UIColor(named: "Blue") ?? .blue, progressBarCornerRadius: progressBarCornerRadius)
     self.timerProgressBar.position = progressBarPosition
     self.timerProgressBar.zPosition = 124
-    self.progressBarBackground = self.createProgressBar(size: progressBarSize, color: UIColor(named: "Brown") ?? .brown, progressBarCornerRadius : progressBarCornerRadius)
+    self.progressBarBackground = self.createProgressBar(size: progressBarSize, color: UIColor(named: "Brown") ?? .brown, progressBarCornerRadius: progressBarCornerRadius)
     self.progressBarBackground.position = progressBarPosition
     self.progressBarBackground.zPosition = 123
     addChild(self.timerProgressBar)
     addChild(self.progressBarBackground)
       
-      let outlineSize = CGSize(width: progressBarSize.width + 3, height: progressBarSize.height + 3) // Adjust the size as needed
-      let outlineColor = UIColor.black // Adjust the color as needed
-      let outlineLineWidth: CGFloat = 2.0 // Adjust the line width as needed
-      let outlineShape = SKShapeNode(rectOf: outlineSize, cornerRadius: progressBarCornerRadius)
-      outlineShape.fillColor = UIColor.clear
-      outlineShape.strokeColor = outlineColor
-      outlineShape.lineWidth = outlineLineWidth
-      outlineShape.position = progressBarPosition
-      outlineShape.zPosition = 122
-      addChild(outlineShape)
+    let outlineSize = CGSize(width: progressBarSize.width + 3, height: progressBarSize.height + 3) // Adjust the size as needed
+    let outlineColor = UIColor.black // Adjust the color as needed
+    let outlineLineWidth: CGFloat = 2.0 // Adjust the line width as needed
+    let outlineShape = SKShapeNode(rectOf: outlineSize, cornerRadius: progressBarCornerRadius)
+    outlineShape.fillColor = UIColor.clear
+    outlineShape.strokeColor = outlineColor
+    outlineShape.lineWidth = outlineLineWidth
+    outlineShape.position = progressBarPosition
+    outlineShape.zPosition = 122
+    addChild(outlineShape)
         
     self.obsTimer.position = CGPoint(x: frame.midX, y: frame.midY + 60)
     self.obsTimer.fontSize = 25
-      self.obsTimer.alpha = 0
-      self.obsTimer.fontSize = 40
+    self.obsTimer.alpha = 0
+    self.obsTimer.fontSize = 40
     addChild(self.obsTimer)
-      self.obsTimer.startWithDuration(duration: self.obsDuration)
+    self.obsTimer.startWithDuration(duration: self.obsDuration)
     self.obsTimer.pause()
       
-      self.plusMinus = SKLabelNode()
-      self.plusMinus.fontSize = 25
-      self.plusMinus.fontName = "YourName-Bold"
-      self.plusMinus.text = "+5"
-      self.plusMinus.zPosition = 7000
-      self.plusMinus.position = CGPoint(x: frame.midX + 50, y: frame.midY + 140)
-      self.plusMinus.alpha = 0
-      addChild(self.plusMinus)
+    self.plusMinus = SKLabelNode()
+    self.plusMinus.fontSize = 25
+    self.plusMinus.fontName = "YourName-Bold"
+    self.plusMinus.text = "+5"
+    self.plusMinus.zPosition = 7000
+    self.plusMinus.position = CGPoint(x: frame.midX + 50, y: frame.midY + 140)
+    self.plusMinus.alpha = 0
+    addChild(self.plusMinus)
         
     AudioManager.shared.playBackgroundMusic(filename: "BGM.mp3")
   }

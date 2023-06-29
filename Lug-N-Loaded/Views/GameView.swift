@@ -9,8 +9,11 @@ import SpriteKit
 import SwiftUI
 
 struct GameView: View {
+  @State var level = 0
+  // 0 = tutorial, 1 = level 1, and so on...
+
   var scene: SKScene {
-    let scene = GameScene()
+    let scene = GameScene(level: level)
     scene.size = UIScreen.main.bounds.size
     scene.scaleMode = .fill
     return scene
