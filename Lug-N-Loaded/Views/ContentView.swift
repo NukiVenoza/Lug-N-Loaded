@@ -8,12 +8,10 @@
 import SpriteKit
 import SwiftUI
 
-
 struct ContentView: View {
-    //  @ObservedObject private var game : RealTimeGame
-    
+    @ObservedObject var matchManager: MatchManager = .shared
     @State var isPlayingGame = false
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,14 +22,16 @@ struct ContentView: View {
                 VStack {
                     // Navigate matching with friend
                     NavigationLink(destination:
-                                    ChooseLevelView().navigationBarBackButtonHidden(true)
+                        ChooseLevelView()
+                            .environmentObject(matchManager)
+                            .navigationBarBackButtonHidden(true)
+
                     ) {
                         Image("btnStart")
                             .resizable()
                             .frame(width: 61, height: 65)
                             .padding(.top, 68)
-                        
-                        
+
                         //                Button {
                         //                  //          if game.automatch {
                         //                  //            // Turn automatch off.

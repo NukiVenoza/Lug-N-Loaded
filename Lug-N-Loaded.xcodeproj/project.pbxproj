@@ -14,6 +14,13 @@
 		2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7962A420F3400DAF262 /* SquareNode.swift */; };
 		2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7972A420F3400DAF262 /* LuggageNode.swift */; };
 		2DC0D79C2A420F3400DAF262 /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7992A420F3400DAF262 /* ItemNode.swift */; };
+		2DE6E20E2A4DED45003F543C /* MatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6E20D2A4DED45003F543C /* MatchManager.swift */; };
+		2DE6E2102A4DEEB5003F543C /* SharedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6E20F2A4DEEB5003F543C /* SharedItem.swift */; };
+		2DE6E2122A4DEEF7003F543C /* MM_GKMatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6E2112A4DEEF7003F543C /* MM_GKMatchDelegate.swift */; };
+		2DE6E2142A4DEF00003F543C /* MM_MatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6E2132A4DEF00003F543C /* MM_MatchData.swift */; };
+		2DE6E2162A4DEF0C003F543C /* MM_GKLocalPlayerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6E2152A4DEF0C003F543C /* MM_GKLocalPlayerListener.swift */; };
+		2DE6E2182A4DEF20003F543C /* MM_GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6E2172A4DEF20003F543C /* MM_GameCenterViewController.swift */; };
+		2DE6E21A2A4DEF2F003F543C /* MM_GKMatchMakerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6E2192A4DEF2F003F543C /* MM_GKMatchMakerViewControllerDelegate.swift */; };
 		353C6C8F2A4AC5FD0015CDEB /* GameSceneFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C6C8D2A4AC5FD0015CDEB /* GameSceneFunctions.swift */; };
 		353C6C902A4AC5FD0015CDEB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C6C8E2A4AC5FD0015CDEB /* GameScene.swift */; };
 		356E227B2A497B3400002C1A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E227A2A497B3400002C1A /* AudioManager.swift */; };
@@ -51,6 +58,14 @@
 		2DC0D7962A420F3400DAF262 /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
 		2DC0D7972A420F3400DAF262 /* LuggageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageNode.swift; sourceTree = "<group>"; };
 		2DC0D7992A420F3400DAF262 /* ItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
+		2DE6E20B2A4DECB3003F543C /* Lug-N-Loaded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lug-N-Loaded.entitlements"; sourceTree = "<group>"; };
+		2DE6E20D2A4DED45003F543C /* MatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchManager.swift; sourceTree = "<group>"; };
+		2DE6E20F2A4DEEB5003F543C /* SharedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedItem.swift; sourceTree = "<group>"; };
+		2DE6E2112A4DEEF7003F543C /* MM_GKMatchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MM_GKMatchDelegate.swift; sourceTree = "<group>"; };
+		2DE6E2132A4DEF00003F543C /* MM_MatchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MM_MatchData.swift; sourceTree = "<group>"; };
+		2DE6E2152A4DEF0C003F543C /* MM_GKLocalPlayerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MM_GKLocalPlayerListener.swift; sourceTree = "<group>"; };
+		2DE6E2172A4DEF20003F543C /* MM_GameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MM_GameCenterViewController.swift; sourceTree = "<group>"; };
+		2DE6E2192A4DEF2F003F543C /* MM_GKMatchMakerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MM_GKMatchMakerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		353C6C8D2A4AC5FD0015CDEB /* GameSceneFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneFunctions.swift; sourceTree = "<group>"; };
 		353C6C8E2A4AC5FD0015CDEB /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		356E227A2A497B3400002C1A /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -133,9 +148,31 @@
 			path = ItemNodes;
 			sourceTree = "<group>";
 		};
+		2DE6E20C2A4DECEC003F543C /* Multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+				2DE6E20D2A4DED45003F543C /* MatchManager.swift */,
+				2DE6E2112A4DEEF7003F543C /* MM_GKMatchDelegate.swift */,
+				2DE6E21B2A4DEF33003F543C /* GKViewController */,
+			);
+			path = Multiplayer;
+			sourceTree = "<group>";
+		};
+		2DE6E21B2A4DEF33003F543C /* GKViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2DE6E2132A4DEF00003F543C /* MM_MatchData.swift */,
+				2DE6E2152A4DEF0C003F543C /* MM_GKLocalPlayerListener.swift */,
+				2DE6E2172A4DEF20003F543C /* MM_GameCenterViewController.swift */,
+				2DE6E2192A4DEF2F003F543C /* MM_GKMatchMakerViewControllerDelegate.swift */,
+			);
+			path = GKViewController;
+			sourceTree = "<group>";
+		};
 		D001AB5B2A4DAF2100CEB099 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2DE6E20F2A4DEEB5003F543C /* SharedItem.swift */,
 				D001AB5C2A4DAF3200CEB099 /* Level.swift */,
 			);
 			path = Model;
@@ -144,8 +181,8 @@
 		D01170F62A4C273800582D2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D001AB522A4D6BB900CEB099 /* ChooseLevelView.swift */,
 				2D2400742A4D3725006AE16F /* ContentView.swift */,
+				D001AB522A4D6BB900CEB099 /* ChooseLevelView.swift */,
 				2D2400762A4D43CB006AE16F /* GameView.swift */,
 				D01170F72A4C28C500582D2C /* MissionCompleteView.swift */,
 				35C260942A4C450B00C363AD /* GameOverView.swift */,
@@ -183,6 +220,7 @@
 		D0AFC3F52A3D622C00665580 /* Lug-N-Loaded */ = {
 			isa = PBXGroup;
 			children = (
+				2DE6E20B2A4DECB3003F543C /* Lug-N-Loaded.entitlements */,
 				D001AB4F2A4C36A100CEB099 /* Info.plist */,
 				D001AB5B2A4DAF2100CEB099 /* Model */,
 				D01170F62A4C273800582D2C /* Views */,
@@ -190,6 +228,7 @@
 				2D1C75322A45DD61009835DE /* GameScene */,
 				D0AFC3FE2A3D622C00665580 /* GameViewController.swift */,
 				D0AFC3F62A3D622C00665580 /* AppDelegate.swift */,
+				2DE6E20C2A4DECEC003F543C /* Multiplayer */,
 				2DC0D78E2A4209E800DAF262 /* Utilities */,
 				D0AFC4002A3D622C00665580 /* Main.storyboard */,
 				D0AFC4052A3D622D00665580 /* LaunchScreen.storyboard */,
@@ -300,13 +339,20 @@
 				358649BD2A4D915600B81CBD /* StoryLevel1View.swift in Sources */,
 				356E227F2A497B5900002C1A /* CountdownLabel.swift in Sources */,
 				D001AB5D2A4DAF3200CEB099 /* Level.swift in Sources */,
+				2DE6E2122A4DEEF7003F543C /* MM_GKMatchDelegate.swift in Sources */,
+				2DE6E20E2A4DED45003F543C /* MatchManager.swift in Sources */,
 				356E227B2A497B3400002C1A /* AudioManager.swift in Sources */,
 				D001AB552A4D6E4400CEB099 /* LevelCarousel.swift in Sources */,
+				2DE6E21A2A4DEF2F003F543C /* MM_GKMatchMakerViewControllerDelegate.swift in Sources */,
 				2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */,
+				2DE6E2102A4DEEB5003F543C /* SharedItem.swift in Sources */,
+				2DE6E2142A4DEF00003F543C /* MM_MatchData.swift in Sources */,
 				D0AFC3F72A3D622C00665580 /* AppDelegate.swift in Sources */,
+				2DE6E2182A4DEF20003F543C /* MM_GameCenterViewController.swift in Sources */,
 				2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */,
 				356E227D2A497B4C00002C1A /* ObstructionNode.swift in Sources */,
 				353C6C8F2A4AC5FD0015CDEB /* GameSceneFunctions.swift in Sources */,
+				2DE6E2162A4DEF0C003F543C /* MM_GKLocalPlayerListener.swift in Sources */,
 				35C260952A4C450B00C363AD /* GameOverView.swift in Sources */,
 				D01170F82A4C28C500582D2C /* MissionCompleteView.swift in Sources */,
 			);
@@ -453,9 +499,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lug-N-Loaded/Lug-N-Loaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = DVSPNNP5A3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lug-N-Loaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -468,7 +515,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nukivenoza.Lug-N-Loaded";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevin.Lug-N-Loaded";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -481,9 +528,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lug-N-Loaded/Lug-N-Loaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = DVSPNNP5A3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lug-N-Loaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -496,7 +544,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nukivenoza.Lug-N-Loaded";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevin.Lug-N-Loaded";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -8,6 +8,8 @@
 import Foundation
 import SpriteKit
 
+// TODO: Maybe change to Protocol/Delegate so GameScene doesn't need to be passed
+
 class GameSceneFunctions {
     public static func checkWin(gameScene: GameScene) {
         // loop over itemnode, check that all is not in inventory and is in luggage
@@ -124,6 +126,56 @@ class GameSceneFunctions {
         missionSuccessNode.run(opacityAction)
     }
     
+    public static func prepareImpact(gameScene: GameScene, item: ItemNode, newLocation: CGPoint) {
+        item.position = newLocation
+        GameSceneFunctions.updateInventorySlotStatus(gameScene: gameScene)
+        item.isPlaced = true
+
+        if gameScene.luggage.contains(item.position) {
+            // ITEM DI DALEM LUGGAGE
+            item.inLuggage = true
+            item.inInventory = false
+            item.updateItemScale()
+            item.updateItemPhysics()
+    
+            if item.isInsideLuggage(luggage: gameScene.luggageHitBox) == false {
+                item.inLuggage = false
+                item.inInventory = true
+                item.updateItemScale()
+                item.updateItemPhysics()
+                GameSceneFunctions.moveItemToInventorySlot(
+                    gameScene: gameScene, item: item)
+            }
+    
+        } else if gameScene.inventory.contains(item.position) {
+            // ITEM DI DALEM INVENTORY
+            item.inLuggage = false
+            item.inInventory = true
+            item.updateItemScale()
+            item.updateItemPhysics()
+            
+            // TODO: IF YG GERAKING ITEM == PLAYER MOVE TO SLOT
+            
+            // TODO: ELSE ILANGIN DARI FRAME --> X:10000 Y:10000
+            
+            GameSceneFunctions.moveItemToInventorySlot(
+                gameScene: gameScene, item: item)
+    
+        } else {
+            // ITEM DI LUAR
+            item.inLuggage = false
+            item.inInventory = false
+            item.inInventory = true
+            item.updateItemScale()
+            item.updateItemPhysics()
+            
+            // TODO: IF YG GERAKING ITEM == PLAYER MOVE TO SLOT
+            // TODO: ELSE ILANGIN DARI FRAME --> X:10000 Y:10000
+            GameSceneFunctions.moveItemToInventorySlot(
+                gameScene: gameScene, item: item)
+        }
+    }
+    
     public static func handleCollision(gameScene: GameScene) {
         for itemNode in gameScene.itemNodes {
             if gameScene.luggage.contains(itemNode.position) {
@@ -212,9 +264,17 @@ class GameSceneFunctions {
             item.inInventory = true
             item.inLuggage = false
             slot.isFilled = true
-            
             slot.updateTexture()
         }
+    }
+    
+    public static func findNode(gameScene: GameScene, itemId: Int) -> ItemNode {
+        for itemNode in gameScene.itemNodes {
+            if itemNode.itemId == itemId {
+                return itemNode
+            }
+        }
+        return ItemNode()
     }
     
     public static func getSlotPosition(
@@ -300,11 +360,11 @@ class GameSceneFunctions {
         gameScene.addChild(gameScene.luggageHitBox)
         
         // Init Items:
-        let item1 = ItemNode(imageName: "camera", itemShape: "shape_t_upsidedown",
+        let item1 = ItemNode(id: 0, imageName: "camera", itemShape: "shape_t_upsidedown",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 0))
-        let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
+        let item2 = ItemNode(id: 1, imageName: "bottle", itemShape: "rect_vertical_2",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 1))
-        let item3 = ItemNode(imageName: "router", itemShape: "l_right",
+        let item3 = ItemNode(id: 2, imageName: "router", itemShape: "l_right",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 2))
         
         gameScene.itemNodes.append(item1)
@@ -318,7 +378,8 @@ class GameSceneFunctions {
     
     public static func initLevel1(gameScene: GameScene) {
         // Init Background:
-        gameScene.duration = 61 //in reality -1
+        gameScene.duration = 61 // in reality -1
+
         let backgroundImage = SKSpriteNode(imageNamed: "background_level1") // MARK: Change Background Image Here
         
         backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2 - 25)
@@ -385,19 +446,19 @@ class GameSceneFunctions {
         gameScene.addChild(gameScene.luggageHitBox)
         
         // Init Items:
-        let item1 = ItemNode(imageName: "camera", itemShape: "shape_t_upsidedown",
+        let item1 = ItemNode(id: 0, imageName: "camera", itemShape: "shape_t_upsidedown",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 0))
-        let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
+        let item2 = ItemNode(id: 1, imageName: "bottle", itemShape: "rect_vertical_2",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 1))
-        let item3 = ItemNode(imageName: "router", itemShape: "l_right",
+        let item3 = ItemNode(id: 2, imageName: "router", itemShape: "l_right",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 2))
-        let item4 = ItemNode(imageName: "CCTV", itemShape: "shape_s",
+        let item4 = ItemNode(id: 3, imageName: "CCTV", itemShape: "shape_s",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 3))
-        let item5 = ItemNode(imageName: "lamp", itemShape: "rect_vertical_4",
+        let item5 = ItemNode(id: 4, imageName: "lamp", itemShape: "rect_vertical_4",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 4))
-        let item6 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
+        let item6 = ItemNode(id: 5, imageName: "bottle", itemShape: "rect_vertical_2",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 5))
-        let item7 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
+        let item7 = ItemNode(id: 6, imageName: "bottle", itemShape: "rect_vertical_2",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 6))
         
         gameScene.itemNodes.append(item1)
@@ -484,17 +545,17 @@ class GameSceneFunctions {
         gameScene.addChild(gameScene.luggageHitBox)
         
         // Init Items:
-        let item1 = ItemNode(imageName: "controller", itemShape: "l_right",
+        let item1 = ItemNode(id: 0, imageName: "controller", itemShape: "l_right",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 0))
-        let item2 = ItemNode(imageName: "battery", itemShape: "l_right_long",
+        let item2 = ItemNode(id: 1, imageName: "battery", itemShape: "l_right_long",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 1))
-        let item3 = ItemNode(imageName: "pistols", itemShape: "shape_s",
+        let item3 = ItemNode(id: 2, imageName: "pistols", itemShape: "shape_s",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 2))
-        let item4 = ItemNode(imageName: "scope", itemShape: "rect_horizontal_4",
+        let item4 = ItemNode(id: 3, imageName: "scope", itemShape: "rect_horizontal_4",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 3))
-        let item5 = ItemNode(imageName: "handycam", itemShape: "shape_t_right",
+        let item5 = ItemNode(id: 4, imageName: "handycam", itemShape: "shape_t_right",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 4))
-        let item6 = ItemNode(imageName: "drive", itemShape: "rect_vertical_2",
+        let item6 = ItemNode(id: 5, imageName: "drive", itemShape: "rect_vertical_2",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 5))
         
         gameScene.itemNodes.append(item1)
