@@ -32,6 +32,7 @@ class ItemNode: SKSpriteNode {
     updateItemPhysics()
 //    physicsBody?.isDynamic = true
     physicsBody?.allowsRotation = false
+    physicsBody?.affectedByGravity = false
 //    physicsBody?.categoryBitMask = 0x1
 //    physicsBody?.collisionBitMask = 0xFFFFFFFF
 //    physicsBody?.contactTestBitMask = 0xFFFFFFFF

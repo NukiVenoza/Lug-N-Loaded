@@ -9,212 +9,233 @@ import GameplayKit
 import SpriteKit
 
 class GameScene: SKScene {
-  public var gameWon: Bool = false
-  public var currentNode: SKNode?
-  public var currentItemNode: ItemNode?
+    var level: Int
+
+    init(level: Int) {
+        self.level = level
+        super.init(size: UIScreen.main.bounds.size)
+      
+        // Additional initialization code
+    }
   
-  public var luggage: LuggageNode!
-  public var luggageHitBox: SKSpriteNode!
-  public var inventory: InventoryNode!
-  public var itemNodes: [ItemNode] = []
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
   
-  var emptySlotPositionLeft: CGPoint = .init(x: 0, y: 0)
+    public var gameWon: Bool = false
+    public var currentNode: SKNode?
+    public var currentItemNode: ItemNode?
+  
+    public var luggage: LuggageNode!
+    public var luggageHitBox: SKSpriteNode!
+    public var inventory: InventoryNode!
+    public var itemNodes: [ItemNode] = []
+  
+    var emptySlotPositionLeft: CGPoint = .init(x: 0, y: 0)
     
-  // TIMER & AUDIO VARIABLES
-  let timer = CountdownLabel()
-  let obsTimer = CountdownLabel()
-  var timerProgressBar: SKShapeNode!
-  var progressBarBackground: SKShapeNode!
+    // TIMER & AUDIO VARIABLES
+    let timer = CountdownLabel()
+    let obsTimer = CountdownLabel()
+    var timerProgressBar: SKShapeNode!
+    var progressBarBackground: SKShapeNode!
     
-  var obstructionNode: ObstructionNode!
-  let duration: TimeInterval = 61 // reality -1
-    let obsDuration : TimeInterval = 13 // reality -3
+    var obstructionNode: ObstructionNode!
+    var duration: TimeInterval = 61 // reality -1
+    let obsDuration: TimeInterval = 13 // reality -3
     
-  var isShowingObstruction = false
-  var hasShownObstruction = false
+    var isShowingObstruction = false
+    var hasShownObstruction = false
     var plusMinus: SKLabelNode!
     var isGameFinished: Bool = false
   
-  override func didMove(to view: SKView) {
-    isUserInteractionEnabled = true
+    override func didMove(to view: SKView) {
+        isUserInteractionEnabled = true
 
-    // TIMER & AUDIO SECTION
-    self.setupTimerAudio()
+        
       
-    // Add double tap gesture recognizer
-    let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleDoubleTap(_:)))
-    doubleTapGesture.numberOfTapsRequired = 2
-    view.addGestureRecognizer(doubleTapGesture)
+        // Add double tap gesture recognizer
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        view.addGestureRecognizer(doubleTapGesture)
     
-    self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 130))
-    self.addChild(self.inventory)
+        self.inventory = InventoryNode(position: CGPoint(x: frame.midX, y: frame.midY - 150))
+        self.addChild(self.inventory)
     
-    // Init Game Background, Luggage, Items:
-//    GameSceneFunctions.initTutorial(gameScene: self)
+        // Init Game Background, Luggage, Items:
+        switch self.level {
+        case 0:
+            GameSceneFunctions.initTutorial(gameScene: self)
 
-    GameSceneFunctions.initLevel1(gameScene: self)
-//    GameSceneFunctions.initLevel2(gameScene: self)
+        case 1:
+            GameSceneFunctions.initLevel1(gameScene: self)
 
-  }
-  
-  @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
-    // Get the location of the double tap gesture
-    let touchLocation = gestureRecognizer.location(in: gestureRecognizer.view)
-    
-    // Convert the touch location to the scene's coordinate system
-    let convertedLocation = convertPoint(fromView: touchLocation)
-    
-    // MARK: Rotate Node
-    
-    if let tappedNode = atPoint(convertedLocation) as? SKSpriteNode {
-      // Rotate the node by 90 degrees
-      if tappedNode.name == "item" {
-        // Rotate the node by 90 degrees
-          
-        let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
-        tappedNode.run(rotateAction)
-      }
+        case 2:
+            GameSceneFunctions.initLevel2(gameScene: self)
+
+        default:
+            GameSceneFunctions.initTutorial(gameScene: self)
+        }
+        // TIMER & AUDIO SECTION
+        self.setupTimerAudio()
     }
-  }
   
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    // MARK: For Drag n Drop Functionality
+    @objc private func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        // Get the location of the double tap gesture
+        let touchLocation = gestureRecognizer.location(in: gestureRecognizer.view)
     
-    if let touch = touches.first {
-      let location = touch.location(in: self)
+        // Convert the touch location to the scene's coordinate system
+        let convertedLocation = convertPoint(fromView: touchLocation)
+    
+        // MARK: Rotate Node
+    
+        if let tappedNode = atPoint(convertedLocation) as? SKSpriteNode {
+            // Rotate the node by 90 degrees
+            if tappedNode.name == "item" {
+                // Rotate the node by 90 degrees
+          
+                let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
+                tappedNode.run(rotateAction)
+            }
+        }
+    }
+  
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // MARK: For Drag n Drop Functionality
+    
+        if let touch = touches.first {
+            let location = touch.location(in: self)
       
-      let touchedNodes = self.nodes(at: location)
-      for node in touchedNodes.reversed() {
-        if node.name == "item" {
-          self.currentNode = node
+            let touchedNodes = self.nodes(at: location)
+            for node in touchedNodes.reversed() {
+                if node.name == "item" {
+                    self.currentNode = node
           
-          self.currentItemNode = SKNodeToItemNode(node: self.currentNode!)
-          self.currentItemNode?.isPlaced = false
+                    self.currentItemNode = SKNodeToItemNode(node: self.currentNode!)
+                    self.currentItemNode?.isPlaced = false
           
-          if let currentNode = currentNode, luggage.contains(currentNode.position) {
-            self.currentItemNode?.isPlaced = true
-            self.currentItemNode?.updateItemPhysics()
+                    if let currentNode = currentNode, luggage.contains(currentNode.position) {
+                        self.currentItemNode?.isPlaced = true
+                        self.currentItemNode?.updateItemPhysics()
             
-          } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
+                    } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
+                        self.currentItemNode?.updateItemPhysics()
+                    }
+                }
+            }
+        }
+    }
+  
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first, let node = self.currentNode {
+            let touchLocation = touch.location(in: self)
+            node.position = touchLocation
+      
+            self.currentItemNode?.isPlaced = false
             self.currentItemNode?.updateItemPhysics()
-          }
+
+            if self.luggage.contains(node.position) {
+                // Di Dalem LUGGAGE
+                self.currentItemNode?.inLuggage = true
+                self.currentItemNode?.inInventory = false
+                self.currentItemNode?.updateItemScale()
+        
+            } else if self.inventory.contains(node.position) {
+                // Di Dalem INVENTORY
+                self.currentItemNode?.inLuggage = false
+                self.currentItemNode?.inInventory = true
+                self.currentItemNode?.updateItemScale()
+            } else {
+                // Di Luar
+                self.currentItemNode?.inLuggage = false
+                self.currentItemNode?.inInventory = false
+                self.currentItemNode?.updateItemScale()
+            }
         }
-      }
     }
-  }
   
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if let touch = touches.first, let node = self.currentNode {
-      let touchLocation = touch.location(in: self)
-      node.position = touchLocation
-      
-      self.currentItemNode?.isPlaced = false
-      self.currentItemNode?.updateItemPhysics()
-
-      if self.luggage.contains(node.position) {
-        // Di Dalem LUGGAGE
-        self.currentItemNode?.inLuggage = true
-        self.currentItemNode?.inInventory = false
-        self.currentItemNode?.updateItemScale()
-        
-      } else if self.inventory.contains(node.position) {
-        // Di Dalem INVENTORY
-        self.currentItemNode?.inLuggage = false
-        self.currentItemNode?.inInventory = true
-        self.currentItemNode?.updateItemScale()
-      } else {
-        // Di Luar
-        self.currentItemNode?.inLuggage = false
-        self.currentItemNode?.inInventory = false
-        self.currentItemNode?.updateItemScale()
-      }
-    }
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    // MARK: check if item is inside of luggage or not
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // MARK: check if item is inside of luggage or not
     
-    for touch in touches {
-      _ = touch.location(in: self)
+        for touch in touches {
+            _ = touch.location(in: self)
       
-      // check if item node is in luggagenode
-      if let currentNode = currentNode, luggage.contains(currentNode.position) {
-        GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
+            // check if item node is in luggagenode
+            if let currentNode = currentNode, luggage.contains(currentNode.position) {
+                GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
 
-        self.currentItemNode?.isPlaced = true
-        self.currentItemNode?.inLuggage = true
-        self.currentItemNode?.inInventory = false
-        self.currentItemNode?.updateItemScale()
-        self.currentItemNode?.updateItemPhysics()
+                self.currentItemNode?.isPlaced = true
+                self.currentItemNode?.inLuggage = true
+                self.currentItemNode?.inInventory = false
+                self.currentItemNode?.updateItemScale()
+                self.currentItemNode?.updateItemPhysics()
         
-        if self.currentItemNode?.isInsideLuggage(luggage: self.luggageHitBox) == false {
-          self.currentItemNode?.inLuggage = false
-          self.currentItemNode?.inInventory = true
-          self.currentItemNode?.updateItemScale()
-          self.currentItemNode?.updateItemPhysics()
-          GameSceneFunctions.moveItemToInventorySlot(
-            gameScene: self, item: self.currentItemNode ?? ItemNode())
+                if self.currentItemNode?.isInsideLuggage(luggage: self.luggageHitBox) == false {
+                    self.currentItemNode?.inLuggage = false
+                    self.currentItemNode?.inInventory = true
+                    self.currentItemNode?.updateItemScale()
+                    self.currentItemNode?.updateItemPhysics()
+                    GameSceneFunctions.moveItemToInventorySlot(
+                        gameScene: self, item: self.currentItemNode ?? ItemNode())
+                }
+        
+            } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
+                GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
+
+                self.currentItemNode?.isPlaced = true
+                self.currentItemNode?.inLuggage = false
+                self.currentItemNode?.inInventory = true
+                self.currentItemNode?.updateItemScale()
+                self.currentItemNode?.updateItemPhysics()
+                GameSceneFunctions.moveItemToInventorySlot(
+                    gameScene: self, item: self.currentItemNode ?? ItemNode())
+        
+            } else if let currentNode = currentNode {
+                GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
+
+                self.currentItemNode?.isPlaced = true
+                self.currentItemNode?.inLuggage = false
+                self.currentItemNode?.inInventory = false
+                self.currentItemNode?.inInventory = true
+                self.currentItemNode?.updateItemScale()
+                self.currentItemNode?.updateItemPhysics()
+                GameSceneFunctions.moveItemToInventorySlot(
+                    gameScene: self, item: self.currentItemNode ?? ItemNode())
+            }
+
+            self.currentNode = nil
+            self.currentItemNode = nil
         }
-        
-      } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
-        GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
-
-        self.currentItemNode?.isPlaced = true
-        self.currentItemNode?.inLuggage = false
-        self.currentItemNode?.inInventory = true
-        self.currentItemNode?.updateItemScale()
-        self.currentItemNode?.updateItemPhysics()
-        GameSceneFunctions.moveItemToInventorySlot(
-          gameScene: self, item: self.currentItemNode ?? ItemNode())
-        
-      } else if let currentNode = currentNode {
-        GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
-
-        self.currentItemNode?.isPlaced = true
-        self.currentItemNode?.inLuggage = false
-        self.currentItemNode?.inInventory = false
-        self.currentItemNode?.inInventory = true
-        self.currentItemNode?.updateItemScale()
-        self.currentItemNode?.updateItemPhysics()
-        GameSceneFunctions.moveItemToInventorySlot(
-          gameScene: self, item: self.currentItemNode ?? ItemNode())
-      }
-
-      self.currentNode = nil
-      self.currentItemNode = nil
     }
-  }
 
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.currentNode = nil
-    self.currentItemNode = nil
-  }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.currentNode = nil
+        self.currentItemNode = nil
+    }
   
-  override func update(_ currentTime: TimeInterval) {
-    super.update(currentTime)
+    override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
     
-    GameSceneFunctions.handleCollision(gameScene: self)
-    // check if game won
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-      if !self.gameWon {
-        GameSceneFunctions.checkWin(gameScene: self)
-        if self.gameWon {
-            self.isGameFinished = true
-          GameSceneFunctions.showWinScreen(gameScene: self)
-            AudioManager.shared.stopBackgroundMusic()
-            AudioManager.shared.playWinMusic(filename: "GameWin.mp3")
+        GameSceneFunctions.handleCollision(gameScene: self)
+        // check if game won
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            if !self.gameWon {
+                GameSceneFunctions.checkWin(gameScene: self)
+                if self.gameWon {
+                    self.isGameFinished = true
+                    GameSceneFunctions.showWinScreen(gameScene: self)
+                }
+            }
         }
-      }
-    }
     
-    // show game win screen
+        // show game win screen
 
-    // TIMER & AUDIO SECTION
+        // TIMER & AUDIO SECTION
       
-      if !self.isGameFinished {
-          self.timer.update()
-          self.decreaseTimeBar()
-      }
+        if !self.isGameFinished {
+            self.timer.update()
+            self.decreaseTimeBar()
+        }
    
       
     if self.timer.text == "30" && !self.isShowingObstruction && !self.hasShownObstruction {

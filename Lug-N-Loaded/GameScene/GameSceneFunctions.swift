@@ -65,7 +65,6 @@ class GameSceneFunctions {
         gameScene.addChild(fullScreenNode)
         fullScreenNode.run(combinedAction)
         
-        
         let timesUpNode = SKSpriteNode(imageNamed: "times_up_text.png")
         
         let originalSize = timesUpNode.size
@@ -109,7 +108,6 @@ class GameSceneFunctions {
         
         gameScene.addChild(fullScreenNode)
         fullScreenNode.run(combinedAction)
-        
         
         let missionSuccessNode = SKSpriteNode(imageNamed: "mission_success_Text")
         
@@ -181,6 +179,7 @@ class GameSceneFunctions {
         
         if let slot = self.findEmptySlot(gameScene: gameScene) {
             var finalSlotPosition = slot.convert(slot.position, to: gameScene)
+            finalSlotPosition.y = finalSlotPosition.y - 5
             
             if slot == gameScene.inventory.inventorySlots[0] {
                 finalSlotPosition.x = Constants.INVENTORY_SLOT_POSITION_1
@@ -223,6 +222,7 @@ class GameSceneFunctions {
         slotIndex: Int) -> CGPoint
     {
         var finalPoint = gameScene.inventory.inventorySlots[0].convert(gameScene.inventory.inventorySlots[0].position, to: gameScene)
+        finalPoint.y = finalPoint.y - 5
         
         if slotIndex == 0 {
             finalPoint.x = finalPoint.x + Constants.INVENTORY_SLOP_GAP_FIRST
@@ -258,12 +258,11 @@ class GameSceneFunctions {
         luggageHitBox.position = CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 20)
         luggageHitBox.zPosition = 1
         
-        if isTutorial{
+        if isTutorial {
             luggageHitBox.texture = SKTexture(imageNamed: Constants.LUGGAGE_BACKGROUND_TUTORIAL)
             luggageHitBox.position = CGPoint(x: gameScene.frame.midX - 3, y: gameScene.frame.midY + 38)
-        }else{
+        } else {
             luggageHitBox.texture = SKTexture(imageNamed: Constants.LUGGAGE_BACKGROUND_IMAGENAME)
-
         }
         
         luggageHitBox.size.height = luggageHitBox.size.height + 34
@@ -276,29 +275,32 @@ class GameSceneFunctions {
     }
     
     public static func initTutorial(gameScene: GameScene) {
+        gameScene.duration = 999
+        
         // Init Background:
         
         let backgroundImage = SKSpriteNode(imageNamed: "background_tutorial") // MARK: Change Background Image Here
         
-        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2 - 30)
         let scaleX = gameScene.size.width / backgroundImage.size.width
         let scaleY = gameScene.size.height / backgroundImage.size.height
         let scale = max(scaleX, scaleY)
         backgroundImage.zPosition = -100
-        backgroundImage.setScale(scale * 0.3)
+        backgroundImage.setScale(scale * 0.96)
         gameScene.addChild(backgroundImage)
         
         // Init Luggage:
         
         gameScene.luggage = LuggageNode(row: 3, column: 3,
-                                        position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY + 20)) // MARK: Change Background Image Here
+                                        position: CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY - 10)) // MARK: Change Background Image Here
         
         gameScene.addChild(gameScene.luggage)
         gameScene.luggageHitBox = self.createLuggageHitBox(gameScene: gameScene, luggage: gameScene.luggage, isTutorial: true)
+        gameScene.luggageHitBox.position.y = gameScene.luggageHitBox.position.y - 28
         gameScene.addChild(gameScene.luggageHitBox)
         
         // Init Items:
-        let item1 = ItemNode(imageName: "camera", itemShape: "t_reversed",
+        let item1 = ItemNode(imageName: "camera", itemShape: "shape_t_upsidedown",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 0))
         let item2 = ItemNode(imageName: "bottle", itemShape: "rect_vertical_2",
                              position: getSlotPosition(gameScene: gameScene, slotIndex: 1))
@@ -314,18 +316,17 @@ class GameSceneFunctions {
         }
     }
     
-    
     public static func initLevel1(gameScene: GameScene) {
         // Init Background:
-        
+        gameScene.duration = 61
         let backgroundImage = SKSpriteNode(imageNamed: "background_level1") // MARK: Change Background Image Here
         
-        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2 - 25)
         let scaleX = gameScene.size.width / backgroundImage.size.width
         let scaleY = gameScene.size.height / backgroundImage.size.height
         let scale = max(scaleX, scaleY)
         backgroundImage.zPosition = -100
-        backgroundImage.setScale(scale * 0.26)
+        backgroundImage.setScale(scale * 0.95)
         gameScene.addChild(backgroundImage)
         
         // Init Highlight:
@@ -339,7 +340,7 @@ class GameSceneFunctions {
         let scaleYHighlight = gameScene.size.height / highlightImage.size.height
         let scaleHighlight = max(scaleXHighlight, scaleYHighlight)
         highlightImage.zPosition = 10
-        highlightImage.setScale(scaleHighlight * 0.2)
+        highlightImage.setScale(scaleHighlight * 0.3)
         gameScene.addChild(highlightImage)
         
         // Define the destination position where you want the sprite to move
@@ -349,12 +350,12 @@ class GameSceneFunctions {
         let destination3 = CGPoint(x: gameScene.size.width / 2 + 50, y: gameScene.size.height / 2 - 10)
         let destination4 = CGPoint(x: gameScene.size.width / 2 + 80, y: gameScene.size.height / 2 + 20)
         let destination5 = CGPoint(x: gameScene.size.width / 2 + 50, y: gameScene.size.height / 2 + 50)
-
+        
         let destination6 = CGPoint(x: gameScene.size.width / 2 - 50, y: gameScene.size.height / 2 - 10)
-
+        
         // Define the duration for the movement
         let duration: TimeInterval = 1.0
-
+        
         // Create the move action
         let highlightAction = SKAction.sequence([
             SKAction.move(to: destination1, duration: duration),
@@ -364,13 +365,13 @@ class GameSceneFunctions {
             SKAction.move(to: destination5, duration: duration),
             SKAction.move(to: destination2, duration: 1.2),
             SKAction.move(to: destination6, duration: 1.2),
-            SKAction.move(to: initialPosition, duration: duration),
-
+            SKAction.move(to: initialPosition, duration: duration)
+            
         ])
         
         // loop animation
         let repeatAction = SKAction.repeatForever(highlightAction)
-
+        
         // Run the move action on the sprite
         highlightImage.run(repeatAction)
         
@@ -407,37 +408,38 @@ class GameSceneFunctions {
         gameScene.itemNodes.append(item6)
         gameScene.itemNodes.append(item7)
         
-        
         for itemNode in gameScene.itemNodes {
             gameScene.addChild(itemNode)
         }
     }
     
     public static func initLevel2(gameScene: GameScene) {
+        gameScene.duration = 91
+        
         // Init Background:
         
         let backgroundImage = SKSpriteNode(imageNamed: "background_level2") // MARK: Change Background Image Here
         
-        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2)
+        backgroundImage.position = CGPoint(x: gameScene.size.width / 2, y: gameScene.size.height / 2 - 25)
         let scaleX = gameScene.size.width / backgroundImage.size.width
         let scaleY = gameScene.size.height / backgroundImage.size.height
         let scale = max(scaleX, scaleY)
         backgroundImage.zPosition = -100
-        backgroundImage.setScale(scale * 0.25)
+        backgroundImage.setScale(scale * 0.95)
         gameScene.addChild(backgroundImage)
         
         // Init Highlight:
         
         let highlightImage = SKSpriteNode(imageNamed: "background_highlight")
         
-        let initialPosition = CGPoint(x: gameScene.size.width / 2 - 80, y: gameScene.size.height / 2 + 20)
+        let initialPosition = CGPoint(x: gameScene.size.width / 2 - 80, y: gameScene.size.height / 2 + 25)
         
         highlightImage.position = initialPosition
         let scaleXHighlight = gameScene.size.width / highlightImage.size.width
         let scaleYHighlight = gameScene.size.height / highlightImage.size.height
         let scaleHighlight = max(scaleXHighlight, scaleYHighlight)
         highlightImage.zPosition = 10
-        highlightImage.setScale(scaleHighlight * 0.2)
+        highlightImage.setScale(scaleHighlight * 0.3)
         gameScene.addChild(highlightImage)
         
         // Define the destination position where you want the sprite to move
@@ -447,12 +449,12 @@ class GameSceneFunctions {
         let destination3 = CGPoint(x: gameScene.size.width / 2 + 50, y: gameScene.size.height / 2 - 10)
         let destination4 = CGPoint(x: gameScene.size.width / 2 + 80, y: gameScene.size.height / 2 + 20)
         let destination5 = CGPoint(x: gameScene.size.width / 2 + 50, y: gameScene.size.height / 2 + 50)
-
+        
         let destination6 = CGPoint(x: gameScene.size.width / 2 - 50, y: gameScene.size.height / 2 - 10)
-
+        
         // Define the duration for the movement
         let duration: TimeInterval = 1.0
-
+        
         // Create the move action
         let highlightAction = SKAction.sequence([
             SKAction.move(to: destination1, duration: duration),
@@ -462,13 +464,13 @@ class GameSceneFunctions {
             SKAction.move(to: destination5, duration: duration),
             SKAction.move(to: destination2, duration: 1.2),
             SKAction.move(to: destination6, duration: 1.2),
-            SKAction.move(to: initialPosition, duration: duration),
-
+            SKAction.move(to: initialPosition, duration: duration)
+            
         ])
         
         // loop animation
         let repeatAction = SKAction.repeatForever(highlightAction)
-
+        
         // Run the move action on the sprite
         highlightImage.run(repeatAction)
         
@@ -502,10 +504,8 @@ class GameSceneFunctions {
         gameScene.itemNodes.append(item5)
         gameScene.itemNodes.append(item6)
         
-        
         for itemNode in gameScene.itemNodes {
             gameScene.addChild(itemNode)
         }
     }
-
 }

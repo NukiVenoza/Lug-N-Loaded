@@ -10,7 +10,7 @@ import SwiftUI
 struct GameOverView: View {
     var body: some View {
         ZStack (alignment: .leading) {
-            Color.black
+            Color("background_black")
                 .ignoresSafeArea()
             HStack {
                 VStack (alignment: .leading){
