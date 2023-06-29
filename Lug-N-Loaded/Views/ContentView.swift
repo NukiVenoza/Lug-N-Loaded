@@ -8,27 +8,49 @@
 import SpriteKit
 import SwiftUI
 
-
-//TODO: Fix bug di obstruction -> kecilin text dikit + angka ke-4 g muncul!
+// TODO: Fix bug di obstruction -> kecilin text dikit + angka ke-4 g muncul!
 
 struct ContentView: View {
-  var scene: SKScene {
-    let scene = GameScene()
-    scene.size = UIScreen.main.bounds.size
-    scene.scaleMode = .fill
-    return scene
-  }
+//  @ObservedObject private var game : RealTimeGame
+
+  @State var isPlayingGame = false
 
   var body: some View {
-    SpriteView(scene: scene)
-      .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 22)
-      .ignoresSafeArea()
+    NavigationView {
+      ZStack {
+        Image("bgTitle")
+          .resizable()
+          .aspectRatio(contentMode: .fill)
+          .ignoresSafeArea()
+        VStack {
+          // Navigate matching with friend
+          Button {
+            //          if game.automatch {
+            //            // Turn automatch off.
+            //            GKMatchmaker.shared().cancel()
+            //            game.automatch = false
+            //          }
+            //          game.choosePlayer()
+            isPlayingGame = true
+          } label: {
+            Image("btnStart")
+              .resizable()
+              .frame(width: 61, height: 65)
+              .padding(.top, 68)
+          }
+        }
+      }
+      .onAppear {
+        //      if !game.playingGame {
+        //        game.authenticatePlayer()
+        //      }
+      }
+      .fullScreenCover(isPresented: $isPlayingGame) {
+        GameView()
+      }
+      //    .fullScreenCover(isPresented: $game.playingGame) {
+      //      GameView()
+      //    }
+    }
   }
 }
-
-//
-// struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-// }

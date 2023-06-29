@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D2400752A4D3725006AE16F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2400742A4D3725006AE16F /* ContentView.swift */; };
+		2D2400772A4D43CB006AE16F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2400762A4D43CB006AE16F /* GameView.swift */; };
 		2DC0D7912A4209E800DAF262 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D78F2A4209E800DAF262 /* Constants.swift */; };
 		2DC0D7922A4209E800DAF262 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7902A4209E800DAF262 /* HelperFunctions.swift */; };
 		2DC0D79A2A420F3400DAF262 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0D7962A420F3400DAF262 /* SquareNode.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		2D2400742A4D3725006AE16F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2D2400762A4D43CB006AE16F /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		2DC0D78F2A4209E800DAF262 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DC0D7902A4209E800DAF262 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		2DC0D7962A420F3400DAF262 /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
@@ -120,9 +122,10 @@
 		D01170F62A4C273800582D2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2D2400742A4D3725006AE16F /* ContentView.swift */,
+				2D2400762A4D43CB006AE16F /* GameView.swift */,
 				D01170F72A4C28C500582D2C /* MissionCompleteView.swift */,
 				35C260942A4C450B00C363AD /* GameOverView.swift */,
-				2D2400742A4D3725006AE16F /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				D0F302312A44204200F3DFC0 /* InventoryNode.swift in Sources */,
 				353C6C902A4AC5FD0015CDEB /* GameScene.swift in Sources */,
 				D0F302332A44221C00F3DFC0 /* InventorySlotNode.swift in Sources */,
+				2D2400772A4D43CB006AE16F /* GameView.swift in Sources */,
 				2DC0D79B2A420F3400DAF262 /* LuggageNode.swift in Sources */,
 				2DC0D7922A4209E800DAF262 /* HelperFunctions.swift in Sources */,
 				D0AFC3FF2A3D622C00665580 /* GameViewController.swift in Sources */,
