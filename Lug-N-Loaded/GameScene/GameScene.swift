@@ -355,7 +355,7 @@ class GameScene: SKScene {
     let center = CGPoint(x: frame.midX, y: frame.midY)
     self.timer.position = CGPoint(x: frame.midX, y: frame.midY + 140)
     self.timer.zPosition = 500
-    self.timer.fontName = "YourName-Bold"
+    self.timer.fontName = "Fredoka"
     self.timer.fontSize = 25
       
     addChild(self.timer)
