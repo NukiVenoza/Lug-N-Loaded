@@ -16,7 +16,7 @@ struct LevelCarousel<Content: View, T: Identifiable>: View {
     var trailingSpace: CGFloat
     @Binding var index: Int
     
-    init(spacing: CGFloat = 15, trailingSpace: CGFloat = 100, index: Binding<Int>, items: [T], @ViewBuilder content: @escaping (T)->Content) {
+    init(spacing: CGFloat = 15, trailingSpace: CGFloat = 120, index: Binding<Int>, items: [T], @ViewBuilder content: @escaping (T)->Content) {
         self.list = items
         self.spacing = spacing
         self.trailingSpace = trailingSpace
