@@ -34,7 +34,7 @@ class ItemNode: SKSpriteNode {
         // Give node collision and physics
         physicsBody = SKPhysicsBody(texture: textureShape, alphaThreshold: 0.5, size: size)
         updateItemPhysics()
-        physicsBody?.allowsRotation = false
+        physicsBody?.allowsRotation = true
         physicsBody?.affectedByGravity = false
     }
 

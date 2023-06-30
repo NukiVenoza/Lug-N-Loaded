@@ -502,7 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lug-N-Loaded/Lug-N-Loaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = DVSPNNP5A3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lug-N-Loaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -531,7 +531,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lug-N-Loaded/Lug-N-Loaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZKP7U4QRRG;
+				DEVELOPMENT_TEAM = DVSPNNP5A3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lug-N-Loaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

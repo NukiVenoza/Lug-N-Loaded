@@ -130,6 +130,7 @@ class GameSceneFunctions {
         item.position = newLocation
         GameSceneFunctions.updateInventorySlotStatus(gameScene: gameScene)
         item.isPlaced = true
+        
 
         if gameScene.luggage.contains(item.position) {
             // ITEM DI DALEM LUGGAGE

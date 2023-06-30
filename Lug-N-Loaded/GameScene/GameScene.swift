@@ -25,10 +25,12 @@ class GameScene: SKScene {
         // check which player is current player
         self.scenePlayerId = self.matchManager.currentPlayer
 
-        if self.matchManager.player1 == self.matchManager.currentPlayer {
+        if self.matchManager.player1 == self.matchManager.currentPlayer && matchManager.hasPlayer1 == false{
             self.isPlayer1 = true
-        } else if self.matchManager.player2 == self.matchManager.currentPlayer {
-            self.isPlayer2 = true
+            matchManager.hasPlayer1 = true
+        }
+        if matchManager.hasPlayer1 == true{
+            self.isPlayer2
         }
     }
   
@@ -129,9 +131,12 @@ class GameScene: SKScene {
             if tappedNode.name == "item" {
                 // Rotate the node by 90 degrees
                 print("mencoba merotate item")
+                
                 let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
                 let currItemNode = SKSpriteNodeToItemNode(node: tappedNode)
-                currItemNode?.currentRotation = (currItemNode?.currentRotation ?? 0) + .pi / 2
+                currItemNode?.run(rotateAction)
+//                currItemNode?.currentRotation = (currItemNode?.currentRotation ?? 0) + .pi / 2
+                currItemNode?.currentRotation = 0
             }
         }
     }
@@ -322,7 +327,7 @@ class GameScene: SKScene {
         self.timer.pause()
         self.obsTimer.resume()
         
-        if isPlayer1 {
+        if isPlayer1 == false {
             self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!, correctCode: self.correctCode)
         } else {
             self.obstructionNode = ObstructionNode(player: "Player2", size: size, parentView: view!, correctCode: self.correctCode)

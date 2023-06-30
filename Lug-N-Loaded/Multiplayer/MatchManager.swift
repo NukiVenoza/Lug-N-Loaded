@@ -27,6 +27,7 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
 
     @Published var player1: String = ""
     @Published var player2: String = ""
+    @Published var hasPlayer1: Bool = false
     @Published var currentLevel: Int = 1
 
     var scene: GameScene?
@@ -47,9 +48,9 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         let positionX = Double(item.position.x)
         let positionY = Double(item.position.y)
 
-//        print("PLAYER: \(player)")
-//        print("1PLAYER: \(player1)")
-//        print("2PLAYER: \(player2)")
+        print("PLAYER: \(player)")
+        print("1PLAYER: \(player1)")
+        print("2PLAYER: \(player2)")
 
         do {
             let sharedItem = SharedItem(
@@ -57,7 +58,7 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
                 positionX: positionX,
                 positionY: positionY,
                 inLuggage: item.inLuggage,
-                itemRotation: 0,
+                itemRotation: item.currentRotation,
                 inPlayer1: player == player1,
                 inPlayer2: player == player2
             )

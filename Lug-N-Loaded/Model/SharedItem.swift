@@ -12,7 +12,7 @@ struct SharedItem: Codable {
     var positionX: Double
     var positionY: Double
     var inLuggage: Bool
-    var itemRotation: Int
+    var itemRotation: Double
     var inPlayer1: Bool
     var inPlayer2: Bool
 }

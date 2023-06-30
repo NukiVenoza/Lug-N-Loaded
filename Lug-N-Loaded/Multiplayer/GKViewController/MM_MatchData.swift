@@ -40,7 +40,7 @@ extension MatchManager {
         return encode(sharedItem: sharedItem)
     }
 
-    func encode(itemRotation: Int) -> Data? {
+    func encode(itemRotation: Double) -> Data? {
         let sharedItem = SharedItem(itemId: 0, positionX: 0.0, positionY: 0.0, inLuggage: false, itemRotation: itemRotation, inPlayer1: false, inPlayer2: false)
         return encode(sharedItem: sharedItem)
     }
