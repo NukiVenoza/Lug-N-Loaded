@@ -8,6 +8,9 @@ struct StoryLevel1View: View {
     @State private var isShowingStory = true
     @State private var isStoryDone = false
     
+    @State var isPlayingGame: Bool = false
+    @State var gameLevel: Int = 1
+    
     var timer : Double = 6
     
     var body: some View {
@@ -63,17 +66,20 @@ struct StoryLevel1View: View {
                     }
                 }
             } else {
-                VStack {
-                    Text("Hello World!")
-                        .foregroundColor(.secondary)
-                }
+                
             }
             
         }
         .onTapGesture {
             if isStoryDone {
-                isShowingStory.toggle()
+                isShowingStory = false
+                isPlayingGame = true
             }
+        }
+        .onAppear{}
+        .navigationBarBackButtonHidden()
+        .fullScreenCover(isPresented: $isPlayingGame) {
+            GameView(level: $gameLevel)
         }
     }
 }
