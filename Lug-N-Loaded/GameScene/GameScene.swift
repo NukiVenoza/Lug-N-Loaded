@@ -329,7 +329,7 @@ class GameScene: SKScene {
         } 
         self.obstructionNode.position = CGPoint(x: frame.midX, y: frame.midY)
         self.obstructionNode.zPosition = 1999
-        self.obstructionNode.isUserInteractionEnabled = true
+//        self.obstructionNode.isUserInteractionEnabled = true
         addChild(self.obstructionNode)
         
         self.isShowingObstruction = true

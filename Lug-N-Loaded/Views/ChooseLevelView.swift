@@ -12,6 +12,7 @@ struct ChooseLevelView: View {
     @EnvironmentObject var matchManager: MatchManager
     @State var currentIndex: Int = 0
     @State var levels: [Level] = []
+    @State var level: Int = 1
     
     var body: some View {
         ZStack {
@@ -109,7 +110,7 @@ struct ChooseLevelView: View {
             }
         }
         .fullScreenCover(isPresented: $matchManager.playingGame) {
-            GameView(level: $matchManager.currentLevel)
+            GameView(level: $level)
                 .environmentObject(matchManager)
         }
     }

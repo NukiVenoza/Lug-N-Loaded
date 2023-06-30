@@ -29,7 +29,7 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     @Published var player2: String = ""
     @Published var currentLevel: Int = 1
 
-    @Published var scene: GameScene?
+    var scene: GameScene?
     @Published var remainingTime: Int = 0
 
     var currentPlayer: String {
