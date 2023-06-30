@@ -15,7 +15,7 @@ extension MatchManager: GKMatchDelegate {
     func match(_ match: GKMatch, didReceive data: Data, fromRemotePlayer player: GKPlayer) {
         if let gameData = decode(sharedItem: data) {
             print(gameData)
-//            GameSceneFunctions.receiveData(gameScene: scene!, sharedItem: gameData)
+            self.receiveData(gameScene: scene!, sharedItem: gameData)
         }
     }
 

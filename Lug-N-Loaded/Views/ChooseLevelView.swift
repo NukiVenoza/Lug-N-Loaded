@@ -5,13 +5,13 @@
 //  Created by Nuki Venoza on 29/06/23.
 //
 
+import GameKit
 import SwiftUI
 
 struct ChooseLevelView: View {
     @EnvironmentObject var matchManager: MatchManager
     @State var currentIndex: Int = 0
     @State var levels: [Level] = []
-    @State var isPlayingGame = false
     
     var body: some View {
         ZStack {
@@ -87,8 +87,15 @@ struct ChooseLevelView: View {
             }
             
             Button {
-                isPlayingGame = true
+                // MARK: Code for finding matching players
+
+                if matchManager.automatch {
+                    GKMatchmaker.shared().cancel()
+                    matchManager.automatch = false
+                }
+                matchManager.choosePlayer()
                 currentIndex = currentIndex + 1
+                matchManager.currentLevel = currentIndex
             } label: {
                 Image("btnStart")
                     .resizable()
@@ -96,8 +103,13 @@ struct ChooseLevelView: View {
             }.position(CGPoint(x: UIScreen.main.bounds.midX - 20,
                                y: UIScreen.main.bounds.midY + 150))
         }
-        .fullScreenCover(isPresented: $isPlayingGame) {
-            GameView(level: $currentIndex)
+        .onAppear {
+            if !matchManager.playingGame {
+                matchManager.authenticatePlayer()
+            }
+        }
+        .fullScreenCover(isPresented: $matchManager.playingGame) {
+            GameView(level: $matchManager.currentLevel)
                 .environmentObject(matchManager)
         }
     }

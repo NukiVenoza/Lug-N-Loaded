@@ -71,8 +71,17 @@ class GameScene: SKScene {
     
     // OBSTRUCTION CODE
     var correctCode: String!
+    
+    var gameInitialized = false
   
     override func didMove(to view: SKView) {
+        
+        if self.gameInitialized == false {
+            self.matchManager.scene = self
+            self.gameInitialized = true
+        }
+        
+        
         isUserInteractionEnabled = true
 
         // Add double tap gesture recognizer
@@ -119,9 +128,10 @@ class GameScene: SKScene {
             // Rotate the node by 90 degrees
             if tappedNode.name == "item" {
                 // Rotate the node by 90 degrees
+                print("mencoba merotate item")
                 let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
                 let currItemNode = SKSpriteNodeToItemNode(node: tappedNode)
-                currItemNode?.currentRotation = .pi / 2
+                currItemNode?.currentRotation = (currItemNode?.currentRotation ?? 0) + .pi / 2
             }
         }
     }
@@ -312,7 +322,11 @@ class GameScene: SKScene {
         self.timer.pause()
         self.obsTimer.resume()
         
-        self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!, correctCode: self.correctCode)
+        if isPlayer1 {
+            self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!, correctCode: self.correctCode)
+        } else {
+            self.obstructionNode = ObstructionNode(player: "Player2", size: size, parentView: view!, correctCode: self.correctCode)
+        } 
         self.obstructionNode.position = CGPoint(x: frame.midX, y: frame.midY)
         self.obstructionNode.zPosition = 1999
         self.obstructionNode.isUserInteractionEnabled = true
