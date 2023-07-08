@@ -11,10 +11,8 @@ import SpriteKit
 class GameScene: SKScene {
     var matchManager = MatchManager.shared
     var level: Int
-    
     public var isPlayer1 = false
     public var isPlayer2 = false
-    public var scenePlayerId: String = ""
 
     init(level: Int) {
         self.level = level
@@ -23,14 +21,11 @@ class GameScene: SKScene {
         // MARK: Code for MatchMaker (MUTLIPLAYER)
 
         // check which player is current player
-        self.scenePlayerId = self.matchManager.currentPlayer
-
-        if self.matchManager.player1 == self.matchManager.currentPlayer && matchManager.hasPlayer1 == false{
+        
+        if self.matchManager.localPlayer.alias == "Player 1" {
             self.isPlayer1 = true
-            matchManager.hasPlayer1 = true
-        }
-        if matchManager.hasPlayer1 == true{
-            self.isPlayer2
+        } else if self.matchManager.localPlayer.alias == "Player 2" {
+            self.isPlayer2 = true
         }
     }
   
@@ -77,12 +72,26 @@ class GameScene: SKScene {
     var gameInitialized = false
   
     override func didMove(to view: SKView) {
+        if self.isPlayer1 {
+            let labelNode = SKLabelNode(text: "PLAYER 1")
+            labelNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
+            labelNode.fontColor = UIColor.white
+            labelNode.fontSize = 24
+            labelNode.zPosition = 1100
+            addChild(labelNode)
+        } else {
+            let labelNode = SKLabelNode(text: "PLAYER 2")
+            labelNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
+            labelNode.fontColor = UIColor.white
+            labelNode.fontSize = 24
+            labelNode.zPosition = 1100
+            addChild(labelNode)
+        }
         
         if self.gameInitialized == false {
             self.matchManager.scene = self
             self.gameInitialized = true
         }
-        
         
         isUserInteractionEnabled = true
 
@@ -127,16 +136,14 @@ class GameScene: SKScene {
         // MARK: Rotate Node
     
         if let tappedNode = atPoint(convertedLocation) as? SKSpriteNode {
-            // Rotate the node by 90 degrees
             if tappedNode.name == "item" {
                 // Rotate the node by 90 degrees
-                print("mencoba merotate item")
-                
-                let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
                 let currItemNode = SKSpriteNodeToItemNode(node: tappedNode)
+                currItemNode?.currentRotation = (currItemNode?.currentRotation ?? 0) + 90
+                let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
                 currItemNode?.run(rotateAction)
-//                currItemNode?.currentRotation = (currItemNode?.currentRotation ?? 0) + .pi / 2
-                currItemNode?.currentRotation = 0
+                
+                self.matchManager.sendItemData(item: currItemNode!)
             }
         }
     }
@@ -206,49 +213,9 @@ class GameScene: SKScene {
                 GameSceneFunctions.prepareImpact(gameScene: self, item: itemNode, newLocation: touch.location(in: self))
                 
                 // Send Data to Other Player:
-                self.matchManager.sendItemData(item: itemNode, player: self.scenePlayerId)
+                self.matchManager.sendItemData(item: itemNode)
             }
             
-//            if let currentNode = currentNode, luggage.contains(currentNode.position) {
-//                GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
-//                // Dalem Luggage
-//                self.currentItemNode?.inLuggage = true
-//                self.currentItemNode?.inInventory = false
-//                self.currentItemNode?.updateItemScale()
-//                self.currentItemNode?.updateItemPhysics()
-//
-//                if self.currentItemNode?.isInsideLuggage(luggage: self.luggageHitBox) == false {
-//                    // Di Luar Hitbox Lugguage
-//                    self.currentItemNode?.inLuggage = false
-//                    self.currentItemNode?.inInventory = true
-//                    self.currentItemNode?.updateItemScale()
-//                    self.currentItemNode?.updateItemPhysics()
-//                    GameSceneFunctions.moveItemToInventorySlot(
-//                        gameScene: self, item: self.currentItemNode ?? ItemNode())
-//                }
-//
-//            } else if let currentNode = currentNode, inventory.contains(currentNode.position) {
-//                GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
-//                // Dalem Inventory
-//                self.currentItemNode?.inLuggage = false
-//                self.currentItemNode?.inInventory = true
-//                self.currentItemNode?.updateItemScale()
-//                self.currentItemNode?.updateItemPhysics()
-//                GameSceneFunctions.moveItemToInventorySlot(
-//                    gameScene: self, item: self.currentItemNode ?? ItemNode())
-//
-//            } else if let currentNode = currentNode {
-//                GameSceneFunctions.updateInventorySlotStatus(gameScene: self)
-//                // Di Luar!
-//                self.currentItemNode?.inLuggage = false
-//                self.currentItemNode?.inInventory = false
-//                self.currentItemNode?.inInventory = true
-//                self.currentItemNode?.updateItemScale()
-//                self.currentItemNode?.updateItemPhysics()
-//                GameSceneFunctions.moveItemToInventorySlot(
-//                    gameScene: self, item: self.currentItemNode ?? ItemNode())
-//            }
-
             self.currentNode = nil
             self.currentItemNode = nil
         }
@@ -327,11 +294,11 @@ class GameScene: SKScene {
         self.timer.pause()
         self.obsTimer.resume()
         
-        if isPlayer1 == false {
+        if self.isPlayer1 {
             self.obstructionNode = ObstructionNode(player: "Player1", size: size, parentView: view!, correctCode: self.correctCode)
         } else {
             self.obstructionNode = ObstructionNode(player: "Player2", size: size, parentView: view!, correctCode: self.correctCode)
-        } 
+        }
         self.obstructionNode.position = CGPoint(x: frame.midX, y: frame.midY)
         self.obstructionNode.zPosition = 1999
 //        self.obstructionNode.isUserInteractionEnabled = true

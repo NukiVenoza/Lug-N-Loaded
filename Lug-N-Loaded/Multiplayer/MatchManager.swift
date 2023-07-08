@@ -7,7 +7,13 @@
 
 import Foundation
 import GameKit
+import SpriteKit
 import SwiftUI
+
+enum PlayerRole: String {
+    case player1 = "Player 1"
+    case player2 = "Player 2"
+}
 
 /// - Tag:RealTimeGame
 @MainActor
@@ -25,17 +31,14 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     @Published var opponentAvatar = Image(systemName: "person.crop.circle")
     @Published var opponent: GKPlayer? = nil
 
-    @Published var player1: String = ""
-    @Published var player2: String = ""
-    @Published var hasPlayer1: Bool = false
-    @Published var currentLevel: Int = 1
-
     var scene: GameScene?
+    @Published var currentLevel: Int = 1
     @Published var remainingTime: Int = 0
 
-    var currentPlayer: String {
-        GKLocalPlayer.local.gamePlayerID
-    }
+    // Testing roles buat players // check role P1 P2 --> pake alias
+    @Published var localPlayer: GKPlayer?
+    @Published var connectedPlayer: GKPlayer?
+    var playerRole: PlayerRole?
 
     var rootViewController: UIViewController? {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
@@ -44,13 +47,20 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
 
     // MARK: CORE MULTIPLAYER FUNCTIONALITY
 
-    func sendItemData(item: ItemNode, player: String) {
+    func sendItemData(item: ItemNode) {
         let positionX = Double(item.position.x)
         let positionY = Double(item.position.y)
 
-        print("PLAYER: \(player)")
-        print("1PLAYER: \(player1)")
-        print("2PLAYER: \(player2)")
+        var inPlayer1 = false
+        var inPlayer2 = false
+
+        if localPlayer?.alias == "Player 1" {
+            print("player 1 sending to player 2")
+            inPlayer1 = true
+        } else {
+            print("player 2 sending to player 1")
+            inPlayer2 = true
+        }
 
         do {
             let sharedItem = SharedItem(
@@ -59,8 +69,8 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
                 positionY: positionY,
                 inLuggage: item.inLuggage,
                 itemRotation: item.currentRotation,
-                inPlayer1: player == player1,
-                inPlayer2: player == player2
+                inPlayer1: inPlayer1,
+                inPlayer2: inPlayer2
             )
             let encodedSharedItem = encode(sharedItem: sharedItem)
             try myMatch?.sendData(toAllPlayers: encodedSharedItem!, with: GKMatch.SendDataMode.unreliable)
@@ -70,16 +80,34 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
     }
 
     func receiveData(gameScene: GameScene, sharedItem: SharedItem) {
-        print("dapet dataaa")
+        print("dapet data:")
         print("\(sharedItem)")
 
         let item = GameSceneFunctions.findNode(gameScene: gameScene, itemId: sharedItem.itemId)
         let newPosition = CGPoint(x: sharedItem.positionX, y: sharedItem.positionY)
 
+        // check if rotation in sharedItem is same with item's rotation
+
+        if sharedItem.itemRotation != item.currentRotation {
+            item.currentRotation = sharedItem.itemRotation
+            let rotateAction = SKAction.rotate(byAngle: .pi / 2, duration: 0.2)
+            item.run(rotateAction)
+        }
+
+        // set siapa yang terakhir sentuh item tersebut
+
         if sharedItem.inPlayer1 {
-            item.lastTouchedBy = player1 // TODO: set berdasarkan player1 id
+            if localPlayer?.alias == "Player 1" {
+                item.lastTouchedBy = localPlayer?.gamePlayerID ?? ""
+            } else {
+                item.lastTouchedBy = connectedPlayer?.gamePlayerID ?? ""
+            }
         } else {
-            item.lastTouchedBy = player2 // TODO: set berdasarkan player2 id
+            if localPlayer?.alias == "Player 2" {
+                item.lastTouchedBy = localPlayer?.gamePlayerID ?? ""
+            } else {
+                item.lastTouchedBy = connectedPlayer?.gamePlayerID ?? ""
+            }
         }
 
         if sharedItem.inLuggage {
@@ -92,56 +120,31 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         } else {
             returnToLastToucher(gameScene: gameScene, item: item)
         }
-
-//        else if sharedItem.inPlayer1 {
-//            returnToPlayer1(gameScene: gameScene, item: item)
-//
-//        } else if sharedItem.inPlayer2 {
-//            returnToPlayer2(gameScene: gameScene, item: item)
-//        }
-    }
-
-    func returnToPlayer1(gameScene: GameScene, item: ItemNode) {
-        if gameScene.isPlayer1 {
-            // move item outside, and teleport back to inventory using prepareImpact
-            let dummyPosition = CGPoint(x: -1000, y: -1000)
-            GameSceneFunctions.prepareImpact(gameScene: gameScene, item: item, newLocation: dummyPosition)
-        } else {
-            hideItem(item: item)
-        }
-    }
-
-    func returnToPlayer2(gameScene: GameScene, item: ItemNode) {
-        if gameScene.isPlayer2 {
-            // move item outside, and teleport back to inventory using prepareImpact
-            let dummyPosition = CGPoint(x: -1000, y: -1000)
-            GameSceneFunctions.prepareImpact(gameScene: gameScene, item: item, newLocation: dummyPosition)
-        } else {
-            hideItem(item: item)
-        }
     }
 
     func returnToLastToucher(gameScene: GameScene, item: ItemNode) {
-        if item.lastTouchedBy == player1 {
+        // TODO: maybe harus dirombak
+        print("Returning to last toucher")
+
+        if item.lastTouchedBy == localPlayer?.gamePlayerID {
             if gameScene.isPlayer1 == true {
                 let dummyPosition = CGPoint(x: -1000, y: -1000)
                 GameSceneFunctions.prepareImpact(gameScene: gameScene, item: item, newLocation: dummyPosition)
             } else {
-                hideItem(item: item)
+                print("hide item from player 2")
+                item.hideItem()
+                item.isHidden = true
             }
         } else {
             if gameScene.isPlayer2 == true {
                 let dummyPosition = CGPoint(x: -1000, y: -1000)
                 GameSceneFunctions.prepareImpact(gameScene: gameScene, item: item, newLocation: dummyPosition)
             } else {
-                hideItem(item: item)
+                print("hide item from player 1")
+                item.hideItem()
+                item.isHidden = true
             }
         }
-    }
-
-    func hideItem(item: ItemNode) {
-        item.zPosition = -10000
-        item.position = CGPoint(x: 10000, y: 10000)
     }
 
     // MARK: GK TEMPLATES FUNCTIONS
@@ -202,6 +205,32 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         }
     }
 
+//    func startMyMatchWith(match: GKMatch) {
+    ////        GKAccessPoint.shared.isActive = false
+    ////        playingGame = true
+    ////        myMatch = match
+    ////        myMatch?.delegate = self
+    ////
+    ////        if myMatch?.expectedPlayerCount == 0 {
+    ////            localPlayer = GKLocalPlayer.local
+    ////            localPlayer?.alias = "Player 1"
+    ////            connectedPlayer = myMatch?.players[0]
+    ////            connectedPlayer?.alias = "Player 2"
+    ////
+    ////            opponent = myMatch?.players[0]
+    ////            opponent?.loadPhoto(for: GKPlayer.PhotoSize.small) { image, error in
+    ////                if let image {
+    ////                    self.opponentAvatar = Image(uiImage: image)
+    ////                }
+    ////                if let error {
+    ////                    print("Error: \(error.localizedDescription).")
+    ////                }
+    ////            }
+    ////        }
+//
+//        reportProgress()
+//    }
+
     func startMyMatchWith(match: GKMatch) {
         GKAccessPoint.shared.isActive = false
         playingGame = true
@@ -209,25 +238,21 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         myMatch?.delegate = self
 
         if myMatch?.expectedPlayerCount == 0 {
-            opponent = myMatch?.players[0]
-            opponent?.loadPhoto(for: GKPlayer.PhotoSize.small) { image, error in
-                if let image {
-                    self.opponentAvatar = Image(uiImage: image)
-                }
-                if let error {
-                    print("Error: \(error.localizedDescription).")
-                }
-            }
-        }
+            localPlayer = GKLocalPlayer.local
+            connectedPlayer = myMatch?.players[0]
 
-        var hasSetPlayer1 = false
-        if hasSetPlayer1 == false {
-            // Make sure Player 1 and Player 2 is the same for both players!
-            player1 = GKLocalPlayer.local.gamePlayerID
-            player2 = opponent?.gamePlayerID ?? ""
-            hasSetPlayer1.toggle()
+            playerRole = Bool.random() ? .player1 : .player2
+
+            // Send a message to the connected player with the player role
+            let message = "\(playerRole!)"
+            do {
+                try myMatch?.sendData(toAllPlayers: message.data(using: .utf8)!, with: .reliable)
+            } catch {
+                print("error!")
+            }
+
+            reportProgress()
         }
-        reportProgress()
     }
 
     func endMatch() {}
@@ -259,22 +284,12 @@ class MatchManager: NSObject, GKGameCenterControllerDelegate, ObservableObject {
         GKAchievement.loadAchievements(completionHandler: { (achievements: [GKAchievement]?, error: Error?) in
             let achievementID = "1234"
             var achievement: GKAchievement?
-
-            // Find an existing achievement.
             achievement = achievements?.first(where: { $0.identifier == achievementID })
-
-            // Otherwise, create a new achievement.
             if achievement == nil {
                 achievement = GKAchievement(identifier: achievementID)
             }
-
-            // Create an array containing the achievement.
             let achievementsToReport: [GKAchievement] = [achievement!]
-
-            // Set the progress for the achievement.
             achievement?.percentComplete = achievement!.percentComplete + 10.0
-
-            // Report the progress to Game Center.
             GKAchievement.report(achievementsToReport, withCompletionHandler: { (error: Error?) in
                 if let error {
                     print("Error: \(error.localizedDescription).")

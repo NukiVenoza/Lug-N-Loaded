@@ -16,6 +16,9 @@ class ItemNode: SKSpriteNode {
     var isPlaced: Bool = true
     var currentScale: Double = Constants.ITEM_SCALE_BIG
     var currentRotation: Double = 0
+    var hide: Bool = false
+
+    // TODO: coba pakai isHidden, kalo g bekerja baru pakai hide
 
     init(id: Int, imageName: String, itemShape: String, position: CGPoint) {
         // Identify the image and shape of the node
@@ -30,7 +33,6 @@ class ItemNode: SKSpriteNode {
         self.name = "item"
 
         updateItemScale()
-
         // Give node collision and physics
         physicsBody = SKPhysicsBody(texture: textureShape, alphaThreshold: 0.5, size: size)
         updateItemPhysics()
@@ -76,6 +78,17 @@ class ItemNode: SKSpriteNode {
             physicsBody?.contactTestBitMask = 0xFFFFFFFF
             zPosition = zPosition - 1
         }
+    }
+
+    public func unhideItem() {
+        hide = false
+        zPosition = 10
+    }
+
+    public func hideItem() {
+        zPosition = -10
+        position = CGPoint(x: 10000, y: 10000)
+        hide = true
     }
 
     func isInsideLuggage(luggage: SKSpriteNode) -> Bool {

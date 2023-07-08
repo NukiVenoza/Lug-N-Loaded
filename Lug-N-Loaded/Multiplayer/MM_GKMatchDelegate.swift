@@ -13,6 +13,14 @@ extension MatchManager: GKMatchDelegate {
     // MARK: RECEIVE DATA
 
     func match(_ match: GKMatch, didReceive data: Data, fromRemotePlayer player: GKPlayer) {
+        if let message = String(data: data, encoding: .utf8), let receivedRole = PlayerRole(rawValue: message) {
+            // Update the player role of the remote player based on the received message
+            if player == connectedPlayer {
+                playerRole = receivedRole
+                print("Received player role: \(playerRole!)")
+            }
+        }
+
         if let gameData = decode(sharedItem: data) {
             print(gameData)
             self.receiveData(gameScene: scene!, sharedItem: gameData)
